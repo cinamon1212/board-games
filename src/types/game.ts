@@ -1,4 +1,6 @@
-export type Game =
+import { PlayerScores } from './statistics'
+
+export type GameTitles =
   | 'Ticket to Ride: Европа'
   | 'Challengers'
   | 'Ticket to Ride: Азия'
@@ -9,4 +11,10 @@ export type Game =
   | 'Kutna Hora'
   | 'Эволюция'
 
-export type GamesList = Array<Game>
+export type GameInfo = {
+  imgPath?: string | null
+  games?: PlayerScores
+  title: GameTitles
+}
+
+export type Games = Array<GameInfo>

@@ -1,4 +1,4 @@
-export * from './games-list'
+export * from './games'
 export * from './players'
 
-export { GAMES_STATISTICS } from './games-statistics'
+export { GAMES_LIST } from './games'

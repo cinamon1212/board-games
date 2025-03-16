@@ -1,7 +1,17 @@
+'use client'
+
 import React from 'react'
 
+import { GamesList } from '@/components'
+
+import { HomeWrapper } from './styles'
+
 const Home = () => {
-  return <div>Home</div>
+  return (
+    <HomeWrapper>
+      <GamesList />
+    </HomeWrapper>
+  )
 }
 
 export default Home
