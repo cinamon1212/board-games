@@ -25,20 +25,21 @@ export const GameImg = styled.img.attrs<GameImgProps>((props) => ({
   src: props.src,
   alt: props.alt,
 }))`
-  height: 70%;
+  height: 65%;
   border: none;
   object-fit: cover;
   object-position: top;
 `
 
 export const GameInfo = styled.div`
-  height: 30%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
   padding: 24px;
+  text-align: center;
 `
 export const GameTitle = styled.span`
   font-size: 20px;
