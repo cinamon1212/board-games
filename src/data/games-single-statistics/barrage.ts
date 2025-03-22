@@ -1,3 +1,9 @@
-import { PlayerScores } from '@/types'
+import { GameInfo, PlayerScores } from '@/types'
 
-export const BARRAGE: PlayerScores = [{ Андрей: 104 }]
+const BARRAGE_GAMES: PlayerScores = [{ Андрей: 104 }]
+
+export const BARRAGE: GameInfo = {
+  games: BARRAGE_GAMES,
+  title: 'Плотина',
+  imgPath: 'barrage.jpg',
+}

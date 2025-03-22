@@ -1,3 +1,9 @@
-import { PlayerScores } from '@/types'
+import { GameInfo, PlayerScores } from '@/types'
 
-export const EVERDELL: PlayerScores = [{ Соня: 41, Андрей: 65, Илья: 58 }, { Андрей: 54 }, { Илья: 70 }]
+const EVERDELL_GAMES: PlayerScores = [{ Соня: 41, Андрей: 65, Илья: 58 }, { Андрей: 54 }, { Илья: 70 }]
+
+export const EVERDELL: GameInfo = {
+  games: EVERDELL_GAMES,
+  title: 'Эверделл',
+  imgPath: 'everdell.jpg',
+}

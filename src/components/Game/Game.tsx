@@ -8,7 +8,7 @@ export const Game = ({ title, games, imgPath = null }: GameType) => {
 
   const gameHref = title.replaceAll(' ', '-')
 
-  return (
+  return gamesCount ? (
     <GameWrapper href={gameHref}>
       <GameImg src={imgPath} alt={title} />
       <GameInfo>
@@ -16,5 +16,5 @@ export const Game = ({ title, games, imgPath = null }: GameType) => {
         <GameCount>{gameCountStr}</GameCount>
       </GameInfo>
     </GameWrapper>
-  )
+  ) : null
 }
