@@ -8,8 +8,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(14, 13, 12);
+  background: linear-gradient(rgb(14, 13, 12) 60%, #261e16);
   color: whitesmoke;
+  min-height: 100vh;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 * {

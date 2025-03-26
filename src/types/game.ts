@@ -35,7 +35,7 @@ export type GameTitles =
 
 export type GameInfo = {
   imgPath?: string | null
-  games?: PlayerScores
+  games: PlayerScores
   title: GameTitles
 }
 

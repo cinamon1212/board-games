@@ -1,15 +1,17 @@
 'use client'
 
-import React from 'react'
-
 import { GamesListWrapper } from './styles'
 import { Game } from '../Game'
-import { GAMES_LIST } from '@/data'
+import { Games } from '@/types'
 
-export const GamesList = () => {
+type GamesListProps = {
+  games: Games
+}
+
+export const GamesList = ({ games }: GamesListProps) => {
   return (
     <GamesListWrapper>
-      {GAMES_LIST.map((game, i) => (
+      {games.map((game, i) => (
         <Game key={i} {...game} />
       ))}
     </GamesListWrapper>

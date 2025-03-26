@@ -5,5 +5,5 @@ export const GamesListWrapper = styled.ul`
   grid-template-columns: repeat(5, 1fr);
   gap: 24px;
   list-style: none;
-  margin: 48px;
+  width: 100%;
 `

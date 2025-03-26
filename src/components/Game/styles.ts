@@ -2,16 +2,17 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export const GameWrapper = styled(Link)`
-  border: 1px solid;
-  border-color: gray;
+  box-shadow: #474746 -4px 5px 15px -6px;
   height: 300px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   overflow: hidden;
+  transition: box-shadow 300ms ease;
+  background-color: #0d0a08;
 
   &:hover {
-    border-color: #ffc690;
+    box-shadow: #735b44 -4px 9px 25px -6px;
     cursor: pointer;
   }
 `
@@ -43,10 +44,11 @@ export const GameInfo = styled.div`
 `
 export const GameTitle = styled.span`
   font-size: 20px;
+  color: whitesmoke;
 `
 
 export const GameCount = styled.span`
   text-transform: uppercase;
-  color: gray;
+  color: #858585;
   font-size: 14px;
 `

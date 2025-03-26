@@ -22,7 +22,8 @@
       "@/*": ["./src/*"],
       "@/data/*": ["data/*"],
       "@/components/*": ["components/*"],
-      "@/types/*": ["types/*"]
+      "@/types/*": ["types/*"],
+      "@/helpers/*": ["helpers/*"]
     },
     "baseUrl": "."
   },

@@ -1,4 +1,3 @@
-import React from 'react'
 import { GameCount, GameImg, GameInfo, GameTitle, GameWrapper } from './styles'
 import { GameInfo as GameType } from '@/types'
 
