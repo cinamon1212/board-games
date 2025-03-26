@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const GameWrapper = styled(Link)`
   box-shadow: #474746 -4px 5px 15px -6px;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -26,14 +26,16 @@ export const GameImg = styled.img.attrs<GameImgProps>((props) => ({
   src: props.src,
   alt: props.alt,
 }))`
-  height: 65%;
+  width: 100%;
+  height: 70%;
   border: none;
   object-fit: cover;
   object-position: top;
+  box-shadow: #242423 -4px 5px 15px -2px;
 `
 
 export const GameInfo = styled.div`
-  height: 35%;
+  height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
