@@ -4,6 +4,7 @@ export type GameTitles =
   | 'Ticket to Ride: Европа'
   | 'Challengers'
   | 'Ticket to Ride: Азия'
+  | 'Ticket to Ride: Азия. Шелковый путь'
   | 'Кланк!'
   | 'Кланк! В! Космосе!'
   | 'Эверделл'
