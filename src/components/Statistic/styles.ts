@@ -33,6 +33,7 @@ export const StatisticTitleName = styled.h3`
   color: ${(props) => props.color};
   font-size: 24px;
   margin-bottom: 8px;
+  text-align: center;
 `
 export const StatisticWrapper = styled.section`
   display: flex;
