@@ -16,6 +16,7 @@ import { usePathname } from 'next/navigation'
 import { getGameByPath, transformDatasetsToStatistic, transformGamesForChart } from '@/helpers'
 import { GameTitle, PageWrapper } from './styles'
 import { Statistic } from '@/components'
+import { Name } from '../styles'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
@@ -26,13 +27,17 @@ const GamePage = () => {
 
   const gamesForChart = transformGamesForChart(games)
 
-  const statisticArr = transformDatasetsToStatistic(gamesForChart.datasets)
+  const { statisticArr, playerWithMaxArithmeticMean } = transformDatasetsToStatistic(gamesForChart.datasets)
+
+  const { name, arithmeticMean, color } = playerWithMaxArithmeticMean
 
   return (
     <PageWrapper>
-      <GameTitle>{title}</GameTitle>
+      <GameTitle>
+        {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
+      </GameTitle>
       <Line data={gamesForChart} />
-      <Statistic statisticArr={statisticArr}/>
+      <Statistic statisticArr={statisticArr} />
     </PageWrapper>
   )
 }

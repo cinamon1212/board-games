@@ -1,12 +1,10 @@
 import React from 'react'
-import { StatisticItemLi, StatisticP, StatisticTitleName, Value } from './styles'
+import { StatisticItemLi, StatisticTitleName } from './styles'
 import { getArithmeticMean } from '@/helpers'
 import { Statistic } from '@/types'
 import { StatisticParagraph } from './StatisticParagraph'
 
-export const StatisticItem = ({ scores, name, color }: Statistic) => {
-  const arithmeticMean = getArithmeticMean(scores)
-
+export const StatisticItem = ({ scores, name, color, arithmeticMean }: Statistic) => {
   return (
     <StatisticItemLi>
       <StatisticTitleName color={color}>{name}</StatisticTitleName>

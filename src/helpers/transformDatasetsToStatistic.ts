@@ -1,9 +1,30 @@
-import { DataSets, StatisticArr } from "@/types";
+import { PlayerWithMaxArithmeticMean, TransformDatasetsToStatistic } from '@/types'
+import { getArithmeticMean } from './getArithmeticMean'
 
-export const transformDatasetsToStatistic = (datasets: DataSets): StatisticArr => {
-  return datasets.map(({ label, data, borderColor }) => ({
-    name: label,
-    scores: data.slice(1),
-    color: borderColor
-  }))
+export const transformDatasetsToStatistic: TransformDatasetsToStatistic = (datasets) => {
+  const playerWithMaxArithmeticMean: PlayerWithMaxArithmeticMean = {
+    arithmeticMean: 0,
+    name: null,
+    color: ''
+  }
+
+  const statisticArr = datasets.map(({ label, data, borderColor }) => {
+    const scores = data.slice(1)
+    const arithmeticMean = getArithmeticMean(scores)
+
+    if (arithmeticMean > playerWithMaxArithmeticMean.arithmeticMean) {
+      playerWithMaxArithmeticMean.arithmeticMean = arithmeticMean
+      playerWithMaxArithmeticMean.name = label
+      playerWithMaxArithmeticMean.color = borderColor
+    }
+
+    return {
+      name: label,
+      scores,
+      arithmeticMean,
+      color: borderColor,
+    }
+  })
+
+  return { statisticArr, playerWithMaxArithmeticMean }
 }
