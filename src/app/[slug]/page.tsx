@@ -36,7 +36,19 @@ const GamePage = () => {
       <GameTitle>
         {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
       </GameTitle>
-      <Line data={gamesForChart} />
+      <Line
+        data={gamesForChart}
+        options={{
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 32
+              }
+            }
+          }
+        }}
+      />
       <Statistic statisticArr={statisticArr} />
     </PageWrapper>
   )
