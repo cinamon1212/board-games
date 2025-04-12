@@ -13,8 +13,9 @@ import {
   Legend,
 } from 'chart.js'
 import { usePathname } from 'next/navigation'
-import { getGameByPath, transformGamesForChart } from '@/helpers'
+import { getGameByPath, transformDatasetsToStatistic, transformGamesForChart } from '@/helpers'
 import { GameTitle, PageWrapper } from './styles'
+import { Statistic } from '@/components'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
@@ -25,10 +26,13 @@ const GamePage = () => {
 
   const gamesForChart = transformGamesForChart(games)
 
+  const statisticArr = transformDatasetsToStatistic(gamesForChart.datasets)
+
   return (
     <PageWrapper>
       <GameTitle>{title}</GameTitle>
       <Line data={gamesForChart} />
+      <Statistic statisticArr={statisticArr}/>
     </PageWrapper>
   )
 }

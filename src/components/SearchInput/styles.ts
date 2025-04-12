@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styled from 'styled-components'
 
 export const SearchInputWrapper = styled.section`
@@ -34,10 +33,10 @@ export const Input = styled.input`
   }
 `
 
-export const SearchIcon = styled(Image)`
+export const SearchIcon = styled.img`
   height: 50%;
 `
-export const CloseIcon = styled(Image)`
+export const CloseIcon = styled.img`
   height: 50%;
 
   &:hover {

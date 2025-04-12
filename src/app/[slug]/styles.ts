@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
-export const GameTitle = styled.h1``
+export const GameTitle = styled.h2`
+font-size: 32px;
+`
 
 export const PageWrapper = styled.main`
-  width: 80%;
+  width: 100%;
   height: 400px; 
   margin: 0 auto;
   display: flex;
@@ -12,5 +14,5 @@ export const PageWrapper = styled.main`
   justify-content: center;
   height: 100%;
   gap: 64px;
-  margin-top: 64px;
+  padding: 64px 128px;
 `
