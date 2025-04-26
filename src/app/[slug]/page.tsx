@@ -13,12 +13,7 @@ import {
   Legend,
 } from 'chart.js'
 import { usePathname } from 'next/navigation'
-import {
-  getGameByPath,
-  getTransformedGameDataByPath,
-  transformDatasetsToStatistic,
-  transformGamesForChart,
-} from '@/helpers'
+import { getTransformedGameDataByPath } from '@/helpers'
 import { GameTitle, LineWrapper, PageWrapper } from './styles'
 import { Statistic } from '@/components'
 import { Name } from '../styles'
