@@ -1,4 +1,4 @@
-export type PlayerSingle = 'Тамик' | 'Илья' | 'Андрей' | 'Соня' | 'Сергей' | 'Лиля' | 'Саша'
+export type PlayerSingle = 'Тамик' | 'Илья' | 'Андрей' | 'Соня' | 'Сергей' | 'Лиля' | 'Саша' | 'Славик'
 
 export type PlayersCouple = `${PlayerSingle} и ${PlayerSingle}`
 
