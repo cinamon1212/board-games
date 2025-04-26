@@ -19,7 +19,7 @@ import {
   transformDatasetsToStatistic,
   transformGamesForChart,
 } from '@/helpers'
-import { GameTitle, PageWrapper } from './styles'
+import { GameTitle, LineWrapper, PageWrapper } from './styles'
 import { Statistic } from '@/components'
 import { Name } from '../styles'
 
@@ -36,19 +36,23 @@ const GamePage = () => {
         {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
       </GameTitle>
       {gamesForChart && (
-        <Line
-          data={gamesForChart}
-          options={{
-            plugins: {
-              legend: {
-                position: 'bottom',
-                labels: {
-                  padding: 32,
+        <LineWrapper>
+          <Line
+            data={gamesForChart}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                  labels: {
+                    padding: 32,
+                  },
                 },
               },
-            },
-          }}
-        />
+            }}
+          />
+        </LineWrapper>
       )}
       {statisticArr && <Statistic statisticArr={statisticArr} />}
     </PageWrapper>
