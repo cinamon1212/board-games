@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,7 +13,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js'
+
 import { usePathname } from 'next/navigation'
+
 import { getTransformedGameDataByPath } from '@/helpers'
 import { GameTitle, LineWrapper, PageWrapper } from './styles'
 import { Statistic } from '@/components'
