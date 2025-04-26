@@ -14,7 +14,7 @@ import {
 } from 'chart.js'
 import { usePathname } from 'next/navigation'
 import { getGameByPath, transformDatasetsToStatistic, transformGamesForChart } from '@/helpers'
-import { GameTitle, PageWrapper } from './styles'
+import { GameTitle, LineWrapper, PageWrapper } from './styles'
 import { Statistic } from '@/components'
 import { Name } from '../styles'
 
@@ -36,19 +36,23 @@ const GamePage = () => {
       <GameTitle>
         {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
       </GameTitle>
-      <Line
-        data={gamesForChart}
-        options={{
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                padding: 32
-              }
-            }
-          }
-        }}
-      />
+      <LineWrapper>
+        <Line
+          data={gamesForChart}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  padding: 32,
+                },
+              },
+            },
+          }}
+        />
+      </LineWrapper>
       <Statistic statisticArr={statisticArr} />
     </PageWrapper>
   )
