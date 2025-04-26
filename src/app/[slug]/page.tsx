@@ -13,7 +13,12 @@ import {
   Legend,
 } from 'chart.js'
 import { usePathname } from 'next/navigation'
-import { getGameByPath, transformDatasetsToStatistic, transformGamesForChart } from '@/helpers'
+import {
+  getGameByPath,
+  getTransformedGameDataByPath,
+  transformDatasetsToStatistic,
+  transformGamesForChart,
+} from '@/helpers'
 import { GameTitle, PageWrapper } from './styles'
 import { Statistic } from '@/components'
 import { Name } from '../styles'
@@ -23,33 +28,29 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const GamePage = () => {
   const path = usePathname()
 
-  const { title, games } = getGameByPath(path)
-
-  const gamesForChart = transformGamesForChart(games)
-
-  const { statisticArr, playerWithMaxArithmeticMean } = transformDatasetsToStatistic(gamesForChart.datasets)
-
-  const { name, arithmeticMean, color } = playerWithMaxArithmeticMean
+  const { title, color, arithmeticMean, gamesForChart, statisticArr, name } = getTransformedGameDataByPath(path)
 
   return (
     <PageWrapper>
       <GameTitle>
         {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
       </GameTitle>
-      <Line
-        data={gamesForChart}
-        options={{
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                padding: 32
-              }
-            }
-          }
-        }}
-      />
-      <Statistic statisticArr={statisticArr} />
+      {gamesForChart && (
+        <Line
+          data={gamesForChart}
+          options={{
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  padding: 32,
+                },
+              },
+            },
+          }}
+        />
+      )}
+      {statisticArr && <Statistic statisticArr={statisticArr} />}
     </PageWrapper>
   )
 }
