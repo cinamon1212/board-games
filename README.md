@@ -18,3 +18,7 @@ https://board-games-cinamon1212.vercel.app/
 
 -Адаптив под мобилку
 -Возможность добавлять игры с результатом победа/поражение
+-Вывести на странице игры среднее значение по всем игрокам
+
+### Git
+-Git: git pull, git switch, git add, git commit, git push
