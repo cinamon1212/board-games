@@ -1,6 +1,14 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const CHALLENGERS_GAMES: PlayerScores = []
+const CHALLENGERS_GAMES: PlayerScores = [
+  {
+    Соня: true,
+    Саша: false,
+    Илья: false,
+    Андрей: false,
+    Лиля: false,
+  },
+]
 
 export const CHALLENGERS: GameInfo = {
   title: 'Challengers',

@@ -6,6 +6,7 @@ const EVERDELL_GAMES: PlayerScores = [
   { Илья: 70 },
   { Андрей: 40, Илья: 55, Лиля: 49, Соня: 50 },
   { Андрей: 63, Соня: 55, Илья: 64 },
+  { Андрей: 61, Илья: 67, Соня: 66 },
 ]
 
 export const EVERDELL: GameInfo = {
