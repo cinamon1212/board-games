@@ -2,10 +2,10 @@ import { PlayerWithMaxArithmeticMean, TransformDatasetsToStatistic } from '@/typ
 import { getArithmeticMean } from './getArithmeticMean'
 
 export const transformDatasetsToStatistic: TransformDatasetsToStatistic = (datasets) => {
-  const playerWithMaxArithmeticMean: PlayerWithMaxArithmeticMean = {
+  let playerWithMaxArithmeticMean: PlayerWithMaxArithmeticMean = {
     arithmeticMean: 0,
     name: null,
-    color: ''
+    color: '',
   }
 
   const statisticArr = datasets.map(({ label, data, borderColor }) => {
@@ -13,9 +13,13 @@ export const transformDatasetsToStatistic: TransformDatasetsToStatistic = (datas
     const arithmeticMean = getArithmeticMean(scores)
 
     if (arithmeticMean > playerWithMaxArithmeticMean.arithmeticMean) {
-      playerWithMaxArithmeticMean.arithmeticMean = arithmeticMean
-      playerWithMaxArithmeticMean.name = label
-      playerWithMaxArithmeticMean.color = borderColor
+      const newPlayerObj = {
+        name: label,
+        color: borderColor,
+        arithmeticMean,
+      }
+
+      playerWithMaxArithmeticMean = newPlayerObj
     }
 
     return {
@@ -26,5 +30,5 @@ export const transformDatasetsToStatistic: TransformDatasetsToStatistic = (datas
     }
   })
 
-  return { statisticArr, playerWithMaxArithmeticMean }
+  return { statisticArr, ...playerWithMaxArithmeticMean }
 }

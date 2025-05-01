@@ -18,5 +18,4 @@ export type PlayerWithMaxArithmeticMean = {
 
 export type TransformDatasetsToStatistic = (datasets: DataSets) => {
   statisticArr: StatisticArr
-  playerWithMaxArithmeticMean: PlayerWithMaxArithmeticMean
-}
+} & PlayerWithMaxArithmeticMean

@@ -1,6 +1,5 @@
 import React from 'react'
 import { StatisticItemLi, StatisticTitleName } from './styles'
-import { getArithmeticMean } from '@/helpers'
 import { Statistic } from '@/types'
 import { StatisticParagraph } from './StatisticParagraph'
 

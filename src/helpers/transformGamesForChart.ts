@@ -1,32 +1,13 @@
 import { DataSets, Player, PlayerScores } from '@/types'
 import { createLabelsForChart } from './createLabelsForChart'
 import { COLORS } from '@/data'
+import { getGamesByPersonsMap } from './getGamesByPersonsMap'
 
 export const transformGamesForChart = (games: PlayerScores) => {
-  const map: Partial<Record<Player, Array<number>>> = {}
+  const { map, gamesArithmeticMean } = getGamesByPersonsMap(games)
 
   const datasets: DataSets = []
 
-  let gamesCount = 0
-  let sumScore = 0
-
-  games.forEach((game) => {
-    for (const person in game) {
-      const name = person as Player
-      const score = game[name]
-
-      if (typeof score === 'number') {
-        gamesCount++
-        sumScore += score
-
-        if (Array.isArray(map[name])) {
-          map[name].push(score)
-        } else map[name] = [0, score]
-      }
-    }
-  })
-
-  const gamesArithmeticMean = (sumScore / gamesCount).toFixed()
   let personCount = 0
 
   for (const person in map) {

@@ -8,12 +8,10 @@ export const getTransformedGameDataByPath = (path: string) => {
   if (isBoolean) {
     return { title }
   } else {
-    const gamesForChart = transformGamesForChart(games)
+    const { gamesArithmeticMean, ...gamesForChart } = transformGamesForChart(games)
 
-    const { statisticArr, playerWithMaxArithmeticMean } = transformDatasetsToStatistic(gamesForChart.datasets)
+    const { statisticArr, name, arithmeticMean, color } = transformDatasetsToStatistic(gamesForChart.datasets)
 
-    const { name, arithmeticMean, color } = playerWithMaxArithmeticMean
-
-    return { title, statisticArr, gamesForChart, name, arithmeticMean, color }
+    return { title, statisticArr, gamesForChart, name, arithmeticMean, color, gamesArithmeticMean }
   }
 }
