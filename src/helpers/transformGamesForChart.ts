@@ -7,12 +7,18 @@ export const transformGamesForChart = (games: PlayerScores) => {
 
   const datasets: DataSets = []
 
+  let gamesCount = 0
+  let sumScore = 0
+
   games.forEach((game) => {
     for (const person in game) {
       const name = person as Player
       const score = game[name]
 
       if (typeof score === 'number') {
+        gamesCount++
+        sumScore += score
+
         if (Array.isArray(map[name])) {
           map[name].push(score)
         } else map[name] = [0, score]
@@ -20,7 +26,8 @@ export const transformGamesForChart = (games: PlayerScores) => {
     }
   })
 
-  let personCount = 0;
+  const gamesArithmeticMean = (sumScore / gamesCount).toFixed()
+  let personCount = 0
 
   for (const person in map) {
     const name = person as Player
@@ -38,5 +45,5 @@ export const transformGamesForChart = (games: PlayerScores) => {
 
   const labels = createLabelsForChart(games.length)
 
-  return { labels, datasets }
+  return { labels, datasets, gamesArithmeticMean }
 }
