@@ -3,7 +3,7 @@ import { GamesByPersonsMap, Player } from '@/types'
 export const getPersonGamesStatistics = (map: GamesByPersonsMap<Array<number>>) => {
   let gamesCount = 0
   let sumScore = 0
-  let personMinScore = 0
+  let personMinScore = Infinity
   let personMaxScore = 0
 
   for (const person in map) {

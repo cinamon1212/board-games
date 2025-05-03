@@ -26,7 +26,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const GamePage = () => {
   const path = usePathname()
 
-  const { title, gamesForChart, statisticArr, personGamesStatistics, playerWithMaxArithmeticMean } =
+  const { title, gamesForChart, statisticArr, personGamesStatistics, playerWithMaxArithmeticMean, numGameStatistics } =
     getTransformedGameDataByPath(path)
 
   return (
