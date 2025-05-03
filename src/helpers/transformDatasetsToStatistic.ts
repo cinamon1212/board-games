@@ -30,5 +30,5 @@ export const transformDatasetsToStatistic: TransformDatasetsToStatistic = (datas
     }
   })
 
-  return { statisticArr, ...playerWithMaxArithmeticMean }
+  return { statisticArr, playerWithMaxArithmeticMean }
 }

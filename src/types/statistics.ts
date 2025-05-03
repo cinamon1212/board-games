@@ -1,5 +1,11 @@
 import { Player } from './player'
 
-export type PlayerScore = Partial<Record<Player, number | boolean>>
+// Типы для результатов игры и объекта GamesByPersonsMap
+export type SingleGameResult = number | boolean
+export type GameResult = SingleGameResult | Array<SingleGameResult>
 
-export type PlayerScores = Array<PlayerScore>
+export type PlayerScore<T extends GameResult> = Partial<Record<Player, T>>
+
+export type PlayerScores<T extends GameResult> = Array<PlayerScore<T>>
+
+export type GamesByPersonsMap<T extends GameResult> = PlayerScore<T>

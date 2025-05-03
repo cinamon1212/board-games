@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const MONSTER_ART_GAMES: PlayerScores = []
+const MONSTER_ART_GAMES: PlayerScores<boolean> = []
 
 export const MONSTER_ART: GameInfo = {
   games: MONSTER_ART_GAMES,

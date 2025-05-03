@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const SEVEN_WONDERS_GAMES: PlayerScores = []
+const SEVEN_WONDERS_GAMES: PlayerScores<number> = []
 
 export const SEVEN_WONDERS: GameInfo = {
   games: SEVEN_WONDERS_GAMES,

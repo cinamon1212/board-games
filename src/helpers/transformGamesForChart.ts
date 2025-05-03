@@ -1,30 +1,23 @@
-import { DataSets, Player, PlayerScores } from '@/types'
+import { PlayerScore, PlayerScores } from '@/types'
+
 import { createLabelsForChart } from './createLabelsForChart'
-import { COLORS } from '@/data'
 import { getGamesByPersonsMap } from './getGamesByPersonsMap'
+import { createDatasets } from './createDatasets'
+import { getPersonGamesStatistics } from './getPersonGamesStatistics'
 
-export const transformGamesForChart = (games: PlayerScores) => {
-  const { map, gamesArithmeticMean } = getGamesByPersonsMap(games)
+export const transformGamesForChart = (games: PlayerScores<number>) => {
+  const map = getGamesByPersonsMap<number>(games)
 
-  const datasets: DataSets = []
+  const personGamesStatistics = getPersonGamesStatistics(map)
 
-  let personCount = 0
-
-  for (const person in map) {
-    const name = person as Player
-
-    datasets.push({
-      label: name,
-      data: map[name] || [],
-      fill: false,
-      tension: 0.3,
-      borderColor: COLORS[personCount],
-    })
-
-    personCount++
-  }
+  const datasets = createDatasets(map)
 
   const labels = createLabelsForChart(games.length)
+  
+  const gamesForChart = {
+    datasets,
+    labels
+  }
 
-  return { labels, datasets, gamesArithmeticMean }
+  return { gamesForChart, personGamesStatistics }
 }

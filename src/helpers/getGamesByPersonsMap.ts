@@ -1,28 +1,33 @@
-import { Player, PlayerScores } from '@/types'
+import { GamesByPersonsMap, Player, PlayerScores, SingleGameResult } from '@/types'
 
-export const getGamesByPersonsMap = (games: PlayerScores) => {
-  const map: Partial<Record<Player, Array<number>>> = {}
-
-  let gamesCount = 0
-  let sumScore = 0
+export const getGamesByPersonsMap = <T extends SingleGameResult>(
+  games: PlayerScores<T>,
+): GamesByPersonsMap<Array<T>> => {
+  const map: GamesByPersonsMap<Array<T>> = {}
 
   games.forEach((game) => {
     for (const person in game) {
       const name = person as Player
       const score = game[name]
 
-      if (typeof score === 'number') {
-        gamesCount++
-        sumScore += score
+      if (score) {
+        let currentScores = map[name]
+        const isArray = Array.isArray(currentScores)
 
-        if (Array.isArray(map[name])) {
-          map[name].push(score)
-        } else map[name] = [0, score]
+        if (currentScores) {
+          if (typeof score === 'boolean') {
+            if (isArray) {
+              currentScores.push(score)
+            } else currentScores = [score]
+          } else if (typeof score === 'number') {
+            if (isArray) {
+              currentScores.push(score)
+            } else currentScores = [0 as T, score]
+          }
+        }
       }
     }
   })
 
-  const gamesArithmeticMean = (sumScore / gamesCount).toFixed()
-
-  return { map, gamesArithmeticMean }
+  return map
 }

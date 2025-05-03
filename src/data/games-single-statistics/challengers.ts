@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const CHALLENGERS_GAMES: PlayerScores = [
+const CHALLENGERS_GAMES: PlayerScores<boolean> = [
   {
     Соня: true,
     Саша: false,

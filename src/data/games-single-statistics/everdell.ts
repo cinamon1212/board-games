@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const EVERDELL_GAMES: PlayerScores = [
+const EVERDELL_GAMES: PlayerScores<number> = [
   { Соня: 41, Андрей: 65, Илья: 58 },
   { Андрей: 54 },
   { Илья: 70 },

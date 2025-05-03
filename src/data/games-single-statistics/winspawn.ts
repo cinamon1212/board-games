@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const WINSPAWN_GAMES: PlayerScores = []
+const WINSPAWN_GAMES: PlayerScores<number> = []
 
 export const WINSPAWN: GameInfo = {
   games: WINSPAWN_GAMES,

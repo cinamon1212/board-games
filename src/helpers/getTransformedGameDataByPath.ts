@@ -1,6 +1,7 @@
 import { getGameByPath } from './getGameByPath'
 import { transformDatasetsToStatistic } from './transformDatasetsToStatistic'
 import { transformGamesForChart } from './transformGamesForChart'
+import { PlayerScores } from '../types';
 
 export const getTransformedGameDataByPath = (path: string) => {
   const { title, games, isBoolean } = getGameByPath(path)
@@ -8,10 +9,11 @@ export const getTransformedGameDataByPath = (path: string) => {
   if (isBoolean) {
     return { title }
   } else {
-    const { gamesArithmeticMean, ...gamesForChart } = transformGamesForChart(games)
+    const numGames = games as PlayerScores<number>
+    const { personGamesStatistics, gamesForChart } = transformGamesForChart(numGames)
 
-    const { statisticArr, name, arithmeticMean, color } = transformDatasetsToStatistic(gamesForChart.datasets)
+    const { statisticArr, playerWithMaxArithmeticMean } = transformDatasetsToStatistic(gamesForChart.datasets)
 
-    return { title, statisticArr, gamesForChart, name, arithmeticMean, color, gamesArithmeticMean }
+    return { title, statisticArr, gamesForChart, playerWithMaxArithmeticMean, personGamesStatistics }
   }
 }

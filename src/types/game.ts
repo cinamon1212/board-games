@@ -36,7 +36,7 @@ export type GameTitles =
 
 export type GameInfo = {
   imgPath: string
-  games: PlayerScores
+  games: PlayerScores<number | boolean>
   title: GameTitles
   isBoolean?: boolean
 }

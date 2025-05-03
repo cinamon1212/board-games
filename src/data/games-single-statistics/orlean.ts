@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const ORLEAN_GAMES: PlayerScores = [
+const ORLEAN_GAMES: PlayerScores<number> = [
   { Андрей: 114, Илья: 148 },
   { Андрей: 98, Илья: 128, Соня: 100 },
 ]

@@ -26,12 +26,14 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const GamePage = () => {
   const path = usePathname()
 
-  const { title, color, arithmeticMean, gamesForChart, statisticArr, name } = getTransformedGameDataByPath(path)
+  const { title, gamesForChart, statisticArr, personGamesStatistics, playerWithMaxArithmeticMean } =
+    getTransformedGameDataByPath(path)
 
   return (
     <PageWrapper>
       <GameTitle>
-        {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
+        {title}. <Name color={playerWithMaxArithmeticMean?.color}>{playerWithMaxArithmeticMean?.name}</Name> -{' '}
+        {playerWithMaxArithmeticMean?.arithmeticMean}
       </GameTitle>
       {gamesForChart && (
         <LineWrapper>
