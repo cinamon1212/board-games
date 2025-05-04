@@ -12,6 +12,8 @@ export type GamesByPersonsMap<T extends GameResult> = PlayerScore<T>
 
 export type BoolGamesStatistic = {
   games: Array<boolean>,
-  winRate: string
+  winRate: string,
+  gamesCount: number,
+  winCount: number
 }
 export type BoolGamesStatisticMap = Partial<Record<Player, BoolGamesStatistic>>

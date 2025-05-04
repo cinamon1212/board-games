@@ -1,6 +1,6 @@
 import { BoolGamesStatisticMap, GamesByPersonsMap, Player } from '@/types'
 
-// Считаем винрейт у игроков и добавляем в соответствующее поле
+// Считаем статистику игроков для игр победа/поражение
 
 export const getPersonBoolGamesStatistics = (map: GamesByPersonsMap<Array<boolean>>) => {
   const mapClone: GamesByPersonsMap<Array<boolean>> = structuredClone(map)
@@ -21,7 +21,9 @@ export const getPersonBoolGamesStatistics = (map: GamesByPersonsMap<Array<boolea
 
       boolGamesStatisticMap[name] = {
         games: mapClone[name],
+        gamesCount: mapClone[name].length,
         winRate,
+        winCount
       }
     }
   }
