@@ -8,6 +8,3 @@ export const HomeWrapper = styled.main`
   justify-content: center;
   padding: 48px;
 `
-export const Name = styled.span`
-  color: ${(props) => props.color};
-`

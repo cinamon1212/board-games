@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { Line } from 'react-chartjs-2'
 
 import {
   Chart as ChartJS,
@@ -16,13 +15,10 @@ import {
 
 import { usePathname } from 'next/navigation'
 
-import { getGameByPath, getTransformedDataFromBoolGames, getTransformedDataFromNumGames } from '@/helpers'
+import { getGameByPath, getTransformedDataFromBoolGames } from '@/helpers'
 
-import { GameTitle, LineWrapper, PageWrapper } from './styles'
-import { Statistic } from '@/components'
-
-import { Name } from '../styles'
 import { PlayerScores } from '@/types'
+import { NumGamePage } from './NumGamePage'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
@@ -41,38 +37,8 @@ const GamePage = () => {
     //TODO: сделать дизайн и отрендерить numGameStatistics и personGamesStatistics
 
     const numGames = games as PlayerScores<number>
-    const { playerWithMaxArithmeticMean, gamesForChart, statisticArr, personGamesStatistics, numGameStatistics } =
-      getTransformedDataFromNumGames(numGames)
-
-    const { color, arithmeticMean, name } = playerWithMaxArithmeticMean
-
-    return (
-      <PageWrapper>
-        <GameTitle>
-          {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
-        </GameTitle>
-        {gamesForChart && (
-          <LineWrapper>
-            <Line
-              data={gamesForChart}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    position: 'bottom',
-                    labels: {
-                      padding: 32,
-                    },
-                  },
-                },
-              }}
-            />
-          </LineWrapper>
-        )}
-        {statisticArr && <Statistic statisticArr={statisticArr} />}
-      </PageWrapper>
-    )
+    
+    return <NumGamePage title={title} numGames={numGames}/>
   }
 }
 

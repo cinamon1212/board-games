@@ -32,3 +32,6 @@ export const LineWrapper = styled.div`
   width: 100%;
   height: 70vh;
 `
+export const Name = styled.span`
+  color: ${(props) => props.color};
+`
