@@ -5,3 +5,6 @@ export type NumGamePageProps = {
   title: string
 }
 
+export type BoolGamePageProps = {
+  title: string
+}

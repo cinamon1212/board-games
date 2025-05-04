@@ -19,6 +19,7 @@ import { getGameByPath, getTransformedDataFromBoolGames } from '@/helpers'
 
 import { PlayerScores } from '@/types'
 import { NumGamePage } from './NumGamePage'
+import { BoolGamePage } from './BoolGamePage'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
@@ -32,13 +33,14 @@ const GamePage = () => {
 
     const boolGames = games as PlayerScores<boolean>
     const boolGamesStatisticMap = getTransformedDataFromBoolGames(boolGames)
-    console.log(boolGamesStatisticMap)
+
+    return <BoolGamePage title={title} />
   } else {
     //TODO: сделать дизайн и отрендерить numGameStatistics и personGamesStatistics
 
     const numGames = games as PlayerScores<number>
-    
-    return <NumGamePage title={title} numGames={numGames}/>
+
+    return <NumGamePage title={title} numGames={numGames} />
   }
 }
 
