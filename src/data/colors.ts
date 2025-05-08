@@ -4,8 +4,12 @@ export const COLORS = [
   '#ec8758',
   '#a5e66d',
   '#ffaff4',
+  '#4c4cff',
   '#f8efaf',
   '#0fffca',
-  '#ffaff4',
   '#df4550',
+  '#fffc1f',
+  '#003bff',
+  '#ed0000',
+  '#bc57ea'
 ]
