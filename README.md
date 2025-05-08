@@ -17,7 +17,7 @@ https://board-games-cinamon1212.vercel.app/
 ### Не реализовано
 
 -Адаптив под мобилку (Илья) ✓
--Сделать TODO в page.tsx (BoolGamePage, NumGamePage - Илья) ✓
+-Сделать TODO в page.tsx (BoolGamePage, NumGamePage - Илья) (in progress)
 -Проверить что во всех булевых играх стоит флаг isBoolean (Илья) ✓
 -Стилизовать input-search
 -Добавить анимации на главную
