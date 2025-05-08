@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { GameStatisticsWrapper, GameStatisticsValueWrapper, GameStatistics } from './styles'
+import { GameStatisticsWrapper } from './styles'
 
 import { ScoreStats, ScoreStatsKeys } from '@/types'
+
 import GameStatisticsValue from './GameStatisticsValue'
 
 type GameStatisticProps = {
