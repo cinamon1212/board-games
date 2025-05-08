@@ -16,12 +16,13 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
         const scores = map[name]
         const color = COLORS[idx]
         const isBoolean = typeof scores[0] === 'boolean'
+        const numScores = scores.slice(1) as Array<number>
   
         personsMap[name] = {
           scores,
           color,
           id: idx,
-          avg: isBoolean ? undefined : getArithmeticMean(scores as Array<number>),
+          avg: isBoolean ? undefined : getArithmeticMean(numScores),
         }
       }
   

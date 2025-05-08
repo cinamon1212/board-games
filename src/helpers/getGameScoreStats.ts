@@ -15,7 +15,7 @@ export const getGameScoreStats = (map: PersonsMap<number>): ScoreStats => {
     const name = person as Player
     const currentItem = map[name]
 
-    currentItem?.scores?.forEach((score) => {
+    currentItem?.scores?.slice(1).forEach((score) => {
       totalGames++
 
       if (score) {
