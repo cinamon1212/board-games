@@ -1,22 +1,20 @@
 import React from 'react'
-import { GameTitle, LineWrapper, PageWrapper, Name } from './styles'
+import { GameTitle, LineWrapper, PageWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
-import { Statistic, StatisticsTable, GameStatistic } from '@/components'
+import { StatisticsTable, GameStatistic } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
 
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
-  const { playerWithMaxArithmeticMean, gamesForChart, statisticArr } = getTransformedDataFromNumGames(numGames)
-
-  const { color, arithmeticMean, name } = playerWithMaxArithmeticMean
+  const { gamesForChart, scoreStats } = getTransformedDataFromNumGames(numGames)
 
   return (
     <PageWrapper>
       <GameTitle>
-        {title}. <Name color={color}>{name}</Name> - {arithmeticMean}
+        {title}
       </GameTitle>
       {gamesForChart && (
         <LineWrapper>
@@ -37,8 +35,7 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
           />
         </LineWrapper>
       )}
-      <GameStatistic numGames={numGames} />
-      {statisticArr && <Statistic statisticArr={statisticArr} />}
+      <GameStatistic scoreStats={scoreStats} />
       <StatisticsTable />
     </PageWrapper>
   )

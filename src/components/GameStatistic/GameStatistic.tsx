@@ -1,27 +1,22 @@
 import React from 'react'
+
 import { GameStatisticsWrapper, GameStatisticsValueWrapper, GameStatistics } from './styles'
 
-import { getTransformedDataFromNumGames } from '@/helpers'
-import { PlayerScores } from '@/types'
+import { ScoreStats, ScoreStatsKeys } from '@/types'
+import GameStatisticsValue from './GameStatisticsValue'
 
-type NumGamePageProps = {
-  numGames: PlayerScores<number>
+type GameStatisticProps = {
+  scoreStats: ScoreStats
 }
 
-export const GameStatistic = ({ numGames }: NumGamePageProps) => {
-  const { scoreStats } = getTransformedDataFromNumGames(numGames)
+export const GameStatistic = ({ scoreStats }: GameStatisticProps) => {
+  const valuesArr: Array<ScoreStatsKeys> = ['max', 'min', 'avg']
 
   return (
     <GameStatisticsWrapper>
-      <GameStatisticsValueWrapper>
-        max - <GameStatistics color={scoreStats.max.color}>{scoreStats.max.maxGameScore}</GameStatistics>
-      </GameStatisticsValueWrapper>
-      <GameStatisticsValueWrapper>
-        avg - <GameStatistics color={scoreStats.avg.color}>{scoreStats.avg.avgGameScore}</GameStatistics>
-      </GameStatisticsValueWrapper>
-      <GameStatisticsValueWrapper>
-        min - <GameStatistics color={scoreStats.min.color}>{scoreStats.min.minGameScore}</GameStatistics>
-      </GameStatisticsValueWrapper>
+      {valuesArr.map((value) => (
+        <GameStatisticsValue value={scoreStats[value]} valueTitle={value} key={value}/>
+      ))}
     </GameStatisticsWrapper>
   )
 }

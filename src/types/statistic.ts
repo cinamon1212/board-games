@@ -1,37 +1,8 @@
-import { DataSets } from './chart'
-import { Player } from './player'
-
-export type Statistic = {
-  scores: Array<number>
-  name: Player
+export type GameScoreStatistic = {
   color: string
-  arithmeticMean: number
+  score: number
 }
 
-export type StatisticArr = Array<Statistic>
+export type ScoreStatsKeys = 'min' | 'max' | 'avg'
 
-export type PlayerWithMaxArithmeticMean = {
-  arithmeticMean: number
-  name: Player | null
-  color: string
-}
-
-export type TransformDatasetsToStatistic = (datasets: DataSets) => {
-  statisticArr: StatisticArr
-  playerWithMaxArithmeticMean: PlayerWithMaxArithmeticMean
-}
-
-export type ScoreStats = {
-  min: {
-    color: string
-    minGameScore: number
-  }
-  max: {
-    color: string
-    maxGameScore: number
-  }
-  avg: {
-    color: 'white'
-    avgGameScore: number
-  }
-}
+export type ScoreStats = Record<ScoreStatsKeys, GameScoreStatistic>
