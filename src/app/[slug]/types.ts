@@ -1,4 +1,4 @@
-import { PlayerScores } from "@/types"
+import { PlayerScores } from '@/types'
 
 export type NumGamePageProps = {
   numGames: PlayerScores<number>
@@ -6,5 +6,6 @@ export type NumGamePageProps = {
 }
 
 export type BoolGamePageProps = {
+  boolGames: PlayerScores<boolean>
   title: string
 }
