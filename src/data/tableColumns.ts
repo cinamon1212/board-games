@@ -5,4 +5,7 @@ export const TABLE_COLUMNS: ColDef<TableData>[] = [
   { field: 'id', headerName: 'ID', sortable: false },
   { field: 'name', headerName: 'Имя', sortable: false },
   { field: 'avg', headerName: 'Среднее' },
+  { field: 'minScore', headerName: 'Минимальный' },
+  { field: 'maxScore', headerName: 'Максимальный' },
+  { field: 'scoresCount', headerName: 'Кол-во игр' },
 ]

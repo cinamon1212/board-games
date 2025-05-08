@@ -12,7 +12,10 @@ export type PersonMapItem<T extends SingleGameResult> = {
   scores: Array<T>
   color: string
   id: number
+  scoresCount: number
   avg?: number
+  minScore?: number
+  maxScore?: number
 }
 
 export type TableData = {

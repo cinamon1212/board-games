@@ -22,7 +22,10 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
           scores,
           color,
           id: idx,
+          scoresCount: scores.length,
           avg: isBoolean ? undefined : getArithmeticMean(numScores),
+          minScore: isBoolean ? undefined : Math.min(...numScores),
+          maxScore: isBoolean ? undefined : Math.max(...numScores)
         }
       }
   
