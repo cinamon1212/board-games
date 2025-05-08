@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { AgGridReact } from 'ag-grid-react'
 
@@ -16,31 +16,24 @@ import { StatisticsTableProps } from './types'
 
 import { TableData } from '@/types'
 import { TABLE_COLUMNS } from '@/data'
+import { Table } from './Table'
 
 // Регистрация модулей
 ModuleRegistry.registerModules([ClientSideRowModelModule, ValidationModule, ColumnAutoSizeModule, CellStyleModule])
 
 export const StatisticsTable = ({ tableDataArr }: StatisticsTableProps) => {
-  const height = tableDataArr.length * 42 + 49
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
-  const onGridReady = (params: GridReadyEvent<TableData, unknown>) => {
+  const onGridReady = useCallback((params: GridReadyEvent<TableData, unknown>) => {
     params.api.sizeColumnsToFit()
 
     window.addEventListener('resize', () => {
       params.api.sizeColumnsToFit()
+      setWindowWidth(window.innerWidth)
     })
-  }
+  }, [])
 
   return (
-    <div style={{ height, width: '100%', margin: '0 auto' }}>
-      <AgGridReact<TableData>
-        rowData={tableDataArr}
-        columnDefs={TABLE_COLUMNS}
-        pagination={false}
-        rowModelType='clientSide'
-        theme={THEME}
-        onGridReady={onGridReady}
-      />
-    </div>
+    <Table onGridReady={onGridReady} tableDataArr={tableDataArr} />
   )
 }
