@@ -16,6 +16,7 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
       <GameTitle>
         {title}
       </GameTitle>
+      <GameStatistic scoreStats={scoreStats} />
       {gamesForChart && (
         <LineWrapper>
           <Line
@@ -35,7 +36,6 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
           />
         </LineWrapper>
       )}
-      <GameStatistic scoreStats={scoreStats} />
       <StatisticsTable tableDataArr={tableDataArr} />
     </PageWrapper>
   )
