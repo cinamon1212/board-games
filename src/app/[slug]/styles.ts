@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
-export const GameTitle = styled.h2`
+export const GameTitle = styled.h1`
   font-size: 32px;
   text-align: center;
+
+  @media (max-width: 500px) {
+    font-size: 24px;
+  }
 `
 
 export const PageWrapper = styled.main`
@@ -15,16 +19,14 @@ export const PageWrapper = styled.main`
   justify-content: center;
   height: 100%;
   gap: 64px;
-  padding: 16px 32px;
+  padding: 32px 32px;
   color: gainsboro;
 
   @media (min-width: 700px) {
-    // Для планшетов и выше
     padding: 32px 64px;
   }
 
   @media (min-width: 1100px) {
-    // Для планшетов и выше
     padding: 64px 128px;
   }
 `

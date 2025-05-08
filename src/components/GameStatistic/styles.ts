@@ -2,11 +2,18 @@ import styled from 'styled-components'
 
 export const GameStatisticsWrapper = styled.div`
   display: flex;
-  gap: 15px;
-  margin-top: -50px;
+  gap: 16px;
+  margin-top: -40px;
   font-family: 'Geist Mono', 'Geist Mono Fallback';
   color: #696969;
   font-size: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 500px) {
+    gap: 12px;
+  }
 `
 
 export const GameStatistics = styled.div`

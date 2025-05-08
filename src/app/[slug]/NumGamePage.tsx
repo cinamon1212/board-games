@@ -7,9 +7,12 @@ import { Table, GameStatistic } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
+import { useWindowWidth } from '@/hooks'
 
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
   const { gamesForChart, scoreStats, tableDataArr } = getTransformedDataFromNumGames(numGames)
+
+  const windowWidth = useWindowWidth()
 
   return (
     <PageWrapper>
@@ -27,8 +30,11 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
               plugins: {
                 legend: {
                   position: 'bottom',
+                  maxWidth: 400,
+                  fullSize: false,
                   labels: {
-                    padding: 32,
+                    boxWidth: 24,
+                    padding: windowWidth > 400 ? 18 : windowWidth > 700 ? 24 : windowWidth > 900 ? 32 : 12,
                   },
                 },
               },
