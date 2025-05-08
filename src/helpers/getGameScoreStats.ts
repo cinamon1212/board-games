@@ -1,6 +1,6 @@
-import { GamesByPersonsMap, Player, ScoreStats } from '@/types'
+import { PersonsMap, Player, ScoreStats } from '@/types'
 
-export const getGameScoreStats = (map: GamesByPersonsMap<number>): ScoreStats => {
+export const getGameScoreStats = (map: PersonsMap<number>): ScoreStats => {
   // Для вычисления min и max
   let minScore = Infinity
   let maxScore = -Infinity

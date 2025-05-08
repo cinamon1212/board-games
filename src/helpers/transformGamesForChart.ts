@@ -1,13 +1,15 @@
 import { PlayerScores } from '@/types'
 
 import { createLabelsForChart } from './createLabelsForChart'
-import { getGamesByPersonsMap } from './getGamesByPersonsMap'
+import { getPersonsMapGames } from './getPersonsMapGames'
 import { createDatasets } from './createDatasets'
+import { getPersonsMap } from './getPersonsMap'
 
 export const transformGamesForChart = (games: PlayerScores<number>) => {
-  const map = getGamesByPersonsMap<number>(games)
+  const map = getPersonsMapGames<number>(games)
+  const personsMap = getPersonsMap<number>(map)
 
-  const datasets = createDatasets(map)
+  const datasets = createDatasets(personsMap)
 
   const labels = createLabelsForChart(games.length)
 
@@ -16,5 +18,5 @@ export const transformGamesForChart = (games: PlayerScores<number>) => {
     labels,
   }
 
-  return { gamesForChart, map }
+  return { gamesForChart, personsMap }
 }

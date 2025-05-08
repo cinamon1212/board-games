@@ -9,7 +9,7 @@ import { getTransformedDataFromNumGames } from '@/helpers'
 import { NumGamePageProps } from './types'
 
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
-  const { gamesForChart, scoreStats } = getTransformedDataFromNumGames(numGames)
+  const { gamesForChart, scoreStats, tableDataArr } = getTransformedDataFromNumGames(numGames)
 
   return (
     <PageWrapper>
@@ -36,7 +36,7 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
         </LineWrapper>
       )}
       <GameStatistic scoreStats={scoreStats} />
-      <StatisticsTable />
+      <StatisticsTable tableDataArr={tableDataArr} />
     </PageWrapper>
   )
 }

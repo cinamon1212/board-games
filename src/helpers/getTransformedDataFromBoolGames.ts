@@ -1,11 +1,11 @@
 import { PlayerScores } from '@/types'
-import { getGamesByPersonsMap } from './getGamesByPersonsMap'
-import { getPersonBoolGamesStatistics } from './getPersonBoolGamesStatistics'
+
+import { getPersonsMap } from './getPersonsMap'
+import { getPersonsMapGames } from './getPersonsMapGames'
 
 export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>) => {
-  const map = getGamesByPersonsMap<boolean>(boolGames)
+  const map = getPersonsMapGames<boolean>(boolGames)
+  const personsMap = getPersonsMap<boolean>(map)
 
-  const boolGamesStatisticMap = getPersonBoolGamesStatistics(map)
-
-  return boolGamesStatisticMap
+  return personsMap
 }

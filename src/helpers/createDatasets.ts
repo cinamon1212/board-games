@@ -1,6 +1,6 @@
-import { DataSets, GamesByPersonsMap, Player } from "@/types"
+import { DataSets, PersonsMap, Player } from "@/types"
 
-export const createDatasets = (map: GamesByPersonsMap<number>) => {
+export const createDatasets = (map: PersonsMap<number>) => {
     const datasets: DataSets = []
   
     let personCount = 0

@@ -11,9 +11,19 @@ export type PlayerScores<T extends GameResult> = Array<PlayerScore<T>>
 export type PersonMapItem<T extends SingleGameResult> = {
   scores: Array<T>
   color: string
+  id: number
+  avg?: number
 }
 
-export type GamesByPersonsMap<T extends SingleGameResult> = Partial<Record<Player, PersonMapItem<T>>>
+export type TableData = {
+  name: Player
+} & Partial<PersonMapItem<number>>
+
+export type TableDataArr = Array<TableData>
+
+export type PersonsMapGames<T extends SingleGameResult> = Partial<Record<Player, Array<T>>>
+
+export type PersonsMap<T extends SingleGameResult> = Partial<Record<Player, PersonMapItem<T>>>
 
 export type BoolGamesStatistic = {
   games: Array<boolean>
