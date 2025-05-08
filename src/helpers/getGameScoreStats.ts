@@ -1,11 +1,11 @@
 import { GamesByPersonsMap, Player, ScoreStats } from '@/types'
 
-export const getGameScoreStats = (map: GamesByPersonsMap<Array<number>>): ScoreStats => {
+export const getGameScoreStats = (map: GamesByPersonsMap<number>): ScoreStats => {
   // Для вычисления min и max
   let minScore = Infinity
   let maxScore = -Infinity
-  let minColor = 'blue'
-  let maxColor = 'blue'
+  let minColor = ''
+  let maxColor = ''
 
   // Для вычисления среднего
   let totalScores = 0
@@ -13,8 +13,9 @@ export const getGameScoreStats = (map: GamesByPersonsMap<Array<number>>): ScoreS
 
   for (const person in map) {
     const name = person as Player
+    const currentItem = map[name]
 
-    map[name]?.forEach((score) => {
+    currentItem?.scores?.forEach((score) => {
       totalGames++
 
       if (score) {
@@ -22,9 +23,11 @@ export const getGameScoreStats = (map: GamesByPersonsMap<Array<number>>): ScoreS
 
         if (score < minScore) {
           minScore = score
+          minColor = currentItem.color
         }
         if (score > maxScore) {
           maxScore = score
+          maxColor = currentItem.color
         }
       }
     })

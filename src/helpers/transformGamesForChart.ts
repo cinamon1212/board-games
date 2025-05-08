@@ -1,4 +1,4 @@
-import { PlayerScore, PlayerScores } from '@/types'
+import { PlayerScores } from '@/types'
 
 import { createLabelsForChart } from './createLabelsForChart'
 import { getGamesByPersonsMap } from './getGamesByPersonsMap'
