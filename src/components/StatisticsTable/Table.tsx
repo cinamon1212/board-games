@@ -1,9 +1,11 @@
 import { AgGridReact } from 'ag-grid-react'
-import React, { memo, useEffect } from 'react'
 
-import { TableData } from '../../types'
+import React, { memo } from 'react'
+
 import { TABLE_COLUMNS } from '@/data'
 import { THEME } from './constants'
+
+import { TableData } from '../../types'
 import { TableProps } from './types'
 
 export const Table = memo(({ tableDataArr, onGridReady }: TableProps) => {

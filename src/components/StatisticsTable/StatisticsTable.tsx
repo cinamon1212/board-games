@@ -1,7 +1,5 @@
 import React, { useCallback, useState } from 'react'
 
-import { AgGridReact } from 'ag-grid-react'
-
 import {
   ModuleRegistry,
   ValidationModule,
@@ -11,11 +9,9 @@ import {
   CellStyleModule,
 } from 'ag-grid-community'
 
-import { THEME } from './constants'
 import { StatisticsTableProps } from './types'
 
 import { TableData } from '@/types'
-import { TABLE_COLUMNS } from '@/data'
 import { Table } from './Table'
 
 // Регистрация модулей
