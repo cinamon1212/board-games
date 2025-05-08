@@ -23,12 +23,12 @@ export const TABLE_COLUMNS: ColDef<TableData>[] = [
   },
   {
     field: 'minScore',
-    headerName: 'Минимальный',
+    headerName: 'Мин',
     cellStyle
   },
   {
     field: 'maxScore',
-    headerName: 'Максимальный',
+    headerName: 'Макс',
     cellStyle
   },
   {
