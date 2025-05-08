@@ -32,12 +32,9 @@ const GamePage = () => {
     //TODO: сверстать и отрендерить страничку с играми победа/поражение
 
     const boolGames = games as PlayerScores<boolean>
-    const boolGamesStatisticMap = getTransformedDataFromBoolGames(boolGames)
 
-    return <BoolGamePage title={title} />
+    return <BoolGamePage boolGames={boolGames} title={title} />
   } else {
-    //TODO: сделать дизайн и отрендерить numGameStatistics и personGamesStatistics
-
     const numGames = games as PlayerScores<number>
 
     return <NumGamePage title={title} numGames={numGames} />

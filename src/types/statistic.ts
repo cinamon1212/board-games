@@ -20,3 +20,18 @@ export type TransformDatasetsToStatistic = (datasets: DataSets) => {
   statisticArr: StatisticArr
   playerWithMaxArithmeticMean: PlayerWithMaxArithmeticMean
 }
+
+export type ScoreStats = {
+  min: {
+    color: string
+    minGameScore: number
+  }
+  max: {
+    color: string
+    maxGameScore: number
+  }
+  avg: {
+    color: 'white'
+    avgGameScore: number
+  }
+}

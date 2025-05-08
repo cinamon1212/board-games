@@ -1,0 +1,1 @@
+export { GameStatistic } from './GameStatistic'

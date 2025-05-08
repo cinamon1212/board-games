@@ -3,16 +3,13 @@ import { GameTitle, LineWrapper, PageWrapper, Name } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
-import { Statistic, StatisticsTable } from '@/components'
+import { Statistic, StatisticsTable, GameStatistic } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
 
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
-  //TODO: сделать дизайн и отрендерить numGameStatistics и personGamesStatistics
-
-  const { playerWithMaxArithmeticMean, gamesForChart, statisticArr, personGamesStatistics, numGameStatistics } =
-    getTransformedDataFromNumGames(numGames)
+  const { playerWithMaxArithmeticMean, gamesForChart, statisticArr } = getTransformedDataFromNumGames(numGames)
 
   const { color, arithmeticMean, name } = playerWithMaxArithmeticMean
 
@@ -40,8 +37,9 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
           />
         </LineWrapper>
       )}
+      <GameStatistic numGames={numGames} />
       {statisticArr && <Statistic statisticArr={statisticArr} />}
-      <StatisticsTable/>
+      <StatisticsTable />
     </PageWrapper>
   )
 }
