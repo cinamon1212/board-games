@@ -1,1 +1,0 @@
-export { StatisticsTable } from './StatisticsTable'

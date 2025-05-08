@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@types/recharts": "^2.0.1",
-    "ag-grid-community": "^33.2.4",
-    "ag-grid-react": "^33.2.4",
     "bun": "^1.2.10",
     "chart.js": "^4.4.8",
     "next": "^15.2.4",

@@ -1,39 +1,24 @@
-import { TableData } from '@/types'
-import { ColDef } from 'ag-grid-community'
+import { TableColumns } from '@/types'
 
-const cellStyle = { display: 'flex', justifyContent: 'center', alignItems: 'center' }
-
-export const TABLE_COLUMNS: ColDef<TableData>[] = [
+export const TABLE_COLUMNS: TableColumns = [
   {
-    field: 'id',
-    headerName: 'ID',
-    sortable: false,
-    cellStyle
-  },
-  {
-    field: 'name',
     headerName: 'Имя',
-    sortable: false,
-    cellStyle
+    field: 'name'
   },
   {
-    field: 'avg',
     headerName: 'Среднее',
-    cellStyle
+    field: 'avg'
   },
   {
-    field: 'minScore',
     headerName: 'Мин',
-    cellStyle
+    field: 'minScore'
   },
   {
-    field: 'maxScore',
     headerName: 'Макс',
-    cellStyle
+    field: 'maxScore'
   },
   {
-    field: 'scoresCount',
     headerName: 'Кол-во игр',
-    cellStyle
-  }
+    field: 'scoresCount'
+  },
 ]

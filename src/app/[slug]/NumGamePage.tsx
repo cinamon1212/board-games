@@ -3,7 +3,7 @@ import { GameTitle, LineWrapper, PageWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
-import { StatisticsTable, GameStatistic } from '@/components'
+import { Table, GameStatistic } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
@@ -36,7 +36,7 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
           />
         </LineWrapper>
       )}
-      <StatisticsTable tableDataArr={tableDataArr} />
+      <Table tableDataArr={tableDataArr} />
     </PageWrapper>
   )
 }

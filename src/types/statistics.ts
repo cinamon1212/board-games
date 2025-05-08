@@ -11,7 +11,6 @@ export type PlayerScores<T extends GameResult> = Array<PlayerScore<T>>
 export type PersonMapItem<T extends SingleGameResult> = {
   scores: Array<T>
   color: string
-  id: number
   scoresCount: number
   avg?: number
   minScore?: number

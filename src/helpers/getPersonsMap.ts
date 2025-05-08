@@ -21,7 +21,6 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
         personsMap[name] = {
           scores,
           color,
-          id: idx,
           scoresCount: scores.length,
           avg: isBoolean ? undefined : getArithmeticMean(numScores),
           minScore: isBoolean ? undefined : Math.min(...numScores),
