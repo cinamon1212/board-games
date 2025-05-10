@@ -6,6 +6,8 @@ export const TableCell = styled.td`
   text-align: center;
   width: fit-content;
 
+  color: ${props => props.color};
+
   @media (max-width: 500px) {
     padding: 8px;
   }
@@ -13,10 +15,7 @@ export const TableCell = styled.td`
 export const TableStyled = styled.table`
   border-collapse: separate;
   width: 100%;
-  border-radius: 12px;
-  border: 0.5px solid #575553;
   overflow: hidden;
-  width: 80%;
   min-width: 400px;
   margin: 0 auto;
 
@@ -29,5 +28,9 @@ export const TableStyled = styled.table`
 
 export const TableWrapper = styled.div`
   overflow-x: scroll;
+  max-width: 100%;
   width: 100%;
+  border: 0.5px solid #575553;
+  border-radius: 12px;
+  scrollbar-width: thin;
 `

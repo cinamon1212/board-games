@@ -11,7 +11,7 @@ export const Table = ({ tableDataArr }: TableProps) => {
         <thead>
           <tr>
             {TABLE_COLUMNS.map((col, index) => (
-              <TableCell key={index} as={'th'}>
+              <TableCell key={index} as={'th'} style={{ backgroundColor:'#261e16' }}>
                 {col.headerName}
               </TableCell>
             ))}
@@ -20,8 +20,10 @@ export const Table = ({ tableDataArr }: TableProps) => {
         <tbody>
           {tableDataArr.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {TABLE_COLUMNS.map((col, index) => (
-                <TableCell key={index}>{row[col.field]}</TableCell>
+              {TABLE_COLUMNS.map(({ field }, index) => (
+                <TableCell key={index} color={field === 'name' ? row.color : 'white'}>
+                  {row[field]}
+                </TableCell>
               ))}
             </tr>
           ))}
