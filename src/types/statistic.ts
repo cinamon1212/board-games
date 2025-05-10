@@ -3,6 +3,6 @@ export type GameScoreStatistic = {
   score: number
 }
 
-export type ScoreStatsKeys = 'min' | 'max' | 'avg'
+export type ScoreStatsKeys = 'min' | 'max' | 'avg' | 'count'
 
-export type ScoreStats = Record<ScoreStatsKeys, GameScoreStatistic>
+export type ScoreStats = Partial<Record<ScoreStatsKeys, GameScoreStatistic>>

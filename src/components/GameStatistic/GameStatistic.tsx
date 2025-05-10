@@ -8,16 +8,26 @@ import GameStatisticsValue from './GameStatisticsValue'
 
 type GameStatisticProps = {
   scoreStats: ScoreStats
+  gamesCount: number
 }
 
-export const GameStatistic = ({ scoreStats }: GameStatisticProps) => {
-  const valuesArr: Array<ScoreStatsKeys> = ['max', 'min', 'avg']
+export const GameStatistic = ({ scoreStats, gamesCount }: GameStatisticProps) => {
+  const valuesArr: Array<ScoreStatsKeys> = ['max', 'min', 'avg', 'count']
+
+  const countValue = {
+    color: 'white',
+    score: gamesCount,
+  }
 
   return (
     <GameStatisticsWrapper>
-      {valuesArr.map((value) => (
-        <GameStatisticsValue value={scoreStats[value]} valueTitle={value} key={value}/>
-      ))}
+      {valuesArr.map((val) => {
+        const value = val === 'count' ? countValue : scoreStats[val]
+
+        if (value) {
+          return <GameStatisticsValue value={value} valueTitle={val} key={val} />
+        }
+      })}
     </GameStatisticsWrapper>
   )
 }
