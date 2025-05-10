@@ -3,7 +3,7 @@ import { GameTitle, LineWrapper, PageWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
-import { Table, GameStatistic } from '@/components'
+import { Table, GameStatistic, CustomLegend } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
@@ -29,19 +29,14 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
               maintainAspectRatio: false,
               plugins: {
                 legend: {
-                  position: 'bottom',
-                  maxWidth: 400,
-                  fullSize: false,
-                  labels: {
-                    boxWidth: 24,
-                    padding: windowWidth > 400 ? 18 : windowWidth > 700 ? 24 : windowWidth > 900 ? 32 : 12,
-                  },
+                  display: false
                 },
               },
             }}
           />
         </LineWrapper>
       )}
+      <CustomLegend tableDataArr={tableDataArr} />
       <Table tableDataArr={tableDataArr} />
     </PageWrapper>
   )
