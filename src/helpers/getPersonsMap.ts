@@ -16,7 +16,7 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
         const scores = map[name]
         const color = COLORS[idx]
         const isBoolean = typeof scores[0] === 'boolean'
-        const numScores = scores.slice(1) as Array<number>
+        const numScores = scores as Array<number>
   
         personsMap[name] = {
           scores,

@@ -13,8 +13,7 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
         if (map[name] && Object.keys(map[name]).length) {
           map[name].push(score)
         } else {
-          const scores = typeof score === 'number' ? [0 as T, score] : [score]
-          map[name] = scores
+          map[name] = [score]
         }
       }
     }
