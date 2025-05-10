@@ -34,4 +34,8 @@ export const PageWrapper = styled.main`
 export const LineWrapper = styled.div`
   width: 100%;
   height: 70vh;
+
+  @media (max-width: 500px) {
+    height: 40vh;
+  }
 `

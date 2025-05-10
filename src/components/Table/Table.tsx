@@ -11,7 +11,7 @@ export const Table = ({ tableDataArr }: TableProps) => {
         <thead>
           <tr>
             {TABLE_COLUMNS.map((col, index) => (
-              <TableCell key={index} as={'th'} style={{ backgroundColor:'#261e16' }}>
+              <TableCell key={index} as={'th'} style={{ backgroundColor: '#261e16', fontWeight: 400 }}>
                 {col.headerName}
               </TableCell>
             ))}
