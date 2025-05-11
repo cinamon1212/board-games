@@ -24,7 +24,7 @@ export const GameStatistic = ({ scoreStats, gamesCount }: GameStatisticProps) =>
       {valuesArr.map((val) => {
         const value = val === 'count' ? countValue : scoreStats[val]
 
-        if (value) {
+        if (value && val !== 'count') {
           return <GameStatisticsValue value={value} valueTitle={val} key={val} />
         }
       })}

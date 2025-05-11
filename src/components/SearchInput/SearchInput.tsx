@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from 'react'
-import { CloseIcon, iconStyles, Input, SearchIcon, SearchInputWrapper } from './styles'
+import { Input, InputIcon, SearchInputWrapper } from './styles'
 
 type SearchInputProps = {
   setInputValue: React.Dispatch<React.SetStateAction<string>>
@@ -13,9 +13,11 @@ export const SearchInput = ({ setInputValue, inputValue }: SearchInputProps) => 
 
   return (
     <SearchInputWrapper>
-      <SearchIcon src='/search-icon.png' alt='search' {...iconStyles} />
+      <InputIcon src='/search-icon.png' alt='search' style={{ left: '7px' }} />
       <Input placeholder='Поиск' value={inputValue} onChange={onChange} />
-      <CloseIcon src='/close-icon.png' alt='close' {...iconStyles} onClick={onClose} />
+      {inputValue && (
+        <InputIcon src='/close-icon.png' alt='close' onClick={onClose} style={{ right: '7px', cursor: 'pointer' }} />
+      )}
     </SearchInputWrapper>
   )
 }

@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Geist Mono', 'Geist Mono Fallback';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(rgb(14, 13, 12) 60%, #261e16);
