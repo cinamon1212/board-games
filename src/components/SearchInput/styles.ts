@@ -6,6 +6,10 @@ export const SearchInputWrapper = styled.section`
   display: flex;
   align-items: center;
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const Input = styled.input`
