@@ -35,7 +35,7 @@ export const Input = styled.input`
   }
 `
 
-export const SearchIcon = styled.img`
+export const InputIcon = styled.img`
   position: absolute;
   width: 21px;
   height: 21px;
