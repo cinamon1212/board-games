@@ -33,17 +33,6 @@ export const Input = styled.input`
 
 export const SearchIcon = styled.img`
   position: absolute;
-  left: 5px;
   width: 21px;
   height: 21px;
-`
-export const CloseIcon = styled.img`
-  position: absolute;
-  width: 21px;
-  height: 21px;
-  right: 5px;
-
-  &:hover {
-    cursor: pointer;
-  }
 `
