@@ -25,13 +25,13 @@ export const PlayerPosition = styled.div<{ position: number }>`
   bottom: ${({ position }) => (position === 1 ? '30px' : '')};
 `
 
-export const AvatarContainer = styled.div<{ position: number; color: string }>`
+export const AvatarContainer = styled.div<{ position: number; backgroundColor: string }>`
   width: 100px;
   height: 100px;
   border-radius: 50%;
   border: 5px solid;
   border-color: ${({ position }) => (position === 1 ? '#FFD700' : position === 2 ? '#C0C0C0' : '#CD7F32')};
-  background-color: ${({ color }) => color};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   margin-bottom: 10px;
 `
 

@@ -13,7 +13,7 @@ export const Tops = ({ tableDataArr }: TableProps) => {
         return (
           <PlayerPosition key={index} position={position}>
             <CrownIcon position={position} />
-            <AvatarContainer position={position} color={color ? color : 'white'}></AvatarContainer>
+            <AvatarContainer position={position} backgroundColor={color || 'white'}></AvatarContainer>
             <PlayerInfo>
               <PlayerName>{name}</PlayerName>
               <PlayerScore>{avg}</PlayerScore>
