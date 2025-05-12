@@ -25,13 +25,6 @@ export const PlayerPosition = styled.div<{ position: number }>`
   bottom: ${({ position }) => (position === 1 ? '30px' : '')};
 `
 
-export const CrownContainer = styled.div`
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-`
-
 export const AvatarContainer = styled.div<{ position: number; color: string }>`
   width: 100px;
   height: 100px;
@@ -44,14 +37,14 @@ export const AvatarContainer = styled.div<{ position: number; color: string }>`
 
 export const PlayerInfo = styled.div`
   text-align: center;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
 `
 
-export const PlayerName = styled.div`
+export const PlayerName = styled.span`
   color: white;
-  font-size: 12px;
   margin-bottom: 4px;
 `
 
-export const PlayerScore = styled.div`
-  font-size: 12px;
-`
+export const PlayerScore = styled.span``
