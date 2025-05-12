@@ -3,7 +3,7 @@ import { GameTitle, LineWrapper, PageWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
-import { Table, GameStatistic } from '@/components'
+import { Table, GameStatistic, Tops } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
@@ -16,10 +16,9 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
 
   return (
     <PageWrapper>
-      <GameTitle>
-        {title}
-      </GameTitle>
+      <GameTitle>{title}</GameTitle>
       <GameStatistic scoreStats={scoreStats} gamesCount={numGames.length} />
+      <Tops tableDataArr={tableDataArr} />
       {gamesForChart && (
         <LineWrapper>
           <Line
@@ -29,7 +28,7 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
               maintainAspectRatio: false,
               plugins: {
                 legend: {
-                  display: false
+                  display: false,
                 },
               },
             }}
