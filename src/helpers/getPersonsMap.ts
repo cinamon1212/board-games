@@ -13,7 +13,7 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
       const name = person as Player
   
       if (map[name]) {
-        const scores = map[name]
+        const {scores, winCount} = map[name]
         const color = COLORS[idx]
         const isBoolean = typeof scores[0] === 'boolean'
         const numScores = scores as Array<number>
@@ -24,12 +24,13 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
           scoresCount: scores.length,
           avg: isBoolean ? undefined : getArithmeticMean(numScores),
           minScore: isBoolean ? undefined : Math.min(...numScores),
-          maxScore: isBoolean ? undefined : Math.max(...numScores)
+          maxScore: isBoolean ? undefined : Math.max(...numScores),
+          winRate: `${Math.ceil((winCount / scores.length) * 100)}%`
         }
       }
   
       idx++
     }
-  
+
     return personsMap
 }

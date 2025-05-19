@@ -6,6 +6,10 @@ export const TABLE_COLUMNS: TableColumns = [
     field: 'name'
   },
   {
+    headerName: 'Винрейт',
+    field: 'winRate'
+  },
+  {
     headerName: 'Среднее',
     field: 'avg'
   },
