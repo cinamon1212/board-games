@@ -18,12 +18,6 @@ export type PersonMapItem<T extends SingleGameResult> = {
   maxScore?: number
 }
 
-export type TableData = {
-  name: Player
-} & Partial<PersonMapItem<number>>
-
-export type TableDataArr = Array<TableData>
-
 export type PersonMapGameItem<T extends SingleGameResult> = {
   scores: Array<T>,
   winCount: number

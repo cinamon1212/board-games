@@ -1,5 +1,5 @@
 import { CSSProperties } from 'styled-components';
-import { TableDataArr } from '../../types';
+import { TableData, TableDataArr, TableSortKey } from '../../types';
 
 export type TableProps = {
   tableDataArr: TableDataArr
@@ -12,3 +12,8 @@ export type TableColumn = {
 }
 
 export type TableColumns = Array<TableColumn>
+
+export type TableSortConfig = {
+  key: keyof TableData | null
+  direction: TableSortKey
+}
