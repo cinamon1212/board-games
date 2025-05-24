@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const CLANK_GAMES: PlayerScores<number> = [{ Сергей: 108 }, { Илья: 129 }]
+const CLANK_GAMES: PlayerScores<number> = [{ Сергей: 108 }, { Илья: 129 }, { Андрей: 70, Илья: 125, Сергей: 52 }]
 
 const CLANK_IN_SPACE_GAMES: PlayerScores<number> = [
   { Андрей: 140 },

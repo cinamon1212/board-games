@@ -18,6 +18,8 @@ const TICKET_TO_RIDE_ASIA_GAMES: PlayerScores<number> = [
 const TICKET_TO_RIDE_ASIA_SILK_GAMES: PlayerScores<number> = [
   { Андрей: 113, Соня: 109, Илья: 106, Тамик: 89, Лиля: 69 },
   { Илья: 136, Соня: 128, Сергей: 28, Лиля: 83, Андрей: 97 },
+  { Илья: 90, Соня: 115, Тамик: 104, Лиля: 110, Андрей: 122 },
+  { Илья: 115, Соня: 98, Лиля: 82, Андрей: 95 },
 ]
 
 export const TICKET_TO_RIDE_EUROPE: GameInfo = {
