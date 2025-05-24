@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { BoolGamePageProps } from './types'
-import { GameTitle, PageWrapper } from './styles'
+import { BarWrapper, GameTitle, PageWrapper } from './styles'
 
 import { getTransformedDataFromBoolGames } from '@/helpers'
 
@@ -14,7 +14,9 @@ export const BoolGamePage = ({ boolGames, title }: BoolGamePageProps) => {
   return (
     <PageWrapper>
       <GameTitle>{title}</GameTitle>
-      <Bar data={data} options={BAR_OPTIONS} />
+      <BarWrapper>
+        <Bar data={data} options={BAR_OPTIONS} />
+      </BarWrapper>
     </PageWrapper>
   )
 }

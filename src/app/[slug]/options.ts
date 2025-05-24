@@ -12,6 +12,7 @@ export const LINE_OPTIONS: ChartOptions<'line'> = {
 
 export const BAR_OPTIONS: ChartOptions<'bar'> = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,

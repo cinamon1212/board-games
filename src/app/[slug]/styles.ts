@@ -39,3 +39,8 @@ export const LineWrapper = styled.div`
     height: 40vh;
   }
 `
+export const BarWrapper = styled.div`
+  min-height: 70vh;
+  height: 70vh;
+  width: 100%;
+`
