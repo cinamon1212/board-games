@@ -11,17 +11,18 @@ import {
   Title,
   Tooltip,
   Legend,
+  BarElement
 } from 'chart.js'
 
 import { usePathname } from 'next/navigation'
 
-import { getGameByPath, getTransformedDataFromBoolGames } from '@/helpers'
+import { getGameByPath } from '@/helpers'
 
 import { PlayerScores } from '@/types'
 import { NumGamePage } from './NumGamePage'
 import { BoolGamePage } from './BoolGamePage'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement)
 
 const GamePage = () => {
   const path = usePathname()

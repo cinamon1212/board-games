@@ -9,6 +9,8 @@ import { getTransformedDataFromNumGames } from '@/helpers'
 import { NumGamePageProps } from './types'
 import { useWindowWidth } from '@/hooks'
 
+import { LINE_OPTIONS } from './options'
+
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
   const { gamesForChart, scoreStats, tableDataArr } = getTransformedDataFromNumGames(numGames)
 
@@ -21,18 +23,7 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
       <Tops tableDataArr={tableDataArr} />
       {gamesForChart && (
         <LineWrapper>
-          <Line
-            data={gamesForChart}
-            options={{
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  display: false,
-                },
-              },
-            }}
-          />
+          <Line data={gamesForChart} options={LINE_OPTIONS} />
         </LineWrapper>
       )}
       <Table tableDataArr={tableDataArr} />
