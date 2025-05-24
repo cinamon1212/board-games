@@ -1,5 +1,5 @@
 import React from 'react'
-import { GameTitle, LineWrapper, PageWrapper } from './styles'
+import { GameTitle, LineWrapper, PageWrapper, StatisticWrapper, TitleWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
@@ -18,9 +18,13 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
 
   return (
     <PageWrapper>
-      <GameTitle>{title}</GameTitle>
-      <GameStatistic scoreStats={scoreStats} gamesCount={numGames.length} />
-      <Tops tableDataArr={tableDataArr} />
+      <StatisticWrapper>
+        <TitleWrapper>
+          <GameTitle>{title}</GameTitle>
+          <GameStatistic scoreStats={scoreStats} gamesCount={numGames.length} />
+        </TitleWrapper>
+        <Tops tableDataArr={tableDataArr} />
+      </StatisticWrapper>
       {gamesForChart && (
         <LineWrapper>
           <Line data={gamesForChart} options={LINE_OPTIONS} />

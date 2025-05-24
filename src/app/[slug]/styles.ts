@@ -2,7 +2,11 @@ import styled from 'styled-components'
 
 export const GameTitle = styled.h1`
   font-size: 32px;
-  text-align: center;
+  text-align: start;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 
   @media (max-width: 500px) {
     font-size: 24px;
@@ -43,4 +47,27 @@ export const BarWrapper = styled.div`
   min-height: 70vh;
   height: 70vh;
   width: 100%;
+`
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    align-items: center;
+  }
+`
+
+export const StatisticWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 48px;
+  flex-direction: row;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `

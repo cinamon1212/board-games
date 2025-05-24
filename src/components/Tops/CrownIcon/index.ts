@@ -1,1 +1,0 @@
-export { CrownIcon } from './CrownIcon'

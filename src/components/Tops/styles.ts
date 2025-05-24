@@ -3,15 +3,16 @@ import styled from 'styled-components'
 export const TopThreeContainer = styled.div`
   display: flex;
   justify-content: center;
-  position: absolute;
+  margin-top: 84px;
+  
+  /* position: absolute;
   right: 10%;
   top: 15%;
 
   @media (max-width: 768px) {
     position: relative;
     inset: 0;
-    margin-top: 50px;
-  }
+  } */
 `
 
 export const PlayerPosition = styled.div<{ position: number }>`
@@ -48,3 +49,10 @@ export const PlayerName = styled.span`
 `
 
 export const PlayerScore = styled.span``
+
+export const CrownContainer = styled.div`
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+`
