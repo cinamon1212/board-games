@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { TableProps, TableSortConfig } from './types'
 import { TABLE_COLUMNS, TABLE_SORT_STATES } from '@/data'
-import { TableCell, TableStyled, TableWrapper } from './styles'
+import { SortIcon, TableCell, TableStyled, TableWrapper } from './styles'
 import { TableData } from '@/types'
 import { getNextSortState } from '@/helpers'
 
@@ -32,12 +32,14 @@ export const Table = ({ tableDataArr }: TableProps) => {
     return 0
   })
 
-  const renderSortIcon = (key: keyof TableData) => {
-    if (configKey !== key) return '↕'
+  const renderSortIcon = (key: keyof TableData): string => {
+    if (configKey !== key) return ''
     if (direction === asc) return '↑'
     if (direction === desc) return '↓'
-    return '↕'
+    return ''
   }
+
+  const headCellStyle = { fontWeight: 400, cursor: 'pointer' }
 
   return (
     <TableWrapper>
@@ -48,10 +50,13 @@ export const Table = ({ tableDataArr }: TableProps) => {
               <TableCell
                 key={index}
                 as={'th'}
-                style={{ backgroundColor: '#261e16', fontWeight: 400 }}
+                style={headCellStyle}
                 onClick={() => handleSort(field)}
+                $bgColor={'#261e16'}
+                $hoverBgColor={'#32281d'}
               >
-                {headerName} {renderSortIcon(field)}
+                {headerName}
+                <SortIcon>{renderSortIcon(field)}</SortIcon>
               </TableCell>
             ))}
           </tr>

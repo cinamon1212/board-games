@@ -1,12 +1,22 @@
-import styled from 'styled-components'
+import styled, { CSSProperties } from 'styled-components'
 
-export const TableCell = styled.td`
+export const TableCell = styled.td<{
+  $hoverBgColor?: CSSProperties['backgroundColor']
+  $bgColor?: CSSProperties['backgroundColor']
+}>`
   border: 0.5px solid #575553;
   padding: 12px;
   text-align: center;
   width: fit-content;
+  position: relative;
+  transition: all 0.3s ease-in-out;
 
-  color: ${props => props.color};
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.$bgColor};
+
+  &:hover {
+    background-color: ${(props) => props.$hoverBgColor};
+  }
 
   @media (max-width: 500px) {
     padding: 8px;
@@ -33,4 +43,8 @@ export const TableWrapper = styled.div`
   border: 0.5px solid #575553;
   border-radius: 12px;
   scrollbar-width: thin;
+`
+export const SortIcon = styled.span`
+  position: absolute;
+  right: 12px;
 `
