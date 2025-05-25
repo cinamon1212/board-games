@@ -4,15 +4,6 @@ export const TopThreeContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 84px;
-  
-  /* position: absolute;
-  right: 10%;
-  top: 15%;
-
-  @media (max-width: 768px) {
-    position: relative;
-    inset: 0;
-  } */
 `
 
 export const PlayerPosition = styled.div<{ position: number }>`
@@ -26,13 +17,13 @@ export const PlayerPosition = styled.div<{ position: number }>`
   bottom: ${({ position }) => (position === 1 ? '30px' : '')};
 `
 
-export const AvatarContainer = styled.div<{ position: number; backgroundColor: string }>`
+export const AvatarContainer = styled.div<{ position: number; $backgroundColor: string }>`
   width: 100px;
   height: 100px;
   border-radius: 50%;
   border: 5px solid;
   border-color: ${({ position }) => (position === 1 ? '#FFD700' : position === 2 ? '#C0C0C0' : '#CD7F32')};
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   margin-bottom: 10px;
 `
 
