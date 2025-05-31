@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const GameWrapper = styled(Link)`
   box-shadow: -6px -6px 5px -5px #42372e inset;
-  height: 500px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   border-radius: 16px;
@@ -12,8 +12,20 @@ export const GameWrapper = styled(Link)`
   background: radial-gradient(circle, #42372e, #1a1511);
 
   &:hover {
-  box-shadow: -8px -8px 5px -5px #42372e inset;
+    box-shadow: -8px -8px 5px -5px #42372e inset;
     cursor: pointer;
+  }
+
+  @media (min-width: 480px) {
+    height: 500px;
+  }
+
+  @media (min-width: 700px) {
+    height: 400px;
+  }
+
+  @media (min-width: 900px) {
+    height: 500px;
   }
 `
 
@@ -33,7 +45,7 @@ export const GameImg = styled.img.attrs<GameImgProps>((props) => ({
   object-position: top;
   box-shadow: #1a1511 0px 5px 25px -2px;
 `
-//#1a1511
+
 export const GameInfo = styled.div`
   height: 25%;
   display: flex;
@@ -45,10 +57,52 @@ export const GameInfo = styled.div`
   text-align: center;
 `
 export const GameTitle = styled.span`
-  font-size: 24px;
   color: whitesmoke;
+  font-size: 16px;
+
+  @media (min-width: 480px) {
+    font-size: 24px;
+  }
+
+  @media (min-width: 700px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 24px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 1300px) {
+    font-size: 24px;
+  }
 `
 
 export const GameCount = styled.span`
   color: #858585;
+
+  font-size: 12px;
+
+  @media (min-width: 480px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 700px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 1300px) {
+    font-size: 18px;
+  }
 `
