@@ -13,12 +13,12 @@ export const SearchInputWrapper = styled.section`
 `
 
 export const Input = styled.input`
-  font-family: 'Geist Mono', 'Geist Mono Fallback';
+  font-family: 'Open Sans', sans-serif;
   width: 100%;
   border-radius: 16px;
-  background-color: #474746;
-  padding: 12px 34px;
-  box-shadow: #474746 -4px 9px 25px -6px;
+  background: radial-gradient(circle, #42372e, #2b241e);
+  padding: 12px 42px;
+  box-shadow: -4px -4px 5px -4px #4f4237 inset;
   border: none;
   transition: box-shadow 300ms ease;
   color: whitesmoke;
@@ -30,7 +30,7 @@ export const Input = styled.input`
 
   &:hover,
   &:focus {
-    box-shadow: #735b44 -4px 9px 25px -6px;
+  box-shadow: -6px -6px 5px -4px #4f4237 inset;
     outline: none;
   }
 `

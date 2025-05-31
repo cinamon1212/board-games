@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const GameStatisticsWrapper = styled.div`
   display: flex;
   gap: 16px;
-  font-family: 'Geist Mono', 'Geist Mono Fallback';
+  font-family: 'Open Sans', sans-serif;
   color: #696969;
   font-size: 14px;
   flex-wrap: wrap;

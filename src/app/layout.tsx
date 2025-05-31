@@ -24,7 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <link rel="icon" href="/favicon.ico" />
+      <head>
+        <link rel='icon' href='/favicon.ico' />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap'
+          rel='stylesheet'
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
     </html>
   )

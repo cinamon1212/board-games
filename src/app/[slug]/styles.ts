@@ -24,7 +24,6 @@ export const PageWrapper = styled.main`
   height: 100%;
   gap: 64px;
   padding: 32px 32px;
-  color: gainsboro;
 
   @media (min-width: 700px) {
     padding: 32px 64px;

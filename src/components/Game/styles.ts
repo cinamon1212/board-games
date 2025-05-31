@@ -2,17 +2,17 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export const GameWrapper = styled(Link)`
-  box-shadow: #474746 -4px 5px 15px -6px;
-  height: 400px;
+  box-shadow: -6px -6px 5px -5px #42372e inset;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
-  transition: box-shadow 300ms ease;
-  background-color: #0d0a08;
+  transition: box-shadow 500ms ease;
+  background: radial-gradient(circle, #42372e, #1a1511);
 
   &:hover {
-    box-shadow: #735b44 -4px 9px 25px -6px;
+  box-shadow: -8px -8px 5px -5px #42372e inset;
     cursor: pointer;
   }
 `
@@ -27,15 +27,15 @@ export const GameImg = styled.img.attrs<GameImgProps>((props) => ({
   alt: props.alt,
 }))`
   width: 100%;
-  height: 70%;
+  height: 75%;
   border: none;
   object-fit: cover;
   object-position: top;
-  box-shadow: #242423 -4px 5px 15px -2px;
+  box-shadow: #1a1511 0px 5px 25px -2px;
 `
-
+//#1a1511
 export const GameInfo = styled.div`
-  height: 30%;
+  height: 25%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,12 +45,10 @@ export const GameInfo = styled.div`
   text-align: center;
 `
 export const GameTitle = styled.span`
-  font-size: 20px;
+  font-size: 24px;
   color: whitesmoke;
 `
 
 export const GameCount = styled.span`
-  text-transform: uppercase;
   color: #858585;
-  font-size: 14px;
 `

@@ -13,10 +13,10 @@ export const SearchInput = ({ setInputValue, inputValue }: SearchInputProps) => 
 
   return (
     <SearchInputWrapper>
-      <InputIcon src='/search-icon.png' alt='search' style={{ left: '7px' }} />
+      <InputIcon src='/search-icon.png' alt='search' style={{ left: '12px' }} />
       <Input placeholder='Поиск' value={inputValue} onChange={onChange} />
       {inputValue && (
-        <InputIcon src='/close-icon.png' alt='close' onClick={onClose} style={{ right: '7px', cursor: 'pointer' }} />
+        <InputIcon src='/close-icon.png' alt='close' onClick={onClose} style={{ right: '12px', cursor: 'pointer' }} />
       )}
     </SearchInputWrapper>
   )

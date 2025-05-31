@@ -6,10 +6,10 @@ body {
 }
 
 body {
-  font-family: 'Geist Mono', 'Geist Mono Fallback';
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(rgb(14, 13, 12) 60%, #261e16);
+  background: radial-gradient(circle, #100e09, rgb(15, 14, 12));
   color: whitesmoke;
   min-height: 100vh;
 }
