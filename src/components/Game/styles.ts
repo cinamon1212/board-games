@@ -11,6 +11,7 @@ export const GameWrapper = styled(Link)`
   overflow: hidden;
   transition: box-shadow 500ms ease;
   background: radial-gradient(circle, #42372e, #1a1511);
+  z-index: 1;
 
   &:hover {
     box-shadow: -8px -8px 5px -5px #42372e inset;

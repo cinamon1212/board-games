@@ -11,7 +11,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: radial-gradient(circle, #100e09, rgb(15, 14, 12));
   color: whitesmoke;
-  min-height: 100vh;
+  height: auto;
+  overflow: hidden;
 }
 
 html::-webkit-scrollbar {

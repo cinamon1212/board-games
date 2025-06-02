@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 import { GamesList, NotFound, SearchInput } from '@/components'
 
-import { HomeWrapper } from './styles'
+import { Header, HomeWrapper, RadialBackground, Title } from './styles'
 import { GAMES_LIST } from '@/data'
 import { filterGamesByItsCount, filterGamesByRegExp } from '@/helpers'
 
@@ -16,8 +16,16 @@ const Home = () => {
 
   return (
     <HomeWrapper>
-      <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
+      <RadialBackground top={'-5%'} left={'-30%'} />
+
+      <Header>
+        <Title>Найдите нужную игру</Title>
+        <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
+      </Header>
+
       {games.length ? <GamesList games={games} /> : <NotFound />}
+
+      <RadialBackground bottom={'-5%'} right={'-30%'}/>
     </HomeWrapper>
   )
 }

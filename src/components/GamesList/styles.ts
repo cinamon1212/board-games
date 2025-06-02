@@ -7,6 +7,7 @@ export const GamesListWrapper = styled.ul`
   gap: 32px;
   list-style: none;
   width: 100%;
+  direction: rtl;
 
   @media (min-width: ${BREAK_POINTS.sm}) {
     gap: 48px;

@@ -7,6 +7,7 @@ export const SearchInputWrapper = styled.section`
   display: flex;
   align-items: center;
   position: relative;
+  z-index: 1;
 
   @media (max-width: ${BREAK_POINTS.md}) {
     width: 100%;
