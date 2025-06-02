@@ -30,14 +30,10 @@ const GamePage = () => {
   const { title, games, isBoolean } = getGameByPath(path)
 
   if (isBoolean) {
-    //TODO: сверстать и отрендерить страничку с играми победа/поражение
-
     const boolGames = games as PlayerScores<boolean>
-
     return <BoolGamePage boolGames={boolGames} title={title} />
   } else {
     const numGames = games as PlayerScores<number>
-
     return <NumGamePage title={title} numGames={numGames} />
   }
 }

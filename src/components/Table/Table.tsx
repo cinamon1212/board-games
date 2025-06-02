@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
 import { TableProps, TableSortConfig } from './types'
-import { TABLE_COLUMNS, TABLE_SORT_STATES } from '@/data'
 import { SortIcon, TableCell, TableStyled, TableWrapper } from './styles'
+
 import { TableData } from '@/types'
 import { getNextSortState } from '@/helpers'
+import { TABLE_COLUMNS, TABLE_SORT_STATES } from '@/constants'
 
 export const Table = ({ tableDataArr }: TableProps) => {
   const { none, asc, desc } = TABLE_SORT_STATES

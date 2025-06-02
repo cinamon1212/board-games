@@ -1,4 +1,4 @@
-import { TABLE_SORT_STATES } from '@/data'
+import { TABLE_SORT_STATES } from '@/constants'
 
 export const getNextSortState = (current: keyof typeof TABLE_SORT_STATES) => {
   const { asc, desc, none } = TABLE_SORT_STATES

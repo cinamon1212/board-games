@@ -7,9 +7,9 @@ import { Table, GameStatistic, Tops } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
-import { useWindowWidth } from '@/hooks'
 
-import { LINE_OPTIONS } from './options'
+import { useWindowWidth } from '@/hooks'
+import { LINE_OPTIONS } from '@/constants'
 
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
   const { gamesForChart, scoreStats, tableDataArr } = getTransformedDataFromNumGames(numGames)

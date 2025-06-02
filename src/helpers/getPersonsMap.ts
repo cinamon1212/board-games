@@ -1,7 +1,7 @@
 import { PersonsMap, PersonsMapGames, Player } from "@/types"
 
 import { SingleGameResult } from '../types';
-import { COLORS } from "@/data";
+import { COLORS } from "@/constants";
 
 import { getArithmeticMean } from "./getArithmeticMean";
 

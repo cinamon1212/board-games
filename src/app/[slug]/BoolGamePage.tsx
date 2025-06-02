@@ -6,7 +6,8 @@ import { BarWrapper, GameTitle, PageWrapper } from './styles'
 import { getTransformedDataFromBoolGames } from '@/helpers'
 
 import { Bar } from 'react-chartjs-2'
-import { BAR_OPTIONS } from './options'
+
+import { BAR_OPTIONS } from '@/constants'
 
 export const BoolGamePage = ({ boolGames, title }: BoolGamePageProps) => {
   const data = getTransformedDataFromBoolGames(boolGames)
