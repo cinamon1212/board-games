@@ -8,7 +8,7 @@ export const Game = ({ title, games, imgPath }: GameType) => {
 
   const gameHref = getImgPathWithoutExt(imgPath)
 
-  const titleSliced = title.length > 27 ? title.slice(0, 27) + '...' : title
+  const titleSliced = title.length > 25 ? title.slice(0, 25) + '...' : title
 
   return gamesCount ? (
     <GameWrapper href={gameHref}>
