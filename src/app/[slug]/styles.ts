@@ -1,14 +1,15 @@
+import { BREAK_POINTS } from '@/constants'
 import styled from 'styled-components'
 
 export const GameTitle = styled.h1`
   font-size: 32px;
   text-align: start;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${BREAK_POINTS.md}) {
     text-align: center;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: ${BREAK_POINTS.sm}) {
     font-size: 24px;
   }
 `
@@ -25,11 +26,11 @@ export const PageWrapper = styled.main`
   gap: 64px;
   padding: 32px 32px;
 
-  @media (min-width: 700px) {
+  @media (min-width: ${BREAK_POINTS.md}) {
     padding: 32px 64px;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: ${BREAK_POINTS.xl}) {
     padding: 64px 128px;
   }
 `
@@ -38,7 +39,7 @@ export const LineWrapper = styled.div`
   width: 100%;
   height: 70vh;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${BREAK_POINTS.sm}) {
     height: 40vh;
   }
 `
@@ -53,7 +54,7 @@ export const TitleWrapper = styled.div`
   gap: 24px;
   flex-direction: column;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${BREAK_POINTS.md}) {
     align-items: center;
   }
 `
@@ -66,7 +67,7 @@ export const StatisticWrapper = styled.div`
   flex-direction: row;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${BREAK_POINTS.md}) {
     flex-direction: column;
   }
 `

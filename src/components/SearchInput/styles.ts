@@ -1,3 +1,4 @@
+import { BREAK_POINTS } from '@/constants'
 import styled from 'styled-components'
 
 export const SearchInputWrapper = styled.section`
@@ -7,7 +8,7 @@ export const SearchInputWrapper = styled.section`
   align-items: center;
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${BREAK_POINTS.md}) {
     width: 100%;
   }
 `

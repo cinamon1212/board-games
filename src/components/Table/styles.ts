@@ -1,3 +1,4 @@
+import { BREAK_POINTS } from '@/constants'
 import styled, { CSSProperties } from 'styled-components'
 
 export const TableCell = styled.td<{
@@ -18,7 +19,7 @@ export const TableCell = styled.td<{
     background-color: ${(props) => props.$hoverBgColor};
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: ${BREAK_POINTS.sm}) {
     padding: 8px;
   }
 `
@@ -29,7 +30,7 @@ export const TableStyled = styled.table`
   min-width: 400px;
   margin: 0 auto;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${BREAK_POINTS.sm}) {
     font-size: 12px;
     width: 100%;
     margin: 0;

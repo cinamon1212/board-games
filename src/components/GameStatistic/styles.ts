@@ -1,3 +1,4 @@
+import { BREAK_POINTS } from '@/constants'
 import styled from 'styled-components'
 
 export const GameStatisticsWrapper = styled.div`
@@ -10,7 +11,7 @@ export const GameStatisticsWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${BREAK_POINTS.sm}) {
     gap: 12px;
   }
 `

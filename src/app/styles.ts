@@ -1,3 +1,4 @@
+import { BREAK_POINTS } from '@/constants'
 import styled from 'styled-components'
 
 export const HomeWrapper = styled.main`
@@ -8,12 +9,12 @@ export const HomeWrapper = styled.main`
   justify-content: center;
   padding: 32px;
 
-  @media (min-width: 480px) {
+  @media (min-width: ${BREAK_POINTS.sm}) {
     gap: 48px;
     padding: 48px;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: ${BREAK_POINTS.lg}) {
     gap: 64px;
     padding: 64px;
   }

@@ -1,3 +1,4 @@
+import { BREAK_POINTS } from '@/constants'
 import Link from 'next/link'
 import styled from 'styled-components'
 
@@ -16,15 +17,15 @@ export const GameWrapper = styled(Link)`
     cursor: pointer;
   }
 
-  @media (min-width: 480px) {
+  @media (min-width: ${BREAK_POINTS.sm}) {
     height: 500px;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: ${BREAK_POINTS.md}) {
     height: 400px;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: ${BREAK_POINTS.lg}) {
     height: 500px;
   }
 `
@@ -60,23 +61,23 @@ export const GameTitle = styled.span`
   color: whitesmoke;
   font-size: 16px;
 
-  @media (min-width: 480px) {
+  @media (min-width: ${BREAK_POINTS.sm}) {
     font-size: 24px;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: ${BREAK_POINTS.md}) {
     font-size: 18px;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: ${BREAK_POINTS.lg}) {
     font-size: 24px;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: ${BREAK_POINTS.xl}) {
     font-size: 18px;
   }
 
-  @media (min-width: 1300px) {
+  @media (min-width: ${BREAK_POINTS.xxl}) {
     font-size: 24px;
   }
 `
@@ -86,23 +87,23 @@ export const GameCount = styled.span`
 
   font-size: 12px;
 
-  @media (min-width: 480px) {
+  @media (min-width: ${BREAK_POINTS.sm}) {
     font-size: 18px;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: ${BREAK_POINTS.md}) {
     font-size: 14px;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: ${BREAK_POINTS.lg}) {
     font-size: 18px;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: ${BREAK_POINTS.xl}) {
     font-size: 14px;
   }
 
-  @media (min-width: 1300px) {
+  @media (min-width: ${BREAK_POINTS.xxl}) {
     font-size: 18px;
   }
 `

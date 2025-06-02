@@ -1,3 +1,4 @@
+import { BREAK_POINTS } from '@/constants'
 import styled from 'styled-components'
 
 export const GamesListWrapper = styled.ul`
@@ -7,20 +8,20 @@ export const GamesListWrapper = styled.ul`
   list-style: none;
   width: 100%;
 
-  @media (min-width: 480px) {
+  @media (min-width: ${BREAK_POINTS.sm}) {
     gap: 48px;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: ${BREAK_POINTS.md}) {
     gap: 48px;
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: ${BREAK_POINTS.lg}) {
     gap: 64px;
   }
 
-    @media (min-width: 1200px) {
+    @media (min-width: ${BREAK_POINTS.xl}) {
     grid-template-columns: repeat(3, 1fr);
   }
 `
