@@ -18,7 +18,7 @@ export const getGameScoreStats = (map: PersonsMap<number>): ScoreStats => {
     currentItem?.scores?.forEach((score) => {
       totalGames++
 
-      if (score) {
+      if (typeof score === 'number') {
         totalScores += score
 
         if (score < minScore) {
