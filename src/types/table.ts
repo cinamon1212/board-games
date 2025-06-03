@@ -15,6 +15,6 @@ export type TableSortKey = 'none' | 'asc' | 'desc'
 
 export type TableData = {
   name: Player
-} & Partial<PersonMapItem<number>>
+} & Partial<PersonMapItem<number | boolean>>
 
 export type TableDataArr = Array<TableData>

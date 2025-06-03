@@ -14,12 +14,13 @@ import { Tops } from '@/components'
 import { StatisticWrapper } from '../styles'
 
 export const BoolGamePage = ({ boolGames, title }: BoolGamePageProps) => {
-  const { data, tops } = getTransformedDataFromBoolGames(boolGames)
+  const { data, tableDataArr } = getTransformedDataFromBoolGames(boolGames)
+  
   return (
     <PageWrapper>
       <StatisticWrapper>
         <GameTitle>{title}</GameTitle>
-        <Tops tableDataArr={tops} />
+        <Tops tableDataArr={tableDataArr} />
       </StatisticWrapper>
       <BarWrapper>
         <Bar data={data} options={BAR_OPTIONS} />

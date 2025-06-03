@@ -1,8 +1,8 @@
 import { CSSProperties } from 'styled-components'
-import { TableData, TableDataArr, TableSortKey, TopsBooleanDataArr } from '../../types'
+import { TableData, TableDataArr, TableSortKey } from '../../types'
 
 export type TableProps = {
-  tableDataArr: TableDataArr | TopsBooleanDataArr
+  tableDataArr: TableDataArr
 }
 
 export type TableColumn = {
