@@ -58,16 +58,3 @@ export const TitleWrapper = styled.div`
     align-items: center;
   }
 `
-
-export const StatisticWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 48px;
-  flex-direction: row;
-  width: 100%;
-
-  @media (max-width: ${BREAK_POINTS.md}) {
-    flex-direction: column;
-  }
-`
