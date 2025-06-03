@@ -52,19 +52,6 @@ export const Header = styled.header`
   z-index: 1;
 `
 
-export const StatisticWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 48px;
-  flex-direction: row;
-  width: 100%;
-
-  @media (max-width: ${BREAK_POINTS.md}) {
-    flex-direction: column;
-  }
-`
-
 export const Title = styled.h1`
   font-size: 20px;
   text-align: center;
