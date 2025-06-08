@@ -19,7 +19,7 @@ export const PlayerPosition = styled.div<{ position: number }>`
 
 type AvatarContainerProps = {
   $backgroundColor: string;
-  borderColor?: string;
+  $borderColor?: string;
 }
 
 export const AvatarContainer = styled.div<AvatarContainerProps>`
@@ -27,7 +27,7 @@ export const AvatarContainer = styled.div<AvatarContainerProps>`
   height: 100px;
   border-radius: 50%;
   border: 4px solid;
-  border-color: ${({ borderColor }) => borderColor};
+  border-color: ${({ $borderColor }) => $borderColor};
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   margin-bottom: 10px;
 `
