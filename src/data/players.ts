@@ -2,56 +2,56 @@ import { PlayerProfile, PlayerList, Player, PlayersByName } from '@/types'
 
 const ILIA: PlayerProfile = {
   id: 1,
-  color: 'red',
+  color: '#e84275',
   img: '',
   name: 'Илья',
 }
 
 const LILIA: PlayerProfile = {
   id: 2,
-  color: 'green',
+  color: '#08b6ff',
   img: '',
   name: 'Лиля',
 }
 
 const SASHA: PlayerProfile = {
   id: 3,
-  color: 'blue',
+  color: '#ec8758',
   img: '',
   name: 'Саша',
 }
 
 const SERGEI: PlayerProfile = {
   id: 4,
-  color: 'yellow',
+  color: '#a5e66d',
   img: '',
   name: 'Сергей',
 }
 
 const SONYA: PlayerProfile = {
   id: 5,
-  color: 'pink',
+  color: '#ffaff4',
   img: '',
   name: 'Соня',
 }
 
 const TAMIK: PlayerProfile = {
   id: 6,
-  color: 'orange',
+  color: '#4c4cff',
   img: '',
   name: 'Тамик',
 }
 
 const ANDREW: PlayerProfile = {
   id: 7,
-  color: 'red',
+  color: '#f8efaf',
   img: '',
   name: 'Андрей',
 }
 
 const SLAVA: PlayerProfile = {
   id: 8,
-  color: 'blue',
+  color: '#0fffca',
   img: '',
   name: 'Славик',
 }
