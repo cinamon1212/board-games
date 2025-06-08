@@ -1,8 +1,9 @@
+import { PLAYERS_BY_NAME } from '@/data';
 import { PersonsMapGames, Player, PlayerScores, SingleGameResult } from '@/types'
 
 export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScores<T>): PersonsMapGames<T> => {
   // заполняем map: ключи - игроки, значения - массив score
-  const map: PersonsMapGames<T> = {}
+  const map: PersonsMapGames<T> = {}  
 
   games.forEach((game) => {
     const values = Object.values(game)
@@ -11,6 +12,7 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
     for (const person in game) {
       const name = person as Player
       const score = game[name]
+      const fields = PLAYERS_BY_NAME[name]
 
       if (score !== undefined) {
         const isWin = (typeof score === 'boolean' && score) || (typeof score === 'number' && score === max)
@@ -27,11 +29,12 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
           map[name] = {
             scores: [score],
             winCount,
+            ...fields
           }
         }
       }
     }
   })
-
+  console.log(map);
   return map
 }

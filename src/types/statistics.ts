@@ -1,37 +1,33 @@
-import { Player } from './player'
+import { Player, PlayerProfileWithoutName } from './player'
 
 // Типы для результатов игры и объекта GamesByPersonsMap
 export type SingleGameResult = number | boolean
 export type GameResult = SingleGameResult | Array<SingleGameResult>
 
-export type PlayerScore<T extends GameResult> = Partial<Record<Player, T>>
+// Дженерик для объектов с ключами - именами
+export type PlayerObj<T> = Partial<Record<Player, T>>
 
+export type PlayerScore<T extends GameResult> = PlayerObj<T>
 export type PlayerScores<T extends GameResult> = Array<PlayerScore<T>>
 
+// Типы для функции getPersonsMap
 export type PersonMapItem<T extends SingleGameResult> = {
   scores: Array<T>
-  color: string
   scoresCount: number
   winRate: string
   avg?: number
   minScore?: number
   maxScore?: number
-}
+} & PlayerProfileWithoutName
 
+export type PersonsMap<T extends SingleGameResult> = PlayerObj<PersonMapItem<T>>
+
+
+// Типы для функции getPersonsMapGames
 export type PersonMapGameItem<T extends SingleGameResult> = {
-  scores: Array<T>,
+  scores: Array<T>
   winCount: number
-}
+} & PlayerProfileWithoutName
 
-export type PersonsMapGames<T extends SingleGameResult> = Partial<Record<Player, PersonMapGameItem<T>>>
+export type PersonsMapGames<T extends SingleGameResult> = PlayerObj<PersonMapGameItem<T>>
 
-export type PersonsMap<T extends SingleGameResult> = Partial<Record<Player, PersonMapItem<T>>>
-
-export type BoolGamesStatistic = {
-  games: Array<boolean>
-  winRate: string
-  gamesCount: number
-  winCount: number
-  color: string
-}
-export type BoolGamesStatisticMap = Partial<Record<Player, BoolGamesStatistic>>
