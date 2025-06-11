@@ -1,4 +1,4 @@
-import { PlayerProfile, PlayerList, Player, PlayersByName } from '@/types'
+import { PlayerProfile, PlayerList, PlayersByName } from '@/types'
 
 const ILIA: PlayerProfile = {
   id: 1,
@@ -56,7 +56,21 @@ const SLAVA: PlayerProfile = {
   name: 'Славик',
 }
 
-export const PLAYERS_LIST: PlayerList = [ILIA, LILIA, SASHA, SERGEI, SONYA, TAMIK, ANDREW, SLAVA]
+const OLGA: PlayerProfile = {
+  id: 9,
+  color: '#df4550',
+  img: '',
+  name: 'Ольга',
+}
+
+const LENA: PlayerProfile = {
+  id: 10,
+  color: '#fffc1f',
+  img: '',
+  name: 'Лена',
+}
+
+export const PLAYERS_LIST: PlayerList = [ILIA, LILIA, SASHA, SERGEI, SONYA, TAMIK, ANDREW, SLAVA, OLGA, LENA]
 
 export const PLAYERS_BY_NAME = PLAYERS_LIST.reduce((acc, { name, ...fields }) => {
   return (acc = { ...acc, [name]: { ...fields } })
