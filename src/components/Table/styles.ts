@@ -4,6 +4,7 @@ import styled, { CSSProperties } from 'styled-components'
 export const TableCell = styled.td<{
   $hoverBgColor?: CSSProperties['backgroundColor']
   $bgColor?: CSSProperties['backgroundColor']
+  $color?: CSSProperties['color']
 }>`
   border: 0.5px solid #575553;
   padding: 12px;
@@ -12,7 +13,17 @@ export const TableCell = styled.td<{
   position: relative;
   transition: all 0.3s ease-in-out;
 
-  color: ${(props) => props.color};
+  ${({ $color }) =>
+    $color &&
+    `
+      background: ${$color};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  
+      background-clip: text;
+      color: transparent;
+    `}
+
   background-color: ${(props) => props.$bgColor};
 
   &:hover {

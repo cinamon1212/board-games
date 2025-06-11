@@ -4,7 +4,7 @@ import { TableProps, TableSortConfig } from './types'
 import { SortIcon, TableCell, TableStyled, TableWrapper } from './styles'
 
 import { TableData } from '@/types'
-import { getNextSortState } from '@/helpers'
+import { getColorOrGradient, getNextSortState } from '@/helpers'
 import { TABLE_COLUMNS, TABLE_SORT_STATES } from '@/constants'
 
 export const Table = ({ tableDataArr }: TableProps) => {
@@ -65,11 +65,15 @@ export const Table = ({ tableDataArr }: TableProps) => {
         <tbody>
           {sortedData.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {TABLE_COLUMNS.map(({ field }, index) => (
-                <TableCell key={index} color={field === 'name' ? row.color : 'white'}>
-                  {row[field]}
-                </TableCell>
-              ))}
+              {TABLE_COLUMNS.map(({ field }, index) => {
+                const colorOrGradient = getColorOrGradient(row.color)
+
+                return (
+                  <TableCell key={index} $color={field === 'name' ? colorOrGradient : undefined}>
+                    {row[field]}
+                  </TableCell>
+                )
+              })}
             </tr>
           ))}
         </tbody>

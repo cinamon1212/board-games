@@ -18,18 +18,14 @@ export const PlayerPosition = styled.div<{ position: number }>`
 `
 
 type AvatarContainerProps = {
-  $backgroundColor: string;
-  $borderColor?: string;
+  $background: string
 }
 
 export const AvatarContainer = styled.div<AvatarContainerProps>`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  border: 4px solid;
-  border-color: ${({ $borderColor }) => $borderColor};
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  margin-bottom: 10px;
+  background: ${({ $background }) => $background};
 `
 
 export const PlayerInfo = styled.div`
@@ -51,4 +47,16 @@ export const CrownContainer = styled.div`
   top: -36px;
   left: 50%;
   transform: translateX(-50%);
+`
+
+type AvatarBorderProps = {
+  $background: string
+}
+
+export const AvatarBorder = styled.div<AvatarBorderProps>`
+  padding: 4px;
+  border-radius: 50%;
+  background: ${({ $background }) => $background};
+  width: 100px;
+  height: 100px;
 `

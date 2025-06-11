@@ -5,7 +5,7 @@ export type ChartLabels = Array<string>
 export type DataSet = {
   label: Player
   fill: boolean
-  borderColor: string
+  borderColor: string | CanvasGradient
   tension: number
   data: Array<number>
 }
