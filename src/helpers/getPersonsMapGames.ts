@@ -41,6 +41,6 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
       }
     }
   })
-  console.log(map)
+
   return map
 }

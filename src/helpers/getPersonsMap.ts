@@ -29,6 +29,6 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
   
       idx++
     }
-    console.log(personsMap);
+
     return personsMap
 }
