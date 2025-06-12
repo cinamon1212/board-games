@@ -9,7 +9,7 @@ export const getTransformedDataFromNumGames = (numGames: PlayerScores<number>) =
 
   const scoreStats = getGameScoreStats(personsMap)
 
-  const tableDataArr = transformDataForTable(personsMap)
+  const tableDataArr = transformDataForTable(personsMap, 'avg')
 
   return {
     gamesForChart,

@@ -16,7 +16,7 @@ export const Tops = ({ tableDataArr }: TableProps) => {
   const topThree = tableDataArr.slice(0, 3)
   return (
     <TopThreeContainer>
-      {topThree.map(({ color, name, avg }, index) => {
+      {topThree.map(({ color, name, avg, winRate }, index) => {
         const position = index + 1
 
         const colorOrGradient = getColorOrGradient(color)
@@ -29,7 +29,7 @@ export const Tops = ({ tableDataArr }: TableProps) => {
             </AvatarBorder>
             <PlayerInfo>
               <PlayerName>{name}</PlayerName>
-              <PlayerScore>{avg}</PlayerScore>
+              <PlayerScore>{avg ? avg : winRate}</PlayerScore>
             </PlayerInfo>
           </PlayerPosition>
         )
