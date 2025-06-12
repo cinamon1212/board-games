@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
-import { GameTitle, LineWrapper, PageWrapper, TitleWrapper, StatisticWrapper } from './styles'
+import { LineWrapper, PageWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
-import { Table, GameStatistic, Tops } from '@/components'
+import { Table } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
@@ -12,6 +12,8 @@ import { useChartData, useWindowWidth } from '@/hooks'
 import { LINE_OPTIONS } from '@/constants'
 
 import { ChartJSOrUndefined } from 'node_modules/react-chartjs-2/dist/types'
+
+import { StatisticContainer } from './StatisticContainer'
 
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
   const { gamesForChart, scoreStats, tableDataArr } = getTransformedDataFromNumGames(numGames)
@@ -23,13 +25,12 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
 
   return (
     <PageWrapper>
-      <StatisticWrapper>
-        <TitleWrapper>
-          <GameTitle>{title}</GameTitle>
-          <GameStatistic scoreStats={scoreStats} gamesCount={numGames.length} />
-        </TitleWrapper>
-        <Tops tableDataArr={tableDataArr} />
-      </StatisticWrapper>
+      <StatisticContainer
+        tableDataArr={tableDataArr}
+        games={numGames}
+        title={title}
+        scoreStats={scoreStats}
+      />
       {gamesForChart && (
         <LineWrapper>
           <Line data={chartData} options={LINE_OPTIONS} ref={chartRef} />
