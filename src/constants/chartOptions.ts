@@ -3,9 +3,23 @@ import { ChartOptions } from 'chart.js'
 export const LINE_OPTIONS: ChartOptions<'line'> = {
   responsive: true,
   maintainAspectRatio: false,
+  interaction: {
+    mode: 'nearest',
+    intersect: false,
+  },
+  animation: {
+    duration: 300,
+  },
   plugins: {
     legend: {
       display: false,
+    },
+    tooltip: {
+      animation: {
+        duration: 100,
+        delay: 0,
+      },
+      enabled: true,
     },
   },
 }

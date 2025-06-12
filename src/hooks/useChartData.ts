@@ -37,8 +37,7 @@ export const useChartData = (chartRef: RefObject<ChartJSOrUndefined<'line'> | nu
             const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0)
 
             colors.forEach((color, idx) => {
-              const stop = idx / (colors.length - 1)
-              gradient.addColorStop(stop, color)
+              gradient.addColorStop(idx, color)
             })
 
             setDatasetProps(gradient)
