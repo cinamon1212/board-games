@@ -7,6 +7,7 @@ const CLANK_IN_SPACE_GAMES: PlayerScores<number> = [
   { Андрей: 74, Илья: 0, Соня: 71 },
   { Андрей: 140 },
   { Андрей: 0, Илья: 0, Лиля: 69, Тамик: 53 },
+  { Андрей: 112, Илья: 130, Лиля: 112 },
 ]
 
 export const CLANK: GameInfo = {

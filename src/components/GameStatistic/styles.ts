@@ -16,13 +16,27 @@ export const GameStatisticsWrapper = styled.div`
   }
 `
 
-export const GameStatistics = styled.div`
+type GameStatisticsProps = {
+  $color: string
+}
+
+export const GameStatistics = styled.div<GameStatisticsProps>`
   padding: 8px;
   border-radius: 40%;
   background: #261e16;
   min-width: 40px;
   text-align: center;
-  color: ${(props) => props.color};
+
+  ${({ $color }) =>
+    $color &&
+    `
+      background: ${$color};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  
+      background-clip: text;
+      color: transparent;
+    `}
 `
 
 export const GameStatisticsValueWrapper = styled.div`

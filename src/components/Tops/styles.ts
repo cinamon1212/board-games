@@ -17,14 +17,15 @@ export const PlayerPosition = styled.div<{ position: number }>`
   bottom: ${({ position }) => (position === 1 ? '30px' : '')};
 `
 
-export const AvatarContainer = styled.div<{ position: number; $backgroundColor: string }>`
-  width: 100px;
-  height: 100px;
+type AvatarContainerProps = {
+  $background: string
+}
+
+export const AvatarContainer = styled.div<AvatarContainerProps>`
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  border: 5px solid;
-  border-color: ${({ position }) => (position === 1 ? '#FFD700' : position === 2 ? '#C0C0C0' : '#CD7F32')};
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  margin-bottom: 10px;
+  background: ${({ $background }) => $background};
 `
 
 export const PlayerInfo = styled.div`
@@ -43,7 +44,19 @@ export const PlayerScore = styled.span``
 
 export const CrownContainer = styled.div`
   position: absolute;
-  top: -30px;
+  top: -36px;
   left: 50%;
   transform: translateX(-50%);
+`
+
+type AvatarBorderProps = {
+  $background: string
+}
+
+export const AvatarBorder = styled.div<AvatarBorderProps>`
+  padding: 4px;
+  border-radius: 50%;
+  background: ${({ $background }) => $background};
+  width: 100px;
+  height: 100px;
 `

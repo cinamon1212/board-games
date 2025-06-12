@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { GameTitle, LineWrapper, PageWrapper, TitleWrapper, StatisticWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
@@ -8,11 +8,16 @@ import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
 
-import { useWindowWidth } from '@/hooks'
+import { useChartData, useWindowWidth } from '@/hooks'
 import { LINE_OPTIONS } from '@/constants'
+
+import { ChartJSOrUndefined } from 'node_modules/react-chartjs-2/dist/types'
 
 export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
   const { gamesForChart, scoreStats, tableDataArr } = getTransformedDataFromNumGames(numGames)
+
+  const chartRef = useRef<ChartJSOrUndefined<'line'> | null>(null)
+  const chartData = useChartData(chartRef, gamesForChart)
 
   const windowWidth = useWindowWidth()
 
@@ -27,7 +32,7 @@ export const NumGamePage = ({ numGames, title }: NumGamePageProps) => {
       </StatisticWrapper>
       {gamesForChart && (
         <LineWrapper>
-          <Line data={gamesForChart} options={LINE_OPTIONS} />
+          <Line data={chartData} options={LINE_OPTIONS} ref={chartRef} />
         </LineWrapper>
       )}
       <Table tableDataArr={tableDataArr} />

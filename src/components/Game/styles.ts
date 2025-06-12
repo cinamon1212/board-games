@@ -57,6 +57,7 @@ export const GameInfo = styled.div`
   gap: 10px;
   padding: 24px;
   text-align: center;
+  direction: ltr;
 `
 export const GameTitle = styled.span`
   color: whitesmoke;
