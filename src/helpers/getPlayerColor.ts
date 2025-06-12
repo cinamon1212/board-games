@@ -3,18 +3,18 @@ import { Player } from '@/types'
 
 // формирует цвет или сумму цветов
 export const getPlayerColor = (name: Player): string => {
-  const splitted = name.split(' ')
+  const splitted = name.split(' & ') as Array<Player>
 
   const notSinglePlayer = splitted.length !== 1
 
   if (notSinglePlayer) {
-    const firstName = splitted[0] as Player
-    const secondName = splitted[2] as Player
+    const colors: Array<string> = []
 
-    const firstColor = PLAYERS_BY_NAME[firstName].color
-    const secondColor = PLAYERS_BY_NAME[secondName].color
+    splitted.forEach((singleName) => {
+      colors.push(PLAYERS_BY_NAME[singleName].color)
+    });
 
-    return firstColor + ', ' + secondColor
+    return colors.join(', ')
   }
 
   return PLAYERS_BY_NAME[name].color
