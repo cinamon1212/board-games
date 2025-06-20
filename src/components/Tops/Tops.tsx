@@ -20,9 +20,9 @@ export const Tops = ({ tableDataArr }: TableProps) => {
         const colorOrGradient = getColorOrGradient(color)
 
         return (
-          <PlayerPosition key={index} position={position}>
+          <PlayerPosition key={index} $position={position}>
             <CrownIcon position={position} />
-            <AvatarBorder $background={colorOrGradient}>
+            <AvatarBorder $background={colorOrGradient} $position={position}>
               <AvatarContainer $background={colorOrGradient} />
             </AvatarBorder>
               <PlayerScore>{avg ? avg : winRate}</PlayerScore>
