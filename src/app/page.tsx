@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <HomeWrapper>
-      <RadialBackground top={'-50px'} left={'-30%'} />
+      <RadialBackground $top={'-50px'} $left={'-30%'} />
 
       <Header>
         <Title>Найдите нужную игру</Title>
@@ -25,7 +25,7 @@ const Home = () => {
 
       {games.length ? <GamesList games={games} /> : <NotFound />}
 
-      <RadialBackground bottom={'-50px'} right={'-30%'}/>
+      <RadialBackground $bottom={'-50px'} $right={'-30%'}/>
     </HomeWrapper>
   )
 }

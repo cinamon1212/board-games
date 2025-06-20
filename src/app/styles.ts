@@ -23,10 +23,10 @@ export const HomeWrapper = styled.main`
 `
 
 export type RadialBackgroundProps = {
-  top?: CSSProperties['top']
-  left?: CSSProperties['left']
-  bottom?: CSSProperties['bottom']
-  right?: CSSProperties['right']
+  $top?: CSSProperties['top']
+  $left?: CSSProperties['left']
+  $bottom?: CSSProperties['bottom']
+  $right?: CSSProperties['right']
 }
 
 export const RadialBackground = styled.div<RadialBackgroundProps>`
@@ -37,10 +37,10 @@ export const RadialBackground = styled.div<RadialBackgroundProps>`
   z-index: 0;
   filter: blur(100px);
 
-  top: ${(props) => props?.top};
-  bottom: ${(props) => props?.bottom};
-  left: ${(props) => props?.left};
-  right: ${(props) => props?.right};
+  top: ${(props) => props?.$top};
+  bottom: ${(props) => props?.$bottom};
+  left: ${(props) => props?.$left};
+  right: ${(props) => props?.$right};
 `
 
 export const Header = styled.header`
