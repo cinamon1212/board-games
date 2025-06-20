@@ -18,8 +18,6 @@ https://board-games-cinamon1212.vercel.app/
 
 (Илья)
 -Добавить анимации на главную
--Сделать универсальный компонент для StatisticWrapper в NumGamePage (сделать так, чтобы можно было использовать эту обертку в BoolGamePage)
--Добавить в StatisticWrapper в BoolGamePage топы (по примеру того, как это в NumGamePage)
 -Внести данные из записанных игр на бумаге (7 чудес и тд)
 
 (Андрей)

@@ -5,8 +5,6 @@ import { CrownIcon } from './CrownIcon'
 import {
   AvatarContainer,
   AvatarBorder,
-  PlayerInfo,
-  PlayerName,
   PlayerPosition,
   PlayerScore,
   TopThreeContainer,
@@ -16,7 +14,7 @@ export const Tops = ({ tableDataArr }: TableProps) => {
   const topThree = tableDataArr.slice(0, 3)
   return (
     <TopThreeContainer>
-      {topThree.map(({ color, name, avg, winRate }, index) => {
+      {topThree.map(({ color, avg, winRate }, index) => {
         const position = index + 1
 
         const colorOrGradient = getColorOrGradient(color)
@@ -27,10 +25,7 @@ export const Tops = ({ tableDataArr }: TableProps) => {
             <AvatarBorder $background={colorOrGradient}>
               <AvatarContainer $background={colorOrGradient} />
             </AvatarBorder>
-            <PlayerInfo>
-              <PlayerName>{name}</PlayerName>
               <PlayerScore>{avg ? avg : winRate}</PlayerScore>
-            </PlayerInfo>
           </PlayerPosition>
         )
       })}

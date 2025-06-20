@@ -1,3 +1,4 @@
+import { BREAK_POINTS } from '@/constants'
 import styled from 'styled-components'
 
 export const TopThreeContainer = styled.div`
@@ -28,19 +29,10 @@ export const AvatarContainer = styled.div<AvatarContainerProps>`
   background: ${({ $background }) => $background};
 `
 
-export const PlayerInfo = styled.div`
-  text-align: center;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
+export const PlayerScore = styled.span`
+  font-size: 14px;
+  margin-top: 4px;
 `
-
-export const PlayerName = styled.span`
-  color: white;
-  margin-bottom: 4px;
-`
-
-export const PlayerScore = styled.span``
 
 export const CrownContainer = styled.div`
   position: absolute;
@@ -59,4 +51,9 @@ export const AvatarBorder = styled.div<AvatarBorderProps>`
   background: ${({ $background }) => $background};
   width: 100px;
   height: 100px;
+
+  @media (max-width: ${BREAK_POINTS.md}) {
+    width: 80px;
+    height: 80px;
+  }
 `
