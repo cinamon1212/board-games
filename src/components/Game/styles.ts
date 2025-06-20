@@ -85,7 +85,7 @@ export const GameTitle = styled.span`
 `
 
 export const GameCount = styled.span`
-  color: #858585;
+  color: #696969;
 
   font-size: 12px;
 
