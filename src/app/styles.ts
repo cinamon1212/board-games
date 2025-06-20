@@ -32,7 +32,7 @@ export type RadialBackgroundProps = {
 export const RadialBackground = styled.div<RadialBackgroundProps>`
   position: absolute;
   width: 90%;
-  height: 8%;
+  height: 200px;
   background: radial-gradient(circle at center, #302101 0%, #1a1511 80%);
   z-index: 0;
   filter: blur(100px);
