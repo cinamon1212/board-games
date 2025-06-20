@@ -31,19 +31,19 @@ export const BAR_OPTIONS: ChartOptions<'bar'> = {
     legend: {
       display: false,
     },
-    title: {
-      display: true,
-      text: 'Винрейт Игроков',
-      font: {
-        size: 24,
-        weight: 'bold',
-      },
-      color: '#696969',
-      align: 'center',
-      padding: {
-        top: 0,
-        bottom: 64,
-      },
-    },
+    // title: {
+    //   display: true,
+    //   text: 'Винрейт Игроков',
+    //   font: {
+    //     size: 18,
+    //     weight: 'bold',
+    //   },
+    //   color: '#696969',
+    //   align: 'center',
+    //   padding: {
+    //     top: 0,
+    //     bottom: 64,
+    //   },
+    // },
   },
 }
