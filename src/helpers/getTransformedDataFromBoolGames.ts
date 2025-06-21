@@ -3,7 +3,8 @@ import { PlayerScores } from '@/types'
 import { getPersonsMap } from './getPersonsMap'
 import { getPersonsMapGames } from './getPersonsMapGames'
 import { createDataForPie } from './createDataForPie'
-import { transformDataForTable } from './transformDataForTable'
+import { transformDataForBooleanTops } from './transformDataForBooleanTops'
+
 
 export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>) => {
   const map = getPersonsMapGames<boolean>(boolGames)
@@ -11,7 +12,7 @@ export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>
   const { personsMap } = getPersonsMap<boolean>(map)
 
   const data = createDataForPie(personsMap)
-  const tableDataArr = transformDataForTable(personsMap, 'winRate')
+  const tops = transformDataForBooleanTops(personsMap)
+  return { data, tops }
 
-  return { data, tableDataArr }
 }

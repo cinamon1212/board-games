@@ -24,8 +24,7 @@ export const PageWrapper = styled.main`
   justify-content: center;
   height: 100%;
   gap: 64px;
-  padding: 32px 32px;
-  min-height: 100%;
+  padding: 16px;
 
   @media (min-width: ${BREAK_POINTS.md}) {
     padding: 32px 64px;
@@ -59,7 +58,6 @@ export const TitleWrapper = styled.div`
     align-items: center;
   }
 `
-
 export const StatisticWrapper = styled.div`
   display: flex;
   align-items: center;

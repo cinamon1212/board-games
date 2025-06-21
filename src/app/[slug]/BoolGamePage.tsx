@@ -2,7 +2,9 @@ import React from 'react'
 
 import { BoolGamePageProps } from './types'
 
-import { BarWrapper, PageWrapper } from './styles'
+
+import { BarWrapper, GameTitle, PageWrapper } from './styles'
+
 
 import { getTransformedDataFromBoolGames } from '@/helpers'
 
@@ -10,14 +12,20 @@ import { Bar } from 'react-chartjs-2'
 
 import { BAR_OPTIONS } from '@/constants'
 
-import { StatisticContainer } from './StatisticContainer'
+
+import { Tops } from '@/components'
+import { StatisticWrapper } from '../styles'
+
 
 export const BoolGamePage = ({ boolGames, title }: BoolGamePageProps) => {
-  const { data, tableDataArr } = getTransformedDataFromBoolGames(boolGames)
-
+  const { data, tops } = getTransformedDataFromBoolGames(boolGames)
   return (
     <PageWrapper>
-      <StatisticContainer tableDataArr={tableDataArr} games={boolGames} title={title} />
+      <StatisticWrapper>
+        <GameTitle>{title}</GameTitle>
+        <Tops tableDataArr={tops} />
+      </StatisticWrapper>
+
       <BarWrapper>
         <Bar data={data} options={BAR_OPTIONS} />
       </BarWrapper>

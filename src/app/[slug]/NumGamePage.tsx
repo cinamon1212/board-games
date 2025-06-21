@@ -1,5 +1,9 @@
+
+import React from 'react'
+import { GameTitle, LineWrapper, PageWrapper, TitleWrapper } from './styles'
+import { StatisticWrapper } from '../styles'
 import React, { useRef } from 'react'
-import { LineWrapper, PageWrapper } from './styles'
+
 
 import { Line } from 'react-chartjs-2'
 
