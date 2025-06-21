@@ -7,12 +7,15 @@ import { GamesList, NotFound, SearchInput } from '@/components'
 import { Header, HomeWrapper, RadialBackground, Title } from './styles'
 import { GAMES_LIST } from '@/data'
 import { filterGamesByItsCount, filterGamesByRegExp } from '@/helpers'
+import { useDebounce } from '@/hooks'
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('')
 
+  const debouncedValue = useDebounce<string>(inputValue, 300)
+
   const filteredGamesByItsCount = filterGamesByItsCount(GAMES_LIST)
-  const games = filterGamesByRegExp(filteredGamesByItsCount, inputValue)
+  const games = filterGamesByRegExp(filteredGamesByItsCount, debouncedValue)
 
   return (
     <HomeWrapper>
