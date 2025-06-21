@@ -1,6 +1,6 @@
-import { PersonsMap, Player, TableDataArr } from '@/types'
+import { PersonsMap, Player, SingleGameResult, TableDataArr } from '@/types'
 
-export const transformDataForTable = (personsMap: PersonsMap<number>) => {
+export const transformDataForTable = (personsMap: PersonsMap<SingleGameResult>, flag: 'avg' | 'winRate') => {
   const tableDataArr: TableDataArr = []
 
   for (const person in personsMap) {
@@ -10,8 +10,8 @@ export const transformDataForTable = (personsMap: PersonsMap<number>) => {
   }
 
   return tableDataArr.sort((firstItem, secondItem) => {
-    const firstAvg = firstItem.avg
-    const secondAvg = secondItem.avg
+    const firstAvg = firstItem[flag]
+    const secondAvg = secondItem[flag]
 
     let res = 0
 

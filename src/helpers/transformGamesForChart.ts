@@ -7,11 +7,12 @@ import { getPersonsMap } from './getPersonsMap'
 
 export const transformGamesForChart = (games: PlayerScores<number>) => {
   const map = getPersonsMapGames<number>(games)
-  const personsMap = getPersonsMap<number>(map)
+
+  const { personsMap, maxScoresCount } = getPersonsMap<number>(map)
 
   const datasets = createDatasets(personsMap)
 
-  const labels = createLabelsForChart(games.length)
+  const labels = createLabelsForChart(maxScoresCount)
 
   const gamesForChart = {
     datasets,

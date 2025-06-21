@@ -57,6 +57,7 @@ export const GameInfo = styled.div`
   gap: 10px;
   padding: 24px;
   text-align: center;
+  direction: ltr;
 `
 export const GameTitle = styled.span`
   color: whitesmoke;
@@ -84,7 +85,7 @@ export const GameTitle = styled.span`
 `
 
 export const GameCount = styled.span`
-  color: #858585;
+  color: #696969;
 
   font-size: 12px;
 

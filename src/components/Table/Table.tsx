@@ -4,7 +4,7 @@ import { TableProps, TableSortConfig } from './types'
 import { SortIcon, TableCell, TableRow, TableStyled, TableWrapper } from './styles'
 
 import { TableData } from '@/types'
-import { getNextSortState } from '@/helpers'
+import { getColorOrGradient, getNextSortState } from '@/helpers'
 import { TABLE_COLUMNS, TABLE_SORT_STATES } from '@/constants'
 
 export const Table = ({ tableDataArr }: TableProps) => {

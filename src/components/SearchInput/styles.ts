@@ -27,7 +27,7 @@ export const Input = styled.input`
   font-size: 16px;
 
   &::placeholder {
-    color: #858585;
+    color: #696969;
   }
 
   &:hover,

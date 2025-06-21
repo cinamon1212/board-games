@@ -13,6 +13,7 @@ body {
   color: whitesmoke;
   height: auto;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 html::-webkit-scrollbar {

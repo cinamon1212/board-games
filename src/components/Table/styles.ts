@@ -19,6 +19,7 @@ export const TableRow = styled.tr<{
 `
 export const TableCell = styled.td<{
   $bgColor?: CSSProperties['backgroundColor']
+  $color?: CSSProperties['color']
 }>`
   border-bottom: 0.5px solid #57555380;
   border-right: 0.5px solid #57555380;
@@ -27,7 +28,17 @@ export const TableCell = styled.td<{
   width: fit-content;
   position: relative;
 
-  color: ${(props) => props.color};
+  ${({ $color }) =>
+    $color &&
+    `
+      background: ${$color};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  
+      background-clip: text;
+      color: transparent;
+    `}
+
   background-color: ${(props) => props.$bgColor};
 
   @media (max-width: ${BREAK_POINTS.sm}) {

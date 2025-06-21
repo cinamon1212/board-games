@@ -18,12 +18,4 @@ export const NotFoundTitle = styled.h1`
   @media (min-width: ${BREAK_POINTS.lg}) {
     font-size: 24px;
   }
-
-  @media (min-width: ${BREAK_POINTS.xl}) {
-    font-size: 28px;
-  }
-
-  @media (min-width: ${BREAK_POINTS.xxl}) {
-    font-size: 32px;
-  }
 `
