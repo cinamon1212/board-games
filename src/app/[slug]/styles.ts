@@ -24,7 +24,7 @@ export const PageWrapper = styled.main`
   justify-content: center;
   height: 100%;
   gap: 64px;
-  padding: 32px 32px;
+  padding: 16px;
   min-height: 100%;
 
   @media (min-width: ${BREAK_POINTS.md}) {
