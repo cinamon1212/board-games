@@ -42,6 +42,11 @@ export const CrownContainer = styled.div`
   transform: translateX(-50%);
 `
 
+export const PlayerName = styled.span`
+  color: white;
+  margin-bottom: 4px;
+`
+
 type AvatarBorderProps = {
   $background: string
   $position: number
