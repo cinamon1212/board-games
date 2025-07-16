@@ -33,6 +33,7 @@ export type GameTitles =
   | '7 чудес'
   | 'Палео'
   | 'Крылья'
+  | 'Подземелья и пёсики'
 
 export type GameInfo = {
   imgPath: string

@@ -33,6 +33,7 @@ import {
   UNMATCHED_LEGEND,
   WINSPAWN,
   ZAMES,
+  TALES_OF_TAILS,
 } from './games-single-statistics'
 
 export const GAMES_LIST: Games = [
@@ -68,4 +69,5 @@ export const GAMES_LIST: Games = [
   SEVEN_WONDERS,
   PALEO,
   WINSPAWN,
+  TALES_OF_TAILS,
 ]

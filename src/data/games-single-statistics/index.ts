@@ -28,3 +28,4 @@ export { BATTLE_WIZARDS_MURDERSHROOM_MARSH } from './battle-wizards-murdershroom
 export { SEVEN_WONDERS } from './seven-wonders'
 export { PALEO } from './paleo'
 export { WINSPAWN } from './winspawn'
+export { TALES_OF_TAILS } from './tales-of-tails'
