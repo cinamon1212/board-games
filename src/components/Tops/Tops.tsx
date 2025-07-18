@@ -11,7 +11,7 @@ export const Tops = ({ tableDataArr }: TableProps) => {
       {topThree.map(({ color, name, avg, winRate }, index) => {
         const position = index + 1
 
-        const colorOrGradient = getColorOrGradient(color)
+        const { color: colorOrGradient } = getColorOrGradient(color)
 
         return (
           <PlayerPosition key={index} $position={position}>
