@@ -70,7 +70,14 @@ const LENA: PlayerProfile = {
   name: 'Лена',
 }
 
-export const PLAYERS_LIST: PlayerList = [ILIA, LILIA, SASHA, SERGEI, SONYA, TAMIK, ANDREW, SLAVA, OLGA, LENA]
+const NASTYA: PlayerProfile = {
+  id: 11,
+  color: '#fffc1f',
+  img: '',
+  name: 'Настя',
+}
+
+export const PLAYERS_LIST: PlayerList = [ILIA, LILIA, SASHA, SERGEI, SONYA, TAMIK, ANDREW, SLAVA, OLGA, LENA, NASTYA]
 
 export const PLAYERS_BY_NAME = PLAYERS_LIST.reduce((acc, { name, ...fields }) => {
   return (acc = { ...acc, [name]: { ...fields } })

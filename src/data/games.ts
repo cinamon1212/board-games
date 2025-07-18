@@ -34,6 +34,7 @@ import {
   WINSPAWN,
   ZAMES,
   TALES_OF_TAILS,
+  SVINTUS_ZOMBIE,
 } from './games-single-statistics'
 
 export const GAMES_LIST: Games = [
@@ -70,4 +71,5 @@ export const GAMES_LIST: Games = [
   PALEO,
   WINSPAWN,
   TALES_OF_TAILS,
+  SVINTUS_ZOMBIE,
 ]

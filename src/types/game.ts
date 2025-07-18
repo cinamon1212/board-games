@@ -34,6 +34,7 @@ export type GameTitles =
   | 'Палео'
   | 'Крылья'
   | 'Подземелья и пёсики'
+  | 'Свинтус зомби'
 
 export type GameInfo = {
   imgPath: string
