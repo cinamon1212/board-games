@@ -8,13 +8,13 @@ export const Game = ({ title, games, imgPath }: GameType) => {
 
   const gameHref = getImgPathWithoutExt(imgPath)
 
-  const titleSliced = title.length > 25 ? title.slice(0, 25) + '...' : title
+  // const titleSliced = title.length > 25 ? title.slice(0, 25) + '...' : title
 
   return gamesCount ? (
     <GameWrapper href={gameHref}>
       <GameImg src={imgPath} alt={title} />
       <GameInfo>
-        <GameTitle>{titleSliced}</GameTitle>
+        <GameTitle>{title}</GameTitle>
         <GameCount>{gameCountStr}</GameCount>
       </GameInfo>
     </GameWrapper>

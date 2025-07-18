@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export const GameWrapper = styled(Link)`
   box-shadow: -6px -6px 5px -5px #42372e inset;
-  height: 300px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   border-radius: 16px;
@@ -19,15 +19,15 @@ export const GameWrapper = styled(Link)`
   }
 
   @media (min-width: ${BREAK_POINTS.sm}) {
-    height: 500px;
+    min-height: 500px;
   }
 
   @media (min-width: ${BREAK_POINTS.md}) {
-    height: 400px;
+    min-height: 400px;
   }
 
   @media (min-width: ${BREAK_POINTS.lg}) {
-    height: 500px;
+    min-height: 500px;
   }
 `
 
@@ -42,14 +42,27 @@ export const GameImg = styled.img.attrs<GameImgProps>((props) => ({
 }))`
   width: 100%;
   height: 75%;
+  max-height: 200px;
   border: none;
   object-fit: cover;
   object-position: top;
   box-shadow: #1a1511 0px 5px 25px -2px;
+
+  @media (min-width: ${BREAK_POINTS.sm}) {
+    max-height: 350px;
+  }
+
+  @media (min-width: ${BREAK_POINTS.md}) {
+    max-height: 300px;
+  }
+
+  @media (min-width: ${BREAK_POINTS.lg}) {
+    max-height: 350px;
+  }
 `
 
 export const GameInfo = styled.div`
-  height: 25%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,6 +71,7 @@ export const GameInfo = styled.div`
   padding: 24px;
   text-align: center;
   direction: ltr;
+  margin: auto 0;
 `
 export const GameTitle = styled.span`
   color: whitesmoke;
