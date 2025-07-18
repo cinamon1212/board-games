@@ -35,6 +35,7 @@ export type GameTitles =
   | 'Крылья'
   | 'Подземелья и пёсики'
   | 'Свинтус зомби'
+  | 'Космические дальнобойщики'
 
 export type GameInfo = {
   imgPath: string
