@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { TableProps, TableSortConfig } from './types'
-import { SortIcon, TableCell, TableStyled, TableWrapper } from './styles'
+import { SortIcon, TableCell, TableRow, TableStyled, TableWrapper } from './styles'
 
 import { TableData } from '@/types'
 import { getColorOrGradient, getNextSortState } from '@/helpers'
@@ -46,7 +46,7 @@ export const Table = ({ tableDataArr }: TableProps) => {
     <TableWrapper>
       <TableStyled>
         <thead>
-          <tr>
+          <TableRow $hoverBgColor='#32281d'>
             {TABLE_COLUMNS.map(({ field, headerName }, index) => (
               <TableCell
                 key={index}
@@ -54,27 +54,30 @@ export const Table = ({ tableDataArr }: TableProps) => {
                 style={headCellStyle}
                 onClick={() => handleSort(field)}
                 $bgColor={'#261e16'}
-                $hoverBgColor={'#32281d'}
               >
                 {headerName}
                 <SortIcon>{renderSortIcon(field)}</SortIcon>
               </TableCell>
             ))}
-          </tr>
+          </TableRow>
         </thead>
         <tbody>
           {sortedData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
+            <TableRow key={rowIndex} $hoverBgColor='#32281d'>
               {TABLE_COLUMNS.map(({ field }, index) => {
-                const colorOrGradient = getColorOrGradient(row.color)
+                const { color: colorOrGradient, isGradient } = getColorOrGradient(row.color)
 
                 return (
-                  <TableCell key={index} $color={field === 'name' ? colorOrGradient : undefined}>
+                  <TableCell
+                    key={index}
+                    $color={field === 'name' ? colorOrGradient : undefined}
+                    $isGradient={isGradient}
+                  >
                     {row[field]}
                   </TableCell>
                 )
               })}
-            </tr>
+            </TableRow>
           ))}
         </tbody>
       </TableStyled>
