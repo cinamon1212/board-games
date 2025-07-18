@@ -64,11 +64,19 @@ export const Table = ({ tableDataArr }: TableProps) => {
         <tbody>
           {sortedData.map((row, rowIndex) => (
             <TableRow key={rowIndex} $hoverBgColor='#32281d'>
-              {TABLE_COLUMNS.map(({ field }, index) => (
-                <TableCell key={index} color={field === 'name' ? row.color : 'white'}>
-                  {row[field]}
-                </TableCell>
-              ))}
+              {TABLE_COLUMNS.map(({ field }, index) => {
+                const { color: colorOrGradient, isGradient } = getColorOrGradient(row.color)
+
+                return (
+                  <TableCell
+                    key={index}
+                    $color={field === 'name' ? colorOrGradient : undefined}
+                    $isGradient={isGradient}
+                  >
+                    {row[field]}
+                  </TableCell>
+                )
+              })}
             </TableRow>
           ))}
         </tbody>

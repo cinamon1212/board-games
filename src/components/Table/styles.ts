@@ -22,6 +22,7 @@ export const TableCell = styled.td<{
   $hoverBgColor?: CSSProperties['backgroundColor']
   $bgColor?: CSSProperties['backgroundColor']
   $color?: CSSProperties['color']
+  $isGradient?: boolean
 }>`
   border-bottom: 0.5px solid #57555380;
   border-right: 0.5px solid #57555380;
@@ -30,8 +31,9 @@ export const TableCell = styled.td<{
   width: fit-content;
   position: relative;
 
-  ${({ $color }) =>
+  ${({ $color, $isGradient }) =>
     $color &&
+    $isGradient &&
     `
       background: ${$color};
       -webkit-background-clip: text;
@@ -40,7 +42,8 @@ export const TableCell = styled.td<{
       background-clip: text;
       color: transparent;
     `}
-  color: ${(props) => props.color};
+
+  color: ${(props) => props.$color};
   background-color: ${(props) => props.$bgColor};
 
   @media (max-width: ${BREAK_POINTS.sm}) {
