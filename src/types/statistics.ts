@@ -1,3 +1,4 @@
+import { GameParams } from './game'
 import { Player, PlayerProfileWithoutName } from './player'
 
 // Типы для результатов игры и объекта GamesByPersonsMap
@@ -7,7 +8,10 @@ export type GameResult = SingleGameResult | Array<SingleGameResult>
 // Дженерик для объектов с ключами - именами
 export type PlayerObj<T> = Partial<Record<Player, T>>
 
-export type PlayerScore<T extends GameResult> = PlayerObj<T>
+// Объект с ключом параметром
+export type ParamObj = Partial<Record<'params', GameParams>>
+
+export type PlayerScore<T extends GameResult> = PlayerObj<T> & ParamObj
 export type PlayerScores<T extends GameResult> = Array<PlayerScore<T>>
 
 // Типы для функции getPersonsMap
@@ -22,7 +26,6 @@ export type PersonMapItem<T extends SingleGameResult> = {
 
 export type PersonsMap<T extends SingleGameResult> = PlayerObj<PersonMapItem<T>>
 
-
 // Типы для функции getPersonsMapGames
 export type PersonMapGameItem<T extends SingleGameResult> = {
   scores: Array<T>
@@ -30,4 +33,3 @@ export type PersonMapGameItem<T extends SingleGameResult> = {
 } & PlayerProfileWithoutName
 
 export type PersonsMapGames<T extends SingleGameResult> = PlayerObj<PersonMapGameItem<T>>
-

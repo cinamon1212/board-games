@@ -12,6 +12,8 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
     const max = typeof values[0] === 'number' ? Math.max(...(values as Array<number>)) : null
 
     for (const person in game) {
+      if (person === 'params') return
+
       const name = person as Player
       const sortedName = sortPlayerName(name)
 

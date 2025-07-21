@@ -37,11 +37,14 @@ export type GameTitles =
   | 'Свинтус зомби'
   | 'Космические дальнобойщики'
 
+export type GameParams = Array<{ key: string; values: Array<string> }>
+
 export type GameInfo = {
   imgPath: string
   games: PlayerScores<number | boolean>
   title: GameTitles
   isBoolean?: boolean
+  params?: GameParams
 }
 
 export type Games = Array<GameInfo>
