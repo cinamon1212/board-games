@@ -1,7 +1,9 @@
 'use client'
 
 import { GamesListWrapper } from './styles'
+
 import { Game } from '../Game'
+
 import { Games } from '@/types'
 
 type GamesListProps = {
