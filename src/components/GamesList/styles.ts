@@ -7,8 +7,6 @@ export const GamesListWrapper = styled.ul`
   gap: 32px;
   list-style: none;
   width: 100%;
-  animation: autoShowAnimation both;
-  animation-timeline: view(70% 5%);
 
   @media (min-width: ${BREAK_POINTS.sm}) {
     gap: 48px;
