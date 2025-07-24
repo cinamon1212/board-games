@@ -73,7 +73,7 @@ export const Table = ({ tableDataArr }: TableProps) => {
                     $color={field === 'name' ? colorOrGradient : undefined}
                     $isGradient={isGradient}
                   >
-                    {row[field]}
+                    <span>{row[field]}</span>
                   </TableCell>
                 )
               })}

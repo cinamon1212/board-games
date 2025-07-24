@@ -30,21 +30,24 @@ export const TableCell = styled.td<{
   text-align: center;
   width: fit-content;
   position: relative;
+  background-color: ${(props) => props.$bgColor};
+
+  &:hover {
+    background-color: ${(props) => props.$hoverBgColor};
+  }
 
   ${({ $color, $isGradient }) =>
     $color &&
     $isGradient &&
     `
+    > span {
       background: ${$color};
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-  
       background-clip: text;
-      color: transparent;
-    `}
-
-  color: ${(props) => props.$color};
-  background-color: ${(props) => props.$bgColor};
+      display: inline-block;
+    }
+  `}
 
   @media (max-width: ${BREAK_POINTS.sm}) {
     padding: 8px;
@@ -81,4 +84,8 @@ export const TableWrapper = styled.div`
 export const SortIcon = styled.span`
   position: absolute;
   right: 12px;
+
+  @media (max-width: ${BREAK_POINTS.md}) {
+    right: 2px;
+  }
 `
