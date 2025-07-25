@@ -44,22 +44,20 @@ export const Content = styled.div`
   justify-content: space-between;
   align-items: center;
   z-index: 0;
-
-  & h1 {
-    font-size: 70px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: transparent;
-    background-clip: text;
-    background-image: radial-gradient(circle, #42372e, #1a1511);
-    -webkit-text-stroke: 2px #42372e;
-  }
 `
 export const ContentAuthor = styled.div`
   align-items: end;
   font-size: 18px;
-
-  & h2 {
-    font-size: 24px;
-  }
+`
+export const H1Content = styled.h2`
+  font-size: 70px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: transparent;
+  background-clip: text;
+  background-image: radial-gradient(circle, #42372e, #1a1511);
+  -webkit-text-stroke: 2px #42372e;
+`
+export const H2Content = styled.h3`
+  font-size: 24px;
 `

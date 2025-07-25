@@ -11,7 +11,7 @@ export const HeaderWrapper = styled.div`
   z-index: 1;
 `
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   font-size: 20px;
   text-align: center;
 

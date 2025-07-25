@@ -1,6 +1,6 @@
 import { Games } from '@/types'
 
-import { Content, ContentAuthor, ItemSlider, ItemSliderImg, Slider, SliderWrapper } from './style'
+import { Content, ContentAuthor, H1Content, H2Content, ItemSlider, ItemSliderImg, Slider, SliderWrapper } from './style'
 
 type GamesListProps = {
   games: Games
@@ -17,11 +17,11 @@ export const HomeCarusel = ({ games }: GamesListProps) => {
         ))}
       </Slider>
       <Content>
-        <h1>Статистика настольных игр</h1>
+        <H1Content>Статистика настольных игр</H1Content>
         <ContentAuthor>
           Created by
-          <h2>Ilusha</h2>
-          <h2>Andrusha</h2>
+          <H2Content>Ilusha</H2Content>
+          <H2Content>Andrusha</H2Content>
         </ContentAuthor>
       </Content>
     </SliderWrapper>

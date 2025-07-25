@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { TableProps, TableSortConfig } from './types'
-import { SortIcon, TableCell, TableRow, TableStyled, TableWrapper } from './styles'
+import { SortIcon, TableCell, TableCellText, TableRow, TableStyled, TableWrapper } from './styles'
 
 import { TableData } from '@/types'
 import { getColorOrGradient, getNextSortState } from '@/helpers'
@@ -71,9 +71,14 @@ export const Table = ({ tableDataArr }: TableProps) => {
                   <TableCell
                     key={index}
                     $color={field === 'name' ? colorOrGradient : undefined}
-                    $isGradient={isGradient}
+                    $isGradient={field === 'name' && isGradient}
                   >
-                    <span>{row[field]}</span>
+                    <TableCellText
+                      $color={field === 'name' ? colorOrGradient : undefined}
+                      $isGradient={field === 'name' && isGradient}
+                    >
+                      {row[field]}
+                    </TableCellText>
                   </TableCell>
                 )
               })}
