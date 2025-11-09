@@ -11,7 +11,10 @@ type GameStatisticProps = {
   gamesCount: number
 }
 
-export const GameStatistic = ({ scoreStats, gamesCount }: GameStatisticProps) => {
+export const GameStatistic = ({
+  scoreStats,
+  gamesCount,
+}: GameStatisticProps) => {
   const valuesArr: Array<ScoreStatsKeys> = ['max', 'min', 'avg', 'count']
 
   const countValue = {
@@ -25,7 +28,9 @@ export const GameStatistic = ({ scoreStats, gamesCount }: GameStatisticProps) =>
         const value = val === 'count' ? countValue : scoreStats[val]
 
         if (value && val !== 'count') {
-          return <GameStatisticsValue value={value} valueTitle={val} key={val} />
+          return (
+            <GameStatisticsValue value={value} valueTitle={val} key={val} />
+          )
         }
       })}
     </GameStatisticsWrapper>

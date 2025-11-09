@@ -1,7 +1,12 @@
 import { GameInfo, PlayerScores } from '@/types'
 
 const EVERDELL_GAMES: PlayerScores<number> = [
-  { Соня: 41, Андрей: 65, Илья: 58, params: [{ key: 'сложность', values: ['средняя'] }] },
+  {
+    Соня: 41,
+    Андрей: 65,
+    Илья: 58,
+    params: [{ key: 'сложность', values: ['средняя'] }],
+  },
   { Андрей: 54 },
   { Илья: 70 },
   { Андрей: 40, Илья: 55, Лиля: 49, Соня: 50 },

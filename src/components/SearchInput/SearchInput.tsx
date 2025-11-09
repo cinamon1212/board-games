@@ -6,8 +6,12 @@ type SearchInputProps = {
   inputValue: string
 }
 
-export const SearchInput = ({ setInputValue, inputValue }: SearchInputProps) => {
-  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => setInputValue(e.target.value)
+export const SearchInput = ({
+  setInputValue,
+  inputValue,
+}: SearchInputProps) => {
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) =>
+    setInputValue(e.target.value)
 
   const onClose = () => setInputValue('')
 
@@ -16,7 +20,12 @@ export const SearchInput = ({ setInputValue, inputValue }: SearchInputProps) => 
       <InputIcon src='/search-icon.png' alt='search' style={{ left: '12px' }} />
       <Input placeholder='Поиск' value={inputValue} onChange={onChange} />
       {inputValue && (
-        <InputIcon src='/close-icon.png' alt='close' onClick={onClose} style={{ right: '12px', cursor: 'pointer' }} />
+        <InputIcon
+          src='/close-icon.png'
+          alt='close'
+          onClick={onClose}
+          style={{ right: '12px', cursor: 'pointer' }}
+        />
       )}
     </SearchInputWrapper>
   )

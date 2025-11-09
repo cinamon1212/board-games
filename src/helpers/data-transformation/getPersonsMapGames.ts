@@ -1,5 +1,10 @@
 import { PLAYERS_BY_NAME } from '@/data'
-import { PersonsMapGames, Player, PlayerScores, SingleGameResult } from '@/types'
+import {
+  PersonsMapGames,
+  Player,
+  PlayerScores,
+  SingleGameResult,
+} from '@/types'
 import { getPlayerColor } from '../players/getPlayerColor'
 import { sortPlayerName } from '../players/sortPlayerName'
 
@@ -11,12 +16,17 @@ import { sortPlayerName } from '../players/sortPlayerName'
  * @param games - Массив результатов партий
  * @returns Карта игроков с массивами результатов, количеством побед и цветами
  */
-export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScores<T>): PersonsMapGames<T> => {
+export const getPersonsMapGames = <T extends SingleGameResult>(
+  games: PlayerScores<T>,
+): PersonsMapGames<T> => {
   const map: PersonsMapGames<T> = {}
 
   games.forEach((game) => {
     const values = Object.values(game)
-    const max = typeof values[0] === 'number' ? Math.max(...(values as Array<number>)) : null
+    const max =
+      typeof values[0] === 'number'
+        ? Math.max(...(values as Array<number>))
+        : null
 
     for (const person in game) {
       if (person === 'params') return
@@ -31,7 +41,9 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
 
       if (score !== undefined) {
         // Определяем победителя: для числовых игр - максимальный результат, для булевых - true
-        const isWin = (typeof score === 'boolean' && score) || (typeof score === 'number' && score === max)
+        const isWin =
+          (typeof score === 'boolean' && score) ||
+          (typeof score === 'number' && score === max)
 
         if (map[sortedName] && Object.keys(map[sortedName]).length) {
           const currentWinCount = map[sortedName].winCount

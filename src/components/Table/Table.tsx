@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 
 import { TableProps, TableSortConfig } from './types'
-import { SortIcon, TableCell, TableCellText, TableRow, TableStyled, TableWrapper } from './styles'
+import {
+  SortIcon,
+  TableCell,
+  TableCellText,
+  TableRow,
+  TableStyled,
+  TableWrapper,
+} from './styles'
 
 import { TableData } from '@/types'
 import { getColorOrGradient, getNextSortState } from '@/helpers'
@@ -10,7 +17,10 @@ import { TABLE_COLUMNS, TABLE_SORT_STATES } from '@/constants'
 export const Table = ({ tableDataArr }: TableProps) => {
   const { none, asc, desc } = TABLE_SORT_STATES
 
-  const [sortConfig, setSortConfig] = useState<TableSortConfig>({ key: null, direction: none })
+  const [sortConfig, setSortConfig] = useState<TableSortConfig>({
+    key: null,
+    direction: none,
+  })
 
   const { direction, key: configKey } = sortConfig
 
@@ -65,7 +75,8 @@ export const Table = ({ tableDataArr }: TableProps) => {
           {sortedData.map((row, rowIndex) => (
             <TableRow key={rowIndex} $hoverBgColor='#32281d'>
               {TABLE_COLUMNS.map(({ field }, index) => {
-                const { color: colorOrGradient, isGradient } = getColorOrGradient(row.color)
+                const { color: colorOrGradient, isGradient } =
+                  getColorOrGradient(row.color)
 
                 return (
                   <TableCell

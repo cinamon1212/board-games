@@ -37,7 +37,8 @@ export const Title = styled.h2`
 `
 export const AnimatedHeader = styled.header<{ $isVisible: boolean }>`
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  transform: ${({ $isVisible }) => ($isVisible ? 'translateY(0) scale(1)' : 'translateY(200px) scale(0.3)')};
+  transform: ${({ $isVisible }) =>
+    $isVisible ? 'translateY(0) scale(1)' : 'translateY(200px) scale(0.3)'};
   transition:
     opacity 0.8s ease-out,
     transform 0.8s ease-out;

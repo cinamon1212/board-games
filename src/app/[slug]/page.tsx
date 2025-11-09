@@ -22,7 +22,16 @@ import { PlayerScores } from '@/types'
 import { NumGamePage } from './NumGamePage'
 import { BoolGamePage } from './BoolGamePage'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement)
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+)
 
 const GamePage = () => {
   const path = usePathname()

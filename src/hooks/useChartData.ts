@@ -3,7 +3,10 @@ import { ChartJSOrUndefined } from 'node_modules/react-chartjs-2/dist/types'
 
 import { RefObject, useEffect, useState } from 'react'
 
-export const useChartData = (chartRef: RefObject<ChartJSOrUndefined<'line'> | null>, gamesForChart: ChartDatasets) => {
+export const useChartData = (
+  chartRef: RefObject<ChartJSOrUndefined<'line'> | null>,
+  gamesForChart: ChartDatasets,
+) => {
   const [chartData, setChartData] = useState<ChartDatasets>(gamesForChart)
 
   useEffect(() => {
@@ -34,7 +37,12 @@ export const useChartData = (chartRef: RefObject<ChartJSOrUndefined<'line'> | nu
           if (colors.length === 1) {
             setDatasetProps(colors[0])
           } else {
-            const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0)
+            const gradient = ctx.createLinearGradient(
+              chartArea.left,
+              0,
+              chartArea.right,
+              0,
+            )
 
             colors.forEach((color, idx) => {
               gradient.addColorStop(idx / (colors.length - 1), color)

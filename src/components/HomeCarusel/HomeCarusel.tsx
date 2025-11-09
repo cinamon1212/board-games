@@ -1,6 +1,15 @@
 import { Games } from '@/types'
 
-import { Content, ContentAuthor, H1Content, H2Content, ItemSlider, ItemSliderImg, Slider, SliderWrapper } from './style'
+import {
+  Content,
+  ContentAuthor,
+  H1Content,
+  H2Content,
+  ItemSlider,
+  ItemSliderImg,
+  Slider,
+  SliderWrapper,
+} from './style'
 
 type GamesListProps = {
   games: Games

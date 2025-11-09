@@ -78,4 +78,6 @@ export type PersonMapGameItem<T extends SingleGameResult> = {
  * Карта упрощенной статистики всех игроков для конкретной партии
  * Ключи - имена игроков, значения - их результаты в этой партии
  */
-export type PersonsMapGames<T extends SingleGameResult> = PlayerObj<PersonMapGameItem<T>>
+export type PersonsMapGames<T extends SingleGameResult> = PlayerObj<
+  PersonMapGameItem<T>
+>

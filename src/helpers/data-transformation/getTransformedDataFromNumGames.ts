@@ -10,7 +10,9 @@ import { transformDataForTable } from './transformDataForTable'
  * @param numGames - Массив результатов партий числовой игры
  * @returns Объект с данными для графика, статистикой и данными для таблицы
  */
-export const getTransformedDataFromNumGames = (numGames: PlayerScores<number>) => {
+export const getTransformedDataFromNumGames = (
+  numGames: PlayerScores<number>,
+) => {
   const { gamesForChart, personsMap } = transformGamesForChart(numGames)
 
   const scoreStats = getGameScoreStats(personsMap)

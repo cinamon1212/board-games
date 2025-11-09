@@ -2,7 +2,14 @@ import { getColorOrGradient } from '@/helpers'
 import { TableProps } from '../Table/types'
 import { CrownIcon } from './CrownIcon'
 
-import { AvatarContainer, AvatarBorder, PlayerPosition, PlayerScore, TopThreeContainer, PlayerName } from './styles'
+import {
+  AvatarContainer,
+  AvatarBorder,
+  PlayerPosition,
+  PlayerScore,
+  TopThreeContainer,
+  PlayerName,
+} from './styles'
 
 export const Tops = ({ tableDataArr }: TableProps) => {
   const topThree = tableDataArr.slice(0, 3)

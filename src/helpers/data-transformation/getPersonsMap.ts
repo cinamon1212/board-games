@@ -9,7 +9,9 @@ import { getArithmeticMean } from '../statistics/getArithmeticMean'
  * @param map - Карта игроков с массивами результатов
  * @returns Объект с расширенной картой игроков и максимальным количеством партий
  */
-export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T>) => {
+export const getPersonsMap = <T extends SingleGameResult>(
+  map: PersonsMapGames<T>,
+) => {
   const personsMap: PersonsMap<T> = {}
 
   let maxScoresCount = 0

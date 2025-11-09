@@ -11,7 +11,9 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 })
 
-const prettierConfig = JSON.parse(readFileSync(path.join(__dirname, '.prettierrc'), 'utf-8'))
+const prettierConfig = JSON.parse(
+  readFileSync(path.join(__dirname, '.prettierrc'), 'utf-8'),
+)
 
 const eslintConfig = [
   ...compat.config({

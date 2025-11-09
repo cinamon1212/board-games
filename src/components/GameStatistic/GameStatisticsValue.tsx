@@ -10,12 +10,16 @@ type GameStatisticsValueProps = {
   valueTitle: ScoreStatsKeys
 }
 
-const GameStatisticsValue = ({ value, valueTitle }: GameStatisticsValueProps) => {
+const GameStatisticsValue = ({
+  value,
+  valueTitle,
+}: GameStatisticsValueProps) => {
   const { color: colorOrGradient } = getColorOrGradient(value.color)
 
   return (
     <GameStatisticsValueWrapper>
-      {valueTitle} - <GameStatistics $color={colorOrGradient}>{value.score}</GameStatistics>
+      {valueTitle} -{' '}
+      <GameStatistics $color={colorOrGradient}>{value.score}</GameStatistics>
     </GameStatisticsValueWrapper>
   )
 }

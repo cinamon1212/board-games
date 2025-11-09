@@ -8,7 +8,10 @@ import { PersonsMap, Player, SingleGameResult, TableDataArr } from '@/types'
  * @param flag - Поле для сортировки: 'avg' (среднее) или 'winRate' (процент побед)
  * @returns Отсортированный массив данных для таблицы
  */
-export const transformDataForTable = (personsMap: PersonsMap<SingleGameResult>, flag: 'avg' | 'winRate') => {
+export const transformDataForTable = (
+  personsMap: PersonsMap<SingleGameResult>,
+  flag: 'avg' | 'winRate',
+) => {
   const tableDataArr: TableDataArr = []
 
   for (const person in personsMap) {

@@ -17,7 +17,11 @@ export const BoolGamePage = ({ boolGames, title }: BoolGamePageProps) => {
 
   return (
     <PageWrapper>
-      <StatisticContainer tableDataArr={tableDataArr} games={boolGames} title={title} />
+      <StatisticContainer
+        tableDataArr={tableDataArr}
+        games={boolGames}
+        title={title}
+      />
       <BarWrapper>
         <Bar data={data} options={BAR_OPTIONS} />
       </BarWrapper>

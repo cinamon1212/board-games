@@ -11,7 +11,9 @@ import { transformDataForTable } from './transformDataForTable'
  * @param boolGames - Массив результатов партий булевой игры
  * @returns Объект с данными для графика и данными для таблицы
  */
-export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>) => {
+export const getTransformedDataFromBoolGames = (
+  boolGames: PlayerScores<boolean>,
+) => {
   const map = getPersonsMapGames<boolean>(boolGames)
 
   const { personsMap } = getPersonsMap<boolean>(map)

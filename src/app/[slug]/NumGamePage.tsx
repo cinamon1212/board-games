@@ -18,14 +18,20 @@ import { ChartJSOrUndefined } from 'node_modules/react-chartjs-2/dist/types'
 import { StatisticContainer } from './StatisticContainer'
 
 export const NumGamePage = ({ numGames, title, params }: NumGamePageProps) => {
-  const { gamesForChart, scoreStats, tableDataArr } = getTransformedDataFromNumGames(numGames)
+  const { gamesForChart, scoreStats, tableDataArr } =
+    getTransformedDataFromNumGames(numGames)
 
   const chartRef = useRef<ChartJSOrUndefined<'line'> | null>(null)
   const chartData = useChartData(chartRef, gamesForChart)
 
   return (
     <PageWrapper>
-      <StatisticContainer tableDataArr={tableDataArr} games={numGames} title={title} scoreStats={scoreStats} />
+      <StatisticContainer
+        tableDataArr={tableDataArr}
+        games={numGames}
+        title={title}
+        scoreStats={scoreStats}
+      />
       <DropdownFilter games={numGames} params={params} />
       {gamesForChart && (
         <LineWrapper>

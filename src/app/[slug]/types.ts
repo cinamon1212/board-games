@@ -1,4 +1,10 @@
-import { GameParams, PlayerScores, ScoreStats, SingleGameResult, TableDataArr } from '@/types'
+import {
+  GameParams,
+  PlayerScores,
+  ScoreStats,
+  SingleGameResult,
+  TableDataArr,
+} from '@/types'
 
 export type NumGamePageProps = {
   numGames: PlayerScores<number>

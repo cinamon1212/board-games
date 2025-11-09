@@ -23,7 +23,8 @@ type ItemSliderProps = { $position: number; $quantity: number }
 export const ItemSlider = styled.div<ItemSliderProps>`
   position: absolute;
   inset: 0 0 0 0;
-  transform: ${({ $position, $quantity }) => `rotateY(calc((${$position} - 1) * (360 / ${$quantity}) * 1deg))`}
+  transform: ${({ $position, $quantity }) =>
+      `rotateY(calc((${$position} - 1) * (360 / ${$quantity}) * 1deg))`}
     translateZ(550px);
 `
 

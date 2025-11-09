@@ -4,7 +4,12 @@ import { GameParams, PlayerScores } from '@/types'
 
 import { getGameParams } from './getGameParams'
 
-import { DropdownButton, DropdownItem, DropdownList, DropdownWrapper } from './styles'
+import {
+  DropdownButton,
+  DropdownItem,
+  DropdownList,
+  DropdownWrapper,
+} from './styles'
 
 type DropdownFilterProps = {
   games: PlayerScores<number | boolean>
@@ -12,7 +17,9 @@ type DropdownFilterProps = {
 }
 
 const DropdownFilterComponent = ({ games, params }: DropdownFilterProps) => {
-  const [activeDropdownKeys, setActiveDropdownKeys] = useState<Array<string>>([])
+  const [activeDropdownKeys, setActiveDropdownKeys] = useState<Array<string>>(
+    [],
+  )
 
   const gameParams = getGameParams(games)
 
@@ -34,12 +41,17 @@ const DropdownFilterComponent = ({ games, params }: DropdownFilterProps) => {
     params?.map(({ key, values }) => {
       return (
         <DropdownWrapper key={key}>
-          <DropdownButton onClick={() => onButtonClick(key)}>{key}</DropdownButton>
+          <DropdownButton onClick={() => onButtonClick(key)}>
+            {key}
+          </DropdownButton>
           {activeDropdownKeys.includes(key) ? (
             <DropdownList>
               {values.map((value) => {
                 return (
-                  <DropdownItem key={value} onClick={() => onDropdownItemClick(value)}>
+                  <DropdownItem
+                    key={value}
+                    onClick={() => onDropdownItemClick(value)}
+                  >
                     {value}
                   </DropdownItem>
                 )

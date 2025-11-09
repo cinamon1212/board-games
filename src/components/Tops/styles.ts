@@ -13,8 +13,10 @@ export const PlayerPosition = styled.div<{ $position: number }>`
   align-items: center;
   position: relative;
   z-index: ${({ $position }) => ($position === 1 ? '2' : '1')};
-  order: ${({ $position }) => ($position === 1 ? '2' : $position === 2 ? '1' : '3')};
-  transform: ${({ $position }) => ($position === 1 ? 'scale(1.4)' : 'scale(1)')};
+  order: ${({ $position }) =>
+    $position === 1 ? '2' : $position === 2 ? '1' : '3'};
+  transform: ${({ $position }) =>
+    $position === 1 ? 'scale(1.4)' : 'scale(1)'};
   bottom: ${({ $position }) => ($position === 1 ? '30px' : '')};
 `
 
