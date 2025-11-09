@@ -25,40 +25,11 @@ export const ItemSlider = styled.div<ItemSliderProps>`
   inset: 0 0 0 0;
   transform: ${({ $position, $quantity }) =>
       `rotateY(calc((${$position} - 1) * (360 / ${$quantity}) * 1deg))`}
-    translateZ(550px);
+    translateZ(600px);
 `
 
 export const ItemSliderImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`
-export const Content = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80vw;
-  height: max-content;
-  padding-bottom: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 0;
-`
-export const ContentAuthor = styled.div`
-  align-items: end;
-  font-size: 18px;
-`
-export const H1Content = styled.h1`
-  font-size: 70px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: transparent;
-  background-clip: text;
-  background-image: radial-gradient(circle, #42372e, #1a1511);
-  -webkit-text-stroke: 2px #42372e;
-`
-export const H2Content = styled.h2`
-  font-size: 24px;
 `

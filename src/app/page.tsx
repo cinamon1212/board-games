@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import { GamesList, NotFound, HomeCarusel, Header } from '@/components'
+import { GamesList, NotFound, HomeCarousel, Header } from '@/components'
 
 import { HomeWrapper, RadialBackground } from './styles'
 import { GAMES_LIST } from '@/data'
@@ -21,7 +21,7 @@ const Home = () => {
     <HomeWrapper>
       <RadialBackground $top={'-50px'} $left={'-30%'} />
 
-      <HomeCarusel games={games} />
+      <HomeCarousel games={games} />
 
       <Header inputValue={inputValue} setInputValue={setInputValue} />
 
