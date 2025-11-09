@@ -21,7 +21,7 @@ export const GamesListWrapper = styled.ul`
     gap: 64px;
   }
 
-    @media (min-width: ${BREAK_POINTS.xl}) {
+  @media (min-width: ${BREAK_POINTS.xl}) {
     grid-template-columns: repeat(3, 1fr);
   }
 `

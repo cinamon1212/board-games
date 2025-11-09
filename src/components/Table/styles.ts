@@ -17,7 +17,23 @@ export const TableRow = styled.tr<{
     }
   }
 `
-
+export const TableCellText = styled.span<{
+  $color?: CSSProperties['color']
+  $isGradient?: boolean
+}>`
+  ${({ $color, $isGradient }) =>
+    $isGradient && $color
+      ? `
+        background: ${$color};
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block;
+      `
+      : `
+        color: inherit;
+      `}
+`
 export const TableCell = styled.td<{
   $hoverBgColor?: CSSProperties['backgroundColor']
   $bgColor?: CSSProperties['backgroundColor']
@@ -30,21 +46,12 @@ export const TableCell = styled.td<{
   text-align: center;
   width: fit-content;
   position: relative;
-
-  ${({ $color, $isGradient }) =>
-    $color &&
-    $isGradient &&
-    `
-      background: ${$color};
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-  
-      background-clip: text;
-      color: transparent;
-    `}
-
-  color: ${(props) => props.$color};
   background-color: ${(props) => props.$bgColor};
+  color: ${(props) => props.$color};
+
+  &:hover {
+    background-color: ${(props) => props.$hoverBgColor};
+  }
 
   @media (max-width: ${BREAK_POINTS.sm}) {
     padding: 8px;
@@ -81,4 +88,8 @@ export const TableWrapper = styled.div`
 export const SortIcon = styled.span`
   position: absolute;
   right: 12px;
+
+  @media (max-width: ${BREAK_POINTS.md}) {
+    right: 2px;
+  }
 `

@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react'
 
-import { GamesList, NotFound, SearchInput } from '@/components'
+import { GamesList, NotFound, HomeCarusel, Header } from '@/components'
 
-import { Header, HomeWrapper, RadialBackground, Title } from './styles'
+import { HomeWrapper, RadialBackground } from './styles'
 import { GAMES_LIST } from '@/data'
 import { filterGamesByItsCount, filterGamesByRegExp } from '@/helpers'
 import { useDebounce } from '@/hooks'
@@ -21,14 +21,13 @@ const Home = () => {
     <HomeWrapper>
       <RadialBackground $top={'-50px'} $left={'-30%'} />
 
-      <Header>
-        <Title>Найдите нужную игру</Title>
-        <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
-      </Header>
+      <HomeCarusel games={games} />
+
+      <Header inputValue={inputValue} setInputValue={setInputValue} />
 
       {games.length ? <GamesList games={games} /> : <NotFound />}
 
-      <RadialBackground $bottom={'-50px'} $right={'-30%'}/>
+      <RadialBackground $bottom={'-50px'} $right={'-30%'} />
     </HomeWrapper>
   )
 }
