@@ -9,6 +9,6 @@ const SVINTUS_ZOMBIE_GAMES: PlayerScores<boolean> = [
 export const SVINTUS_ZOMBIE: GameInfo = {
   games: SVINTUS_ZOMBIE_GAMES,
   title: 'Свинтус зомби',
-  imgPath: 'svintus-zombie.jpg',
+  imgPath: 'boolean/svintus-zombie.jpg',
   isBoolean: true,
 }

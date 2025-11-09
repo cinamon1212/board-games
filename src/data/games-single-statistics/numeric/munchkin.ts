@@ -5,5 +5,5 @@ const MUNCHKIN_GAMES: PlayerScores<number> = []
 export const MUNCHKIN: GameInfo = {
   games: MUNCHKIN_GAMES,
   title: 'Манчкин',
-  imgPath: 'munchkin.jpg',
+  imgPath: 'numeric/munchkin.jpg',
 }

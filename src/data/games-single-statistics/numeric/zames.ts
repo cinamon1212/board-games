@@ -5,5 +5,5 @@ const ZAMES_GAMES: PlayerScores<number> = []
 export const ZAMES: GameInfo = {
   games: ZAMES_GAMES,
   title: 'Замес',
-  imgPath: 'zames.jpg',
+  imgPath: 'numeric/zames.jpg',
 }

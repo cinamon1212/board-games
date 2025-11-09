@@ -9,5 +9,5 @@ const TALES_OF_TAILS_GAMES: PlayerScores<number> = [
 export const TALES_OF_TAILS: GameInfo = {
   games: TALES_OF_TAILS_GAMES,
   title: 'Подземелья и пёсики',
-  imgPath: 'tales-of-tails.jpg',
+  imgPath: 'numeric/tales-of-tails.jpg',
 }

@@ -5,5 +5,5 @@ const DEAD_SEASON_GAMES: PlayerScores<number> = []
 export const DEAD_SEASON: GameInfo = {
   games: DEAD_SEASON_GAMES,
   title: 'Мертвый сезон',
-  imgPath: 'dead-season.jpg',
+  imgPath: 'numeric/dead-season.jpg',
 }

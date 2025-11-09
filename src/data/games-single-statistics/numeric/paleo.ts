@@ -5,5 +5,5 @@ const PALEO_GAMES: PlayerScores<number> = []
 export const PALEO: GameInfo = {
   games: PALEO_GAMES,
   title: 'Палео',
-  imgPath: 'paleo.jpg',
+  imgPath: 'numeric/paleo.jpg',
 }

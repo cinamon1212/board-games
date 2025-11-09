@@ -5,5 +5,5 @@ const ANCIENT_HORROR_GAMES: PlayerScores<number> = []
 export const ANCIENT_HORROR: GameInfo = {
   games: ANCIENT_HORROR_GAMES,
   title: 'Древний ужас',
-  imgPath: 'ancient-horror.jpg',
+  imgPath: 'numeric/ancient-horror.jpg',
 }

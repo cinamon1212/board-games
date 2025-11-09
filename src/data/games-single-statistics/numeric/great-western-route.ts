@@ -5,5 +5,5 @@ const GREAT_WESTERN_ROUTE_GAMES: PlayerScores<number> = []
 export const GREAT_WESTERN_ROUTE: GameInfo = {
   games: GREAT_WESTERN_ROUTE_GAMES,
   title: 'Великий западный путь. Второе издание',
-  imgPath: 'great-western-route.jpg',
+  imgPath: 'numeric/great-western-route.jpg',
 }

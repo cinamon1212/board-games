@@ -12,5 +12,5 @@ const EVOLUTION_GAMES: PlayerScores<number> = [
 export const EVOLUTION: GameInfo = {
   games: EVOLUTION_GAMES,
   title: 'Эволюция',
-  imgPath: 'evolution.jpg',
+  imgPath: 'numeric/evolution.jpg',
 }

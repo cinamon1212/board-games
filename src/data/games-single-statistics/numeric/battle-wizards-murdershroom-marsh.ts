@@ -5,5 +5,5 @@ const BATTLE_WIZARDS_MURDERSHROOM_MARSH_GAMES: PlayerScores<number> = []
 export const BATTLE_WIZARDS_MURDERSHROOM_MARSH: GameInfo = {
   games: BATTLE_WIZARDS_MURDERSHROOM_MARSH_GAMES,
   title: 'ЭСБМ. В грибучем болоте',
-  imgPath: 'battle-wizards-murdershroom-marsh.webp',
+  imgPath: 'numeric/battle-wizards-murdershroom-marsh.webp',
 }

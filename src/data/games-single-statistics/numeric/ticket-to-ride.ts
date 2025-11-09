@@ -26,18 +26,18 @@ const TICKET_TO_RIDE_ASIA_SILK_GAMES: PlayerScores<number> = [
 
 export const TICKET_TO_RIDE_EUROPE: GameInfo = {
   games: TICKET_TO_RIDE_EUROPE_GAMES,
-  imgPath: 'ticket-to-ride-europe.jpg',
+  imgPath: 'numeric/ticket-to-ride-europe.jpg',
   title: 'Ticket to Ride: Европа',
 }
 
 export const TICKET_TO_RIDE_ASIA: GameInfo = {
   games: TICKET_TO_RIDE_ASIA_GAMES,
-  imgPath: 'ticket-to-ride-asia.jpg',
+  imgPath: 'numeric/ticket-to-ride-asia.jpg',
   title: 'Ticket to Ride: Азия',
 }
 
 export const TICKET_TO_RIDE_ASIA_SILK: GameInfo = {
   games: TICKET_TO_RIDE_ASIA_SILK_GAMES,
-  imgPath: 'ticket-to-ride-asia-silk.jpg',
+  imgPath: 'numeric/ticket-to-ride-asia-silk.jpg',
   title: 'Ticket to Ride: Азия. Шелковый путь',
 }

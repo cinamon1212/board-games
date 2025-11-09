@@ -18,11 +18,11 @@ const CLANK_IN_SPACE_GAMES: PlayerScores<number> = [
 export const CLANK: GameInfo = {
   games: CLANK_GAMES,
   title: 'Кланк!',
-  imgPath: 'clank.png',
+  imgPath: 'numeric/clank.png',
 }
 
 export const CLANK_IN_SPACE: GameInfo = {
   games: CLANK_IN_SPACE_GAMES,
   title: 'Кланк! В! Космосе!',
-  imgPath: 'clank-in-space.jpg',
+  imgPath: 'numeric/clank-in-space.jpg',
 }

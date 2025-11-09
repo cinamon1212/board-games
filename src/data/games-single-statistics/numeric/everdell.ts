@@ -18,7 +18,7 @@ const EVERDELL_GAMES: PlayerScores<number> = [
 export const EVERDELL: GameInfo = {
   games: EVERDELL_GAMES,
   title: 'Эверделл',
-  imgPath: 'everdell.jpg',
+  imgPath: 'numeric/everdell.jpg',
   params: [
     { key: 'сложность', values: ['легкая', 'средняя', 'тяжелая'] },
     { key: 'босс', values: ['кал', 'буэ', 'соня'] },

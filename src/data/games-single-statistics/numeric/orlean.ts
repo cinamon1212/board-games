@@ -8,5 +8,5 @@ const ORLEAN_GAMES: PlayerScores<number> = [
 export const ORLEAN: GameInfo = {
   games: ORLEAN_GAMES,
   title: 'Орлеан',
-  imgPath: 'orlean.jpg',
+  imgPath: 'numeric/orlean.jpg',
 }

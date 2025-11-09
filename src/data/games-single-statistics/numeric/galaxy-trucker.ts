@@ -9,5 +9,5 @@ const GALAXY_TRUCKER_GAMES: PlayerScores<number> = [
 export const GALAXY_TRUCKER: GameInfo = {
   games: GALAXY_TRUCKER_GAMES,
   title: 'Космические дальнобойщики',
-  imgPath: 'galaxy-trucker.webp',
+  imgPath: 'numeric/galaxy-trucker.webp',
 }
