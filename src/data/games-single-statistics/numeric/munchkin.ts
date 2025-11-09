@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const MUNCHKIN_GAMES: PlayerScores<boolean> = []
+const MUNCHKIN_GAMES: PlayerScores<number> = []
 
 export const MUNCHKIN: GameInfo = {
   games: MUNCHKIN_GAMES,

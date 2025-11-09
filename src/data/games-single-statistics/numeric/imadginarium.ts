@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const IMADGINARIUM_GAMES: PlayerScores<boolean> = []
+const IMADGINARIUM_GAMES: PlayerScores<number> = []
 
 export const IMADGINARIUM: GameInfo = {
   games: IMADGINARIUM_GAMES,

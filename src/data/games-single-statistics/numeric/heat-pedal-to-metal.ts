@@ -1,6 +1,6 @@
 import { GameInfo, PlayerScores } from '@/types'
 
-const HEAT_PEDAL_TO_METAL_GAMES: PlayerScores<boolean> = []
+const HEAT_PEDAL_TO_METAL_GAMES: PlayerScores<number> = []
 
 export const HEAT_PEDAL_TO_METAL: GameInfo = {
   games: HEAT_PEDAL_TO_METAL_GAMES,
