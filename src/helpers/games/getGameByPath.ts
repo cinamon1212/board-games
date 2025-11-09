@@ -14,4 +14,3 @@ export const getGameByPath = (path: string) => {
     return pathWithoutExt === path.slice(1)
   })[0]
 }
-

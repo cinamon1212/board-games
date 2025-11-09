@@ -16,4 +16,3 @@ export const getColorOrGradient = (color?: string) => {
 
   return { color, isGradient }
 }
-

@@ -10,5 +10,5 @@ export const SEA_SALT_AND_PAPER: GameInfo = {
   games: SEA_SALT_AND_PAPER_GAMES,
   title: 'Море, соль, бумага',
   imgPath: 'sea-salt-and-paper.jpg',
-  isBoolean: true
+  isBoolean: true,
 }

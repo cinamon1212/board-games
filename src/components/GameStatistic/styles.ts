@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const GameStatisticsWrapper = styled.div`
   display: flex;
   gap: 16px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-open-sans), sans-serif;
   color: #696969;
   font-size: 14px;
   flex-wrap: wrap;

@@ -27,4 +27,3 @@ export const transformGamesForChart = (games: PlayerScores<number>) => {
 
   return { gamesForChart, personsMap }
 }
-

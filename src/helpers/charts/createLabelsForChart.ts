@@ -16,4 +16,3 @@ export const createLabelsForChart = (labelsLength: number) => {
 
   return labels
 }
-

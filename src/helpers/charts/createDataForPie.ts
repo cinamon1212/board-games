@@ -29,9 +29,8 @@ export const createDataForPie = (personsMap: PersonsMap<boolean>) => {
   data.datasets.push({
     data: winRates,
     backgroundColor,
-    borderWidth: 0
+    borderWidth: 0,
   })
 
   return data
 }
-

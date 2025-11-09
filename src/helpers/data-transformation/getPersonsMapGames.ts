@@ -54,4 +54,3 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
 
   return map
 }
-

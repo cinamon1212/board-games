@@ -13,4 +13,3 @@ export const filterGamesByRegExp = (games: Games, regExpStr: string) => {
 
   return games.filter((game) => regex.test(game.title))
 }
-

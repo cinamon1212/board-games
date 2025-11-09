@@ -31,4 +31,3 @@ export const transformDataForTable = (personsMap: PersonsMap<SingleGameResult>, 
     return res
   })
 }
-

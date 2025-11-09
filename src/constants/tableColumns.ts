@@ -3,26 +3,26 @@ import { TableColumns } from '@/types'
 export const TABLE_COLUMNS: TableColumns = [
   {
     headerName: 'Имя',
-    field: 'name'
+    field: 'name',
   },
   {
     headerName: 'Винрейт',
-    field: 'winRate'
+    field: 'winRate',
   },
   {
     headerName: 'Среднее',
-    field: 'avg'
+    field: 'avg',
   },
   {
     headerName: 'Мин',
-    field: 'minScore'
+    field: 'minScore',
   },
   {
     headerName: 'Макс',
-    field: 'maxScore'
+    field: 'maxScore',
   },
   {
     headerName: 'Кол-во игр',
-    field: 'scoresCount'
+    field: 'scoresCount',
   },
 ]

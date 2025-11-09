@@ -51,7 +51,7 @@ export const useChartData = (chartRef: RefObject<ChartJSOrUndefined<'line'> | nu
     }
 
     requestAnimationFrame(checkAndSet)
-  }, [gamesForChart])
+  }, [gamesForChart, chartRef])
 
   return chartData
 }

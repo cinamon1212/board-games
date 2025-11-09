@@ -21,4 +21,3 @@ export const getNextSortState = (current: keyof typeof TABLE_SORT_STATES) => {
       return none
   }
 }
-

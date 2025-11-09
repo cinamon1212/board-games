@@ -26,4 +26,3 @@ export const getPlayerColor = (name: Player): string => {
 
   return PLAYERS_BY_NAME[name].color
 }
-

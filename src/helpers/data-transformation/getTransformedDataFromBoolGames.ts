@@ -13,7 +13,7 @@ import { transformDataForTable } from './transformDataForTable'
  */
 export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>) => {
   const map = getPersonsMapGames<boolean>(boolGames)
-  
+
   const { personsMap } = getPersonsMap<boolean>(map)
 
   const data = createDataForPie(personsMap)
@@ -21,4 +21,3 @@ export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>
 
   return { data, tableDataArr }
 }
-

@@ -1,5 +1,9 @@
 import { PlayerScores } from './statistics'
 
+/**
+ * Названия всех игр в системе
+ * Используется для типобезопасности и автодополнения
+ */
 export type GameTitles =
   | 'Ticket to Ride: Европа'
   | 'Challengers'
@@ -37,14 +41,37 @@ export type GameTitles =
   | 'Свинтус зомби'
   | 'Космические дальнобойщики'
 
+/**
+ * Параметры игры для фильтрации партий
+ * Используется для игр с расширениями, разными режимами и т.д.
+ * Пример: [{ key: 'Расширение', values: ['Базовое', 'Расширение 1'] }]
+ */
 export type GameParams = Array<{ key: string; values: Array<string> }>
 
+/**
+ * Полная информация об игре
+ * Содержит все данные, необходимые для отображения статистики игры
+ */
 export type GameInfo = {
+  /** Путь к изображению игры в папке public (например, 'game-name.jpg') */
   imgPath: string
+  /** Массив результатов всех сыгранных партий */
   games: PlayerScores<number | boolean>
+  /** Название игры */
   title: GameTitles
+  /**
+   * Тип игры: true для булевых игр (победа/поражение),
+   * false или undefined для числовых игр (очки)
+   */
   isBoolean?: boolean
+  /**
+   * Параметры игры для фильтрации партий (опционально)
+   * Например, расширения, режимы игры и т.д.
+   */
   params?: GameParams
 }
 
+/**
+ * Список всех игр в системе
+ */
 export type Games = Array<GameInfo>

@@ -11,7 +11,6 @@ import { getArithmeticMean } from '../statistics/getArithmeticMean'
  */
 export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T>) => {
   const personsMap: PersonsMap<T> = {}
-  let idx = 0
 
   let maxScoresCount = 0
 
@@ -35,10 +34,7 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
 
       if (scores.length > maxScoresCount) maxScoresCount = scores.length
     }
-
-    idx++
   }
 
   return { personsMap, maxScoresCount }
 }
-

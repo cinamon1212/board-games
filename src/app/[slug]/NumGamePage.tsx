@@ -10,7 +10,7 @@ import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
 
-import { useChartData, useWindowWidth } from '@/hooks'
+import { useChartData } from '@/hooks'
 import { LINE_OPTIONS } from '@/constants'
 
 import { ChartJSOrUndefined } from 'node_modules/react-chartjs-2/dist/types'

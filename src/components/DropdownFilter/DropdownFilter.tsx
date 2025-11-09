@@ -13,7 +13,6 @@ type DropdownFilterProps = {
 
 const DropdownFilterComponent = ({ games, params }: DropdownFilterProps) => {
   const [activeDropdownKeys, setActiveDropdownKeys] = useState<Array<string>>([])
-  const [activeDropdownValues, setActiveDropdownValues] = useState<Array<string>>([])
 
   const gameParams = getGameParams(games)
 
@@ -26,7 +25,9 @@ const DropdownFilterComponent = ({ games, params }: DropdownFilterProps) => {
       } else return [...prev, key]
     })
 
-  const onDropdownItemClick = (value: string) => setActiveDropdownValues((prev) => [...prev, value])
+  const onDropdownItemClick = (_value: string) => {
+    // TODO: Implement filter logic
+  }
 
   return (
     gameParams?.length &&

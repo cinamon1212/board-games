@@ -16,4 +16,3 @@ export const sortPlayerName = (name: Player): Player => {
       .join(' & ') as Player
   else return name
 }
-

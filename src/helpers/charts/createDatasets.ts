@@ -10,8 +10,6 @@ import { DataSets, PersonsMap, Player } from '@/types'
 export const createDatasets = (map: PersonsMap<number>) => {
   const datasets: DataSets = []
 
-  let personCount = 0
-
   for (const person in map) {
     const name = person as Player
     const currentItem = map[name]
@@ -29,11 +27,8 @@ export const createDatasets = (map: PersonsMap<number>) => {
         pointRadius: 4,
         pointHoverRadius: 6,
       })
-
-      personCount++
     }
   }
 
   return datasets
 }
-

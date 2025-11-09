@@ -20,7 +20,6 @@ export const getTransformedDataFromNumGames = (numGames: PlayerScores<number>) =
   return {
     gamesForChart,
     scoreStats,
-    tableDataArr
+    tableDataArr,
   }
 }
-

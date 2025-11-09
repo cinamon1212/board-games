@@ -15,7 +15,7 @@ export const SearchInputWrapper = styled.section`
 `
 
 export const Input = styled.input`
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-open-sans), sans-serif;
   width: 100%;
   border-radius: 16px;
   background: radial-gradient(circle, #42372e, #2b241e);
@@ -32,7 +32,7 @@ export const Input = styled.input`
 
   &:hover,
   &:focus {
-  box-shadow: -6px -6px 5px -4px #4f4237 inset;
+    box-shadow: -6px -6px 5px -4px #4f4237 inset;
     outline: none;
   }
 `

@@ -14,5 +14,5 @@ export const CHALLENGERS: GameInfo = {
   title: 'Challengers',
   imgPath: 'challengers.png',
   games: CHALLENGERS_GAMES,
-  isBoolean: true
+  isBoolean: true,
 }

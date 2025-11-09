@@ -57,4 +57,3 @@ export const getGameScoreStats = (map: PersonsMap<number>): ScoreStats => {
     },
   }
 }
-

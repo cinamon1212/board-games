@@ -4,4 +4,3 @@ export { transformGamesForChart } from './transformGamesForChart'
 export { transformDataForTable } from './transformDataForTable'
 export { getTransformedDataFromNumGames } from './getTransformedDataFromNumGames'
 export { getTransformedDataFromBoolGames } from './getTransformedDataFromBoolGames'
-
