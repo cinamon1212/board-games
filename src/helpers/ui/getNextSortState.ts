@@ -1,5 +1,12 @@
 import { TABLE_SORT_STATES } from '@/constants'
 
+/**
+ * Возвращает следующее состояние сортировки таблицы.
+ * Цикл: none → asc → desc → none
+ *
+ * @param current - Текущее состояние сортировки
+ * @returns Следующее состояние сортировки
+ */
 export const getNextSortState = (current: keyof typeof TABLE_SORT_STATES) => {
   const { asc, desc, none } = TABLE_SORT_STATES
 
@@ -14,3 +21,4 @@ export const getNextSortState = (current: keyof typeof TABLE_SORT_STATES) => {
       return none
   }
 }
+

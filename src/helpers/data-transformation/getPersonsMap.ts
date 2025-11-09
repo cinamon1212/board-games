@@ -1,9 +1,14 @@
 import { PersonsMap, PersonsMapGames, Player } from '@/types'
+import { SingleGameResult } from '@/types'
+import { getArithmeticMean } from '../statistics/getArithmeticMean'
 
-import { SingleGameResult } from '../types'
-
-import { getArithmeticMean } from './getArithmeticMean'
-
+/**
+ * Преобразует карту игроков с результатами в расширенную карту со статистикой.
+ * Вычисляет среднее значение, минимум, максимум, процент побед для каждого игрока.
+ *
+ * @param map - Карта игроков с массивами результатов
+ * @returns Объект с расширенной картой игроков и максимальным количеством партий
+ */
 export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T>) => {
   const personsMap: PersonsMap<T> = {}
   let idx = 0
@@ -36,3 +41,4 @@ export const getPersonsMap = <T extends SingleGameResult>(map: PersonsMapGames<T
 
   return { personsMap, maxScoresCount }
 }
+

@@ -1,5 +1,12 @@
 import { PersonsMap, Player, ScoreStats } from '@/types'
 
+/**
+ * Вычисляет общую статистику по игре: минимальный, максимальный и средний результат.
+ * Определяет игроков с минимальным и максимальным результатом для отображения их цветов.
+ *
+ * @param map - Карта игроков с их результатами
+ * @returns Объект со статистикой: min, max, avg (с цветами игроков)
+ */
 export const getGameScoreStats = (map: PersonsMap<number>): ScoreStats => {
   // Для вычисления min и max
   let minScore = Infinity
@@ -50,3 +57,4 @@ export const getGameScoreStats = (map: PersonsMap<number>): ScoreStats => {
     },
   }
 }
+

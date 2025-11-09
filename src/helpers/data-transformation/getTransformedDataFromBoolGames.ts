@@ -1,10 +1,16 @@
 import { PlayerScores } from '@/types'
-
 import { getPersonsMap } from './getPersonsMap'
 import { getPersonsMapGames } from './getPersonsMapGames'
-import { createDataForPie } from './createDataForPie'
+import { createDataForPie } from '../charts/createDataForPie'
 import { transformDataForTable } from './transformDataForTable'
 
+/**
+ * Полная трансформация данных для булевых игр.
+ * Создает данные для столбчатой диаграммы (win rate) и данные для таблицы.
+ *
+ * @param boolGames - Массив результатов партий булевой игры
+ * @returns Объект с данными для графика и данными для таблицы
+ */
 export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>) => {
   const map = getPersonsMapGames<boolean>(boolGames)
   
@@ -15,3 +21,4 @@ export const getTransformedDataFromBoolGames = (boolGames: PlayerScores<boolean>
 
   return { data, tableDataArr }
 }
+

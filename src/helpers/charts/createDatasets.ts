@@ -1,5 +1,12 @@
 import { DataSets, PersonsMap, Player } from '@/types'
 
+/**
+ * Создает наборы данных для линейного графика Chart.js.
+ * Преобразует карту игроков в формат datasets для Chart.js.
+ *
+ * @param map - Карта игроков с их результатами и цветами
+ * @returns Массив datasets для Chart.js
+ */
 export const createDatasets = (map: PersonsMap<number>) => {
   const datasets: DataSets = []
 
@@ -29,3 +36,4 @@ export const createDatasets = (map: PersonsMap<number>) => {
 
   return datasets
 }
+

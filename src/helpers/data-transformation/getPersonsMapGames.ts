@@ -1,10 +1,17 @@
 import { PLAYERS_BY_NAME } from '@/data'
 import { PersonsMapGames, Player, PlayerScores, SingleGameResult } from '@/types'
-import { getPlayerColor } from './getPlayerColor'
-import { sortPlayerName } from './sortPlayerName'
+import { getPlayerColor } from '../players/getPlayerColor'
+import { sortPlayerName } from '../players/sortPlayerName'
 
+/**
+ * Преобразует массив результатов партий в карту игроков с их результатами.
+ * Для каждой партии определяет победителя (максимальный результат для числовых игр,
+ * true для булевых игр) и подсчитывает количество побед.
+ *
+ * @param games - Массив результатов партий
+ * @returns Карта игроков с массивами результатов, количеством побед и цветами
+ */
 export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScores<T>): PersonsMapGames<T> => {
-  // заполняем map: ключи - игроки, значения - массив score
   const map: PersonsMapGames<T> = {}
 
   games.forEach((game) => {
@@ -23,6 +30,7 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
       const fields = PLAYERS_BY_NAME[sortedName] || { color }
 
       if (score !== undefined) {
+        // Определяем победителя: для числовых игр - максимальный результат, для булевых - true
         const isWin = (typeof score === 'boolean' && score) || (typeof score === 'number' && score === max)
 
         if (map[sortedName] && Object.keys(map[sortedName]).length) {
@@ -46,3 +54,4 @@ export const getPersonsMapGames = <T extends SingleGameResult>(games: PlayerScor
 
   return map
 }
+

@@ -1,5 +1,13 @@
 import { PersonsMap, Player, SingleGameResult, TableDataArr } from '@/types'
 
+/**
+ * Преобразует карту игроков в массив данных для таблицы.
+ * Сортирует данные по указанному полю (avg или winRate) в порядке убывания.
+ *
+ * @param personsMap - Карта игроков со статистикой
+ * @param flag - Поле для сортировки: 'avg' (среднее) или 'winRate' (процент побед)
+ * @returns Отсортированный массив данных для таблицы
+ */
 export const transformDataForTable = (personsMap: PersonsMap<SingleGameResult>, flag: 'avg' | 'winRate') => {
   const tableDataArr: TableDataArr = []
 
@@ -23,3 +31,4 @@ export const transformDataForTable = (personsMap: PersonsMap<SingleGameResult>, 
     return res
   })
 }
+
