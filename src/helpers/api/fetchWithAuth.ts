@@ -17,7 +17,7 @@ export async function fetchWithAuth(
 
   if (res.status === 401) {
     store.dispatch(logout())
-    window.location.href = '/login?message=auth'
+    window.location.href = '/registration?message=auth'
     throw new Error('Unauthorized')
   }
 

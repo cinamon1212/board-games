@@ -17,7 +17,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     if (!initialized) return
 
     if (!isAuth) {
-      router.replace('/login?message=auth')
+      router.replace('/registration?message=auth')
     }
   }, [initialized, isAuth, router])
 

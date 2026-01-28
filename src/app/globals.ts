@@ -45,3 +45,15 @@ export const ButtonPrimary = styled.button`
     outline: none;
   }
 `
+export const LinkWrapper = styled.div`
+  margin-top: 0.5rem;
+  text-align: center;
+
+  a {
+    color: #d2691e;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`

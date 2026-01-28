@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { AuthForm } from '../../components/AuthForm'
+import Link from 'next/link'
+import { LinkWrapper } from '../globals'
 
 export default function RegistrationPage() {
   return (
@@ -10,6 +12,10 @@ export default function RegistrationPage() {
       title='Регистрация'
       submitText='Зарегистрироваться'
       limitText='Вы превысили количество попыток. Попробуйте позже.'
-    />
+    >
+      <LinkWrapper>
+        Уже зарегистрирован? <Link href='/login'>Войти</Link>
+      </LinkWrapper>
+    </AuthForm>
   )
 }
