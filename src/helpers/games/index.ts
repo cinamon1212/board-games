@@ -1,4 +1,5 @@
-export { filterGamesByItsCount } from './filterGamesByItsCount'
 export { filterGamesByRegExp } from './filterGamesByRegExp'
 export { getGameByPath } from './getGameByPath'
-export { getImgPathWithoutExt } from './getImgPathWithoutExt'
+export { normalizeGames } from './normalizeGames'
+export { sortGamesByCount } from './sortGames'
+export type { FirebaseGame } from './normalizeGames'

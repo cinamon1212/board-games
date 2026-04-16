@@ -1,11 +1,12 @@
 export type User = {
-  id: number
-  email: string
+  uid: string
+  email: string | null
 }
 
 export type AuthState = {
   isAuth: boolean
   user: User | null
+  isAdmin: boolean
   token: string | null
   loading: boolean
   initialized: boolean

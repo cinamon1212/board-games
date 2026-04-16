@@ -19,4 +19,4 @@ export * from './ui'
 export * from './error'
 
 // API helpers
-export * from './api'
+export * from './auth'

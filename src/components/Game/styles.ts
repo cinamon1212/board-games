@@ -2,7 +2,8 @@ import { BREAK_POINTS } from '@/constants'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-export const GameWrapper = styled(Link)`
+export const GameWrapper = styled.article`
+  position: relative;
   box-shadow: -6px -6px 5px -5px #42372e inset;
   min-height: 300px;
   display: flex;
@@ -29,6 +30,13 @@ export const GameWrapper = styled(Link)`
   @media (min-width: ${BREAK_POINTS.lg}) {
     min-height: 500px;
   }
+`
+
+export const GameLink = styled(Link)`
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
 `
 
 type GameImgProps = {
@@ -62,6 +70,8 @@ export const GameImg = styled.img.attrs<GameImgProps>((props) => ({
 `
 
 export const GameInfo = styled.div`
+  position: relative;
+  z-index: 1;
   height: auto;
   display: flex;
   flex-direction: column;

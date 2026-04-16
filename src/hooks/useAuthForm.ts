@@ -67,6 +67,8 @@ export const useAuthForm = (mode: AuthMode = 'login') => {
 
       if (err instanceof Error) {
         message = err.message
+      } else if (typeof err === 'string') {
+        message = err
       }
 
       dispatch(
