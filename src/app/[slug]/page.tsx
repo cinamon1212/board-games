@@ -1,6 +1,7 @@
 'use client'
 
-import React from 'react'
+import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
 
 import {
   Chart as ChartJS,
@@ -17,10 +18,12 @@ import {
 import { usePathname } from 'next/navigation'
 
 import { getGameByPath } from '@/helpers'
+import { selectGames } from '@/store/slices/gamesSlice'
 
 import { PlayerScores } from '@/types'
 import { NumGamePage } from './NumGamePage'
 import { BoolGamePage } from './BoolGamePage'
+import { AuthGuard } from '../../components/AuthGuard/AuthGuard'
 
 ChartJS.register(
   CategoryScale,
@@ -36,14 +39,50 @@ ChartJS.register(
 const GamePage = () => {
   const path = usePathname()
 
-  const { title, games, isBoolean, params } = getGameByPath(path)
+  // Получаем все игры из Redux - стабильный мемоизированный селектор
+  const allGames = useSelector(selectGames)
+
+  // Находим игру по пути с использованием useMemo для стабильности
+  const game = useMemo(() => {
+    return getGameByPath(path, allGames)
+  }, [allGames, path])
+
+  if (!game) {
+    return <div>Игра не найдена</div>
+  }
+
+  const { title, slug, games, isBoolean, params } = game
+
+  // Проверяем что games - это массив
+  if (!Array.isArray(games)) {
+    console.error('[GamePage] games is not an array:', games)
+    return <div>Ошибка: неверный формат данных игры</div>
+  }
 
   if (isBoolean) {
     const boolGames = games as PlayerScores<boolean>
-    return <BoolGamePage boolGames={boolGames} title={title} params={params} />
+    return (
+      <AuthGuard>
+        <BoolGamePage
+          boolGames={boolGames}
+          title={title}
+          slug={slug}
+          params={params}
+        />
+      </AuthGuard>
+    )
   } else {
     const numGames = games as PlayerScores<number>
-    return <NumGamePage title={title} numGames={numGames} params={params} />
+    return (
+      <AuthGuard>
+        <NumGamePage
+          title={title}
+          slug={slug}
+          numGames={numGames}
+          params={params}
+        />
+      </AuthGuard>
+    )
   }
 }
 
