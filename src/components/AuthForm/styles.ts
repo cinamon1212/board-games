@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const FormCard = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
