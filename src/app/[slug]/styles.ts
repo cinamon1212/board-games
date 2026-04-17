@@ -14,7 +14,7 @@ export const GameTitle = styled.h1`
   }
 `
 
-export const PageWrapper = styled.main`
+export const PageWrapper = styled.div`
   width: 100%;
   min-height: 400px;
   margin: 0 auto;

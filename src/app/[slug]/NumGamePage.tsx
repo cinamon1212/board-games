@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { LineWrapper, PageWrapper } from './styles'
 
 import { Line } from 'react-chartjs-2'
 
-import { DropdownFilter, Table } from '@/components'
+import { DropdownFilter, GameButton, Table } from '@/components'
 import { getTransformedDataFromNumGames } from '@/helpers'
 
 import { NumGamePageProps } from './types'
@@ -17,9 +17,16 @@ import { ChartJSOrUndefined } from 'node_modules/react-chartjs-2/dist/types'
 
 import { StatisticContainer } from './StatisticContainer'
 
-export const NumGamePage = ({ numGames, title, params }: NumGamePageProps) => {
+export const NumGamePage = ({
+  numGames,
+  title,
+  slug,
+  params,
+}: NumGamePageProps) => {
+  const [filteredGames, setFilteredGames] = useState(numGames)
+
   const { gamesForChart, scoreStats, tableDataArr } =
-    getTransformedDataFromNumGames(numGames)
+    getTransformedDataFromNumGames(filteredGames)
 
   const chartRef = useRef<ChartJSOrUndefined<'line'> | null>(null)
   const chartData = useChartData(chartRef, gamesForChart)
@@ -28,11 +35,16 @@ export const NumGamePage = ({ numGames, title, params }: NumGamePageProps) => {
     <PageWrapper>
       <StatisticContainer
         tableDataArr={tableDataArr}
-        games={numGames}
+        games={filteredGames}
         title={title}
         scoreStats={scoreStats}
       />
-      <DropdownFilter games={numGames} params={params} />
+      <GameButton title={title} slug={slug} />
+      <DropdownFilter
+        games={numGames}
+        params={params}
+        onFilterChange={setFilteredGames}
+      />
       {gamesForChart && (
         <LineWrapper>
           <Line data={chartData} options={LINE_OPTIONS} ref={chartRef} />

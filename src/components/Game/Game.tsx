@@ -1,22 +1,27 @@
-import { getImgPathWithoutExt } from '@/helpers'
-import { GameCount, GameImg, GameInfo, GameTitle, GameWrapper } from './styles'
+import {
+  GameCount,
+  GameImg,
+  GameInfo,
+  GameLink,
+  GameTitle,
+  GameWrapper,
+} from './styles'
 import { GameInfo as GameType } from '@/types'
+import { GameButton } from '../GameButton/GameButton'
 
-export const Game = ({ title, games, imgPath }: GameType) => {
+export const Game = ({ title, games, imgPath, slug, isBoolean }: GameType) => {
   const gamesCount = games?.length || 0
   const gameCountStr = `Количество игр: ${gamesCount}`
 
-  const gameHref = getImgPathWithoutExt(imgPath)
-
-  // const titleSliced = title.length > 25 ? title.slice(0, 25) + '...' : title
-
-  return gamesCount ? (
-    <GameWrapper href={gameHref}>
+  return (
+    <GameWrapper>
+      <GameLink href={slug} aria-label={`Открыть страницу игры ${title}`} />
       <GameImg src={imgPath} alt={title} />
       <GameInfo>
         <GameTitle>{title}</GameTitle>
+        <GameButton title={title} slug={slug} isBoolean={isBoolean} />
         <GameCount>{gameCountStr}</GameCount>
       </GameInfo>
     </GameWrapper>
-  ) : null
+  )
 }

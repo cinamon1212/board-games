@@ -53,12 +53,14 @@ export type GameParams = Array<{ key: string; values: Array<string> }>
  * Содержит все данные, необходимые для отображения статистики игры
  */
 export type GameInfo = {
+  /** Уникальный slug игры (используется в URL) */
+  slug: string
+  /** Название игры */
+  title: GameTitles
   /** Путь к изображению игры в папке public (например, 'game-name.jpg') */
   imgPath: string
   /** Массив результатов всех сыгранных партий */
   games: PlayerScores<number | boolean>
-  /** Название игры */
-  title: GameTitles
   /**
    * Тип игры: true для булевых игр (победа/поражение),
    * false или undefined для числовых игр (очки)
