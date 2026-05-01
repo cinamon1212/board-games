@@ -3,7 +3,7 @@
 import React from 'react'
 import { AuthForm } from '../../components/AuthForm'
 import Link from 'next/link'
-import { LinkWrapper } from '../styles'
+import { LinkWrapper } from '../globals'
 
 export default function LoginPage() {
   return (

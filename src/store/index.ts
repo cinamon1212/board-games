@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
-import { authSlice } from './slices'
+import { authSlice, gamesSlice } from './slices'
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
+    games: gamesSlice.reducer,
   },
 })
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Open_Sans } from 'next/font/google'
 
-import { Toast } from '../components/Toast/Toast'
+import { Toast } from '../components'
 import { Providers } from './providers'
 import { StyledComponentsRegistry } from './styled-components-registry'
 import './globals.css'

@@ -1,5 +1,6 @@
 import {
   GameParams,
+  GameTitles,
   PlayerScores,
   ScoreStats,
   SingleGameResult,
@@ -8,13 +9,15 @@ import {
 
 export type NumGamePageProps = {
   numGames: PlayerScores<number>
-  title: string
+  title: GameTitles
+  slug: string
   params?: GameParams
 }
 
 export type BoolGamePageProps = {
   boolGames: PlayerScores<boolean>
-  title: string
+  title: GameTitles
+  slug: string
   params?: GameParams
 }
 

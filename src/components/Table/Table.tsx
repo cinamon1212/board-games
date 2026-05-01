@@ -1,6 +1,9 @@
+'use client'
+
 import React, { useState } from 'react'
 
 import { TableProps, TableSortConfig } from './types'
+
 import {
   SortIcon,
   TableCell,

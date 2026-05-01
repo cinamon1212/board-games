@@ -1,9 +1,0 @@
-import { GameInfo, PlayerScores } from '@/types'
-
-const MUNCHKIN_GAMES: PlayerScores<number> = []
-
-export const MUNCHKIN: GameInfo = {
-  games: MUNCHKIN_GAMES,
-  title: 'Манчкин',
-  imgPath: 'numeric/munchkin.jpg',
-}

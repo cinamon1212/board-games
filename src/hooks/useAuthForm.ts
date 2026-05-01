@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { AppDispatch, login, registration, setMessage } from '@/store'
 import { AuthUser, AuthMode } from '../types'
 import { yupResolver } from '@hookform/resolvers/yup'
+
 import {
   AUTH_ATTEMPTS_LIMIT,
   AUTH_FORM_VALIDATION,

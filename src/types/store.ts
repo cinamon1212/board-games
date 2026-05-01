@@ -1,6 +1,6 @@
 export type User = {
-  id: number
-  email: string
+  uid: string | null
+  email: string | null
 }
 
 export type MessageType = 'danger' | 'success' | 'info'
@@ -17,6 +17,7 @@ export type AuthState = {
   loading: boolean
   initialized: boolean
   message: Message
+  isAdmin: boolean
 }
 
 export type AuthUser = {
@@ -32,3 +33,10 @@ export type FirebaseAuthResponse = {
 }
 
 export type AuthMode = 'login' | 'registration'
+
+/** Данные сессии: токен, пользователь и флаг админа (custom claims) */
+export type AuthSession = {
+  token: string
+  user: User
+  isAdmin: boolean
+}
