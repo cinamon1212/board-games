@@ -2,9 +2,15 @@
 
 import React, { useState } from 'react'
 
-import { GamesList, NotFound, HomeCarousel, Header } from '@/components'
+import {
+  GamesList,
+  NotFound,
+  HomeCarousel,
+  Header,
+  AuthGuard,
+} from '@/components'
 
-import { HomeWrapper, RadialBackground } from './styles'
+import { RadialBackground } from './styles'
 import { GAMES_LIST } from '@/data'
 import { filterGamesByItsCount, filterGamesByRegExp } from '@/helpers'
 import { useDebounce } from '@/hooks'
@@ -18,7 +24,7 @@ const Home = () => {
   const games = filterGamesByRegExp(filteredGamesByItsCount, debouncedValue)
 
   return (
-    <HomeWrapper>
+    <AuthGuard>
       <RadialBackground $top={'-50px'} $left={'-30%'} />
 
       <HomeCarousel games={games} />
@@ -28,7 +34,7 @@ const Home = () => {
       {games.length ? <GamesList games={games} /> : <NotFound />}
 
       <RadialBackground $bottom={'-50px'} $right={'-30%'} />
-    </HomeWrapper>
+    </AuthGuard>
   )
 }
 

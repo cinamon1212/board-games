@@ -1,26 +1,4 @@
-import { BREAK_POINTS } from '@/constants'
 import styled, { CSSProperties } from 'styled-components'
-
-export const HomeWrapper = styled.main`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  height: auto;
-
-  @media (min-width: ${BREAK_POINTS.sm}) {
-    gap: 48px;
-    padding: 48px;
-  }
-
-  @media (min-width: ${BREAK_POINTS.lg}) {
-    gap: 64px;
-    padding: 64px;
-  }
-`
 
 export type RadialBackgroundProps = {
   $top?: CSSProperties['top']
@@ -41,4 +19,63 @@ export const RadialBackground = styled.div<RadialBackgroundProps>`
   bottom: ${(props) => props?.$bottom};
   left: ${(props) => props?.$left};
   right: ${(props) => props?.$right};
+`
+
+export const Input = styled.input`
+  font-family: var(--font-open-sans), sans-serif;
+  width: 100%;
+  border-radius: 16px;
+  background: radial-gradient(circle, #42372e, #2b241e);
+  padding: 12px 42px;
+  box-shadow: -4px -4px 5px -4px #4f4237 inset;
+  border: none;
+  transition: box-shadow 300ms ease;
+  color: whitesmoke;
+  font-size: 16px;
+
+  &::placeholder {
+    color: #696969;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: -6px -6px 5px -4px #4f4237 inset;
+    outline: none;
+  }
+`
+
+export const ButtonPrimary = styled.button`
+  font-family: var(--font-open-sans), sans-serif;
+  width: 100%;
+  border-radius: 16px;
+  background: #4f4237;
+  padding: 12px 42px;
+  box-shadow: -4px -4px 5px -4px #2b241e inset;
+  border: none;
+  transition: box-shadow 300ms ease;
+  color: whitesmoke;
+  font-size: 16px;
+
+  &::placeholder {
+    color: #696969;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: -6px -6px 5px -4px #2b241e inset;
+    outline: none;
+  }
+`
+
+export const LinkWrapper = styled.div`
+  margin-top: 0.5rem;
+  text-align: center;
+
+  a {
+    color: #d2691e;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `

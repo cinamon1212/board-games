@@ -16,12 +16,12 @@ import {
 
 import { usePathname } from 'next/navigation'
 
-import { NotFound } from '@/components'
 import { getGameByPath } from '@/helpers'
 
 import { PlayerScores } from '@/types'
 import { NumGamePage } from './NumGamePage'
 import { BoolGamePage } from './BoolGamePage'
+import { AuthGuard } from '../../components/AuthGuard/AuthGuard'
 
 ChartJS.register(
   CategoryScale,
@@ -36,21 +36,28 @@ ChartJS.register(
 
 const GamePage = () => {
   const path = usePathname()
-
   const game = getGameByPath(path)
 
   if (!game) {
-    return <NotFound />
+    return <div>Игра не найдена</div>
   }
 
   const { title, games, isBoolean, params } = game
 
   if (isBoolean) {
     const boolGames = games as PlayerScores<boolean>
-    return <BoolGamePage boolGames={boolGames} title={title} params={params} />
+    return (
+      <AuthGuard>
+        <BoolGamePage boolGames={boolGames} title={title} params={params} />
+      </AuthGuard>
+    )
   } else {
     const numGames = games as PlayerScores<number>
-    return <NumGamePage title={title} numGames={numGames} params={params} />
+    return (
+      <AuthGuard>
+        <NumGamePage title={title} numGames={numGames} params={params} />
+      </AuthGuard>
+    )
   }
 }
 

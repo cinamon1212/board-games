@@ -15,3 +15,6 @@ export * from './statistics'
 
 // UI helpers
 export * from './ui'
+
+// Auth helpers
+export * from './auth'
