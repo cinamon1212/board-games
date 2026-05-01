@@ -1,4 +1,4 @@
-export { auth, database } from './firebaseClient'
+export { getFirebaseAuth, getFirebaseDatabase } from './firebaseClient'
 export { getUserFromToken } from './getUserFromToken'
 export { getAuthError } from './getAuthError'
 export { isTokenExpired } from './isTokenExpired'

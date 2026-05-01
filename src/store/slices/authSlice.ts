@@ -10,7 +10,7 @@ import { AUTH_REQUEST_ERRORS } from '../../constants'
 import type { AuthSession, AuthState, AuthUser, Message } from '../../types'
 
 import {
-  auth,
+  getFirebaseAuth,
   saveAuthSession,
   clearStoredAuthSession,
   createAuthSessionFromFirebaseUser,
@@ -40,13 +40,14 @@ export const registration = createAsyncThunk<
   { rejectValue: string }
 >('auth/registration', async (user, { dispatch, rejectWithValue }) => {
   try {
+    const firebaseAuth = getFirebaseAuth()
     const credentials = await createUserWithEmailAndPassword(
-      auth,
+      firebaseAuth,
       user.email,
       user.password,
     )
 
-    const firebaseUser = auth.currentUser ?? credentials.user
+    const firebaseUser = firebaseAuth.currentUser ?? credentials.user
 
     if (!firebaseUser) {
       return rejectWithValue(AUTH_REQUEST_ERRORS.registrationFailed)
@@ -78,13 +79,14 @@ export const login = createAsyncThunk<
   { rejectValue: string }
 >('auth/login', async (user, { dispatch, rejectWithValue }) => {
   try {
+    const firebaseAuth = getFirebaseAuth()
     const credentials = await signInWithEmailAndPassword(
-      auth,
+      firebaseAuth,
       user.email,
       user.password,
     )
 
-    const firebaseUser = auth.currentUser ?? credentials.user
+    const firebaseUser = firebaseAuth.currentUser ?? credentials.user
 
     if (!firebaseUser) {
       return rejectWithValue(AUTH_REQUEST_ERRORS.loginFailed)
@@ -115,7 +117,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
     clearStoredAuthSession()
   }
 
-  await signOut(auth)
+  await signOut(getFirebaseAuth())
 })
 
 export const selectToken = (state: { auth: AuthState }) => state.auth.token

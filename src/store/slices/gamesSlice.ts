@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit'
 import { get, ref, set } from 'firebase/database'
 
-import { auth, database, normalizeGames } from '@/helpers'
+import { getFirebaseAuth, getFirebaseDatabase, normalizeGames } from '@/helpers'
 import { Games, GameInfo, GameTitles } from '@/types'
 import type { RootState } from '@/store'
 
@@ -39,7 +39,9 @@ const initialState: GamesState = {
  * Убедиться, что Firebase Auth готов
  */
 const ensureFirebaseAuthReady = async () => {
-  const firebaseAuth = auth as typeof auth & {
+  const firebaseAuth = getFirebaseAuth() as ReturnType<
+    typeof getFirebaseAuth
+  > & {
     authStateReady?: () => Promise<void>
   }
 
@@ -58,6 +60,7 @@ export const fetchGames = createAsyncThunk<
   { rejectValue: string }
 >('games/fetchGames', async (_, { rejectWithValue }) => {
   try {
+    const database = getFirebaseDatabase()
     const [booleanSnapshot, numericSnapshot] = await Promise.all([
       get(ref(database, 'results/boolean')),
       get(ref(database, 'results/numeric')),
@@ -87,10 +90,12 @@ export const saveGameResult = createAsyncThunk<
   try {
     await ensureFirebaseAuthReady()
 
-    if (!auth.currentUser) {
+    const firebaseAuth = getFirebaseAuth()
+    if (!firebaseAuth.currentUser) {
       return rejectWithValue('Необходимо авторизоваться.')
     }
 
+    const database = getFirebaseDatabase()
     const type = payload.isBoolean ? 'boolean' : 'numeric'
     const { slug, title, results } = payload
 
