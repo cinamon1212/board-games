@@ -16,6 +16,7 @@ import {
 
 import { usePathname } from 'next/navigation'
 
+import { NotFound } from '@/components'
 import { getGameByPath } from '@/helpers'
 
 import { PlayerScores } from '@/types'
@@ -36,7 +37,13 @@ ChartJS.register(
 const GamePage = () => {
   const path = usePathname()
 
-  const { title, games, isBoolean, params } = getGameByPath(path)
+  const game = getGameByPath(path)
+
+  if (!game) {
+    return <NotFound />
+  }
+
+  const { title, games, isBoolean, params } = game
 
   if (isBoolean) {
     const boolGames = games as PlayerScores<boolean>

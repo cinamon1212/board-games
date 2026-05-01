@@ -9,8 +9,14 @@ import { getImgPathWithoutExt } from './getImgPathWithoutExt'
  * @returns Объект игры или undefined, если игра не найдена
  */
 export const getGameByPath = (path: string) => {
-  return GAMES_LIST.filter(({ imgPath }) => {
+  // Первый сегмент пути без ведущих/завершающих слэшей (например "/foo/" -> "foo")
+  const slug = path.split('/').filter(Boolean)[0]
+  if (slug === undefined) {
+    return undefined
+  }
+
+  return GAMES_LIST.find(({ imgPath }) => {
     const pathWithoutExt = getImgPathWithoutExt(imgPath)
-    return pathWithoutExt === path.slice(1)
-  })[0]
+    return pathWithoutExt === slug
+  })
 }
