@@ -1,11 +1,16 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import {
+  createAsyncThunk,
+  createSlice,
+  type PayloadAction,
+} from '@reduxjs/toolkit'
 
-import type { AuthState, AuthUser } from '../../types/store'
-import { setMessage, clearMessage } from './messageSlice'
-import { isTokenExpired, error } from '../../helpers'
+import type { AuthState, AuthUser, Message } from '../../types'
+import { AUTH_REQUEST_ERRORS } from '@/constants'
+import { getAuthError, isTokenExpired } from '../../helpers'
 
 const TOKEN_KEY = 'jwt-token'
 const API_KEY = process.env.NEXT_PUBLIC_FB_KEY
+const FIREBASE_AUTH_URL = 'https://identitytoolkit.googleapis.com/v1/accounts'
 
 const initialState: AuthState = {
   token: null,
@@ -13,6 +18,7 @@ const initialState: AuthState = {
   user: null,
   loading: false,
   initialized: false,
+  message: null,
 }
 
 export const initAuth = createAsyncThunk('auth/init', async () => {
@@ -33,41 +39,32 @@ export const registration = createAsyncThunk<
   string,
   AuthUser,
   { rejectValue: string }
->('auth/registration', async (user, { dispatch, rejectWithValue }) => {
+>('auth/registration', async (user, { rejectWithValue }) => {
   try {
-    const res = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...user,
-          returnSecureToken: true,
-        }),
-      },
-    )
+    const res = await fetch(`${FIREBASE_AUTH_URL}:signUp?key=${API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...user,
+        returnSecureToken: true,
+      }),
+    })
 
     const data = await res.json()
 
     if (!res.ok) {
       const message = data?.error?.message
       if (message) {
-        dispatch(
-          setMessage({
-            value: error(message),
-            type: 'danger',
-          }),
-        )
+        return rejectWithValue(getAuthError(message))
       }
-      return rejectWithValue('Registration failed')
+      return rejectWithValue(AUTH_REQUEST_ERRORS.registrationFailed)
     }
 
     localStorage.setItem(TOKEN_KEY, data.idToken)
-    dispatch(clearMessage())
 
     return data.idToken
   } catch {
-    return rejectWithValue('Network error')
+    return rejectWithValue(AUTH_REQUEST_ERRORS.networkError)
   }
 })
 
@@ -75,10 +72,10 @@ export const login = createAsyncThunk<
   string,
   AuthUser,
   { rejectValue: string }
->('auth/login', async (user, { dispatch, rejectWithValue }) => {
+>('auth/login', async (user, { rejectWithValue }) => {
   try {
     const res = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
+      `${FIREBASE_AUTH_URL}:signInWithPassword?key=${API_KEY}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -94,22 +91,16 @@ export const login = createAsyncThunk<
     if (!res.ok) {
       const message = data?.error?.message
       if (message) {
-        dispatch(
-          setMessage({
-            value: error(message),
-            type: 'danger',
-          }),
-        )
+        return rejectWithValue(getAuthError(message))
       }
-      return rejectWithValue('Login failed')
+      return rejectWithValue(AUTH_REQUEST_ERRORS.loginFailed)
     }
 
     localStorage.setItem(TOKEN_KEY, data.idToken)
-    dispatch(clearMessage())
 
     return data.idToken
   } catch {
-    return rejectWithValue('Network error')
+    return rejectWithValue(AUTH_REQUEST_ERRORS.networkError)
   }
 })
 
@@ -127,10 +118,17 @@ export const selectAuthLoading = (state: { auth: AuthState }) =>
 export const selectAuthInitialized = (state: { auth: AuthState }) =>
   state.auth.initialized
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setMessage(state, action: PayloadAction<NonNullable<Message>>) {
+      state.message = action.payload
+    },
+    clearMessage(state) {
+      state.message = null
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(initAuth.fulfilled, (state, action) => {
@@ -143,32 +141,43 @@ const authSlice = createSlice({
       })
       .addCase(registration.pending, (state) => {
         state.loading = true
+        state.message = null
       })
       .addCase(registration.fulfilled, (state, action) => {
         state.loading = false
         state.token = action.payload
         state.isAuth = true
+        state.message = null
       })
-      .addCase(registration.rejected, (state) => {
+      .addCase(registration.rejected, (state, action) => {
         state.loading = false
+        if (action.payload) {
+          state.message = { value: action.payload, type: 'danger' }
+        }
       })
       .addCase(login.pending, (state) => {
         state.loading = true
+        state.message = null
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false
         state.token = action.payload
         state.isAuth = true
+        state.message = null
       })
-      .addCase(login.rejected, (state) => {
+      .addCase(login.rejected, (state, action) => {
         state.loading = false
+        if (action.payload) {
+          state.message = { value: action.payload, type: 'danger' }
+        }
       })
       .addCase(logout.fulfilled, (state) => {
         state.token = null
         state.isAuth = false
         state.user = null
+        state.message = null
       })
   },
 })
 
-export default authSlice.reducer
+export const { setMessage, clearMessage } = authSlice.actions

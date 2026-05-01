@@ -5,23 +5,29 @@ import * as yup from 'yup'
 import { useState, useEffect, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import { AppDispatch } from '@/store'
-import { login, registration } from '@/store/slices/authSlice'
-import { showMessage } from '@/store/slices/messageSlice'
-import { AuthUser, AuthMode } from '../types/store'
+import { AppDispatch, login, registration, setMessage } from '@/store'
+import { AuthUser, AuthMode } from '../types'
 import { yupResolver } from '@hookform/resolvers/yup'
-
-const PASSWORD_MIN_LENGTH = 6
+import {
+  AUTH_ATTEMPTS_LIMIT,
+  AUTH_FORM_VALIDATION,
+  AUTH_REQUEST_ERRORS,
+  getAuthPasswordMinLengthMessage,
+  PASSWORD_MIN_LENGTH,
+} from '@/constants'
 
 const schema = yup.object({
   email: yup
     .string()
-    .required('Email обязателен')
-    .email('Введите корректный email'),
+    .required(AUTH_FORM_VALIDATION.emailRequired)
+    .email(AUTH_FORM_VALIDATION.emailInvalid),
   password: yup
     .string()
-    .required('Пароль обязателен')
-    .min(PASSWORD_MIN_LENGTH, `Минимум ${PASSWORD_MIN_LENGTH} символов`),
+    .required(AUTH_FORM_VALIDATION.passwordRequired)
+    .min(
+      PASSWORD_MIN_LENGTH,
+      getAuthPasswordMinLengthMessage(PASSWORD_MIN_LENGTH),
+    ),
 })
 
 export const useAuthForm = (mode: AuthMode = 'login') => {
@@ -41,7 +47,10 @@ export const useAuthForm = (mode: AuthMode = 'login') => {
   })
 
   // Ограничение по количеству попыток
-  const isTooManyAttempts = useMemo(() => submitCount >= 3, [submitCount])
+  const isTooManyAttempts = useMemo(
+    () => submitCount >= AUTH_ATTEMPTS_LIMIT,
+    [submitCount],
+  )
 
   useEffect(() => {
     if (isTooManyAttempts) {
@@ -63,14 +72,14 @@ export const useAuthForm = (mode: AuthMode = 'login') => {
       reset()
       router.push('/')
     } catch (err: unknown) {
-      let message = 'Произошла ошибка'
+      let message: string = AUTH_REQUEST_ERRORS.generic
 
       if (err instanceof Error) {
         message = err.message
       }
 
       dispatch(
-        showMessage({
+        setMessage({
           value: message,
           type: 'danger',
         }),

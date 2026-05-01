@@ -1,2 +1,2 @@
-export { fetchWithAuth } from './fetchWithAuth'
+export { getAuthError } from './getAuthError'
 export { isTokenExpired } from './isTokenExpired'
