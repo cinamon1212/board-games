@@ -1,19 +1,19 @@
 'use client'
 
-import { FormEvent, useEffect, useState } from 'react'
+import { SubmitEvent, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { PLAYERS_LIST } from '@/data'
 import { useAdmin } from '@/hooks'
+
 import {
   BooleanResultValue,
   GameTitles,
   NumericResultValue,
   Player,
 } from '@/types'
-import { useAppDispatch } from '@/store'
-import { showMessage } from '@/store/slices/messageSlice'
-import { saveGameResult } from '@/store/slices/gamesSlice'
+
+import { useAppDispatch, setMessage, saveGameResult } from '@/store'
 
 import {
   AddPlayerButton,
@@ -168,7 +168,7 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
     )
   }
 
-  const handleSubmit = async (event: FormEvent) => {
+  const handleSubmit = async (event: SubmitEvent) => {
     event.preventDefault()
     if (!user) return
 
@@ -188,7 +188,7 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
       ).unwrap()
 
       dispatch(
-        showMessage({
+        setMessage({
           type: 'success',
           value: 'Результат игры успешно отправлен.',
         }),
@@ -198,7 +198,7 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
       setIsOpen(false)
     } catch (error) {
       dispatch(
-        showMessage({
+        setMessage({
           type: 'danger',
           value: getErrorMessage(error),
         }),

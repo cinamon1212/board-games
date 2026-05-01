@@ -132,7 +132,7 @@ export const saveGameResult = createAsyncThunk<
 /**
  * Games slice
  */
-const gamesSlice = createSlice({
+export const gamesSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
@@ -199,5 +199,3 @@ export const selectGameByPath = createSelector(
     return games.find((g: GameInfo) => g?.slug === slug)
   },
 )
-
-export default gamesSlice.reducer

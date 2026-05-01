@@ -1,14 +1,26 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React, { useEffect } from 'react'
+
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState, AppDispatch } from '@/store'
-import { clearMessage } from '../../store/slices/messageSlice'
+import { RootState, AppDispatch, clearMessage } from '@/store'
 import { AlertMessage, AlertTitle, AlertWrapper, CloseButton } from './styles'
+
+const TOAST_AUTO_HIDE_MS = 5000
 
 export const Toast: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const message = useSelector((state: RootState) => state.ui.message)
+  const message = useSelector((state: RootState) => state.auth.message)
+
+  useEffect(() => {
+    if (!message) return
+
+    const timeoutId = window.setTimeout(() => {
+      dispatch(clearMessage())
+    }, TOAST_AUTO_HIDE_MS)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [message, dispatch])
 
   const TITLE_MAP: Record<string, string> = {
     danger: 'Ошибка!',
@@ -16,10 +28,7 @@ export const Toast: React.FC = () => {
     info: 'Внимание!',
   }
 
-  const title = useMemo(
-    () => (message ? TITLE_MAP[message.type] || '' : ''),
-    [message, TITLE_MAP],
-  )
+  const title = message ? TITLE_MAP[message.type] || '' : ''
 
   if (!message) return null
 

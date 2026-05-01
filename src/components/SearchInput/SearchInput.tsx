@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react'
 
 import { InputIcon, SearchInputWrapper } from './styles'
-import { Input } from '@/app/globals'
+import { Input } from '@/app/styles'
 
 type SearchInputProps = {
   setInputValue: React.Dispatch<React.SetStateAction<string>>

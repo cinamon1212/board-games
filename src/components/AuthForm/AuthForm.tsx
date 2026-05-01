@@ -1,15 +1,16 @@
 'use client'
 
 import React from 'react'
-import { useAuthForm } from '@/hooks/useAuthForm'
+import { useAuthForm } from '@/hooks'
 import { FormCard, FormControl, FormTitle, LimitText } from './styles'
-import { ButtonPrimary, Input } from '@/app/globals'
+import { ButtonPrimary, Input } from '@/app/styles'
+import { AuthMode } from '@/types'
 
 interface AuthFormProps {
   title: string
   submitText: string
   limitText: string
-  mode: 'login' | 'registration'
+  mode: AuthMode
   children?: React.ReactNode
 }
 
@@ -23,33 +24,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({
   const { register, errors, onSubmit, isSubmitting, isTooManyAttempts } =
     useAuthForm(mode)
 
-  // // это чтобы SSR и клиент совпадали
-  // const [mounted, setMounted] = useState(false)
-  // useEffect(() => {
-  //   setMounted(true)
-  // }, [])
-
-  // if (!mounted) {
-  //   // на сервере просто рендерим статическую форму без ошибок и состояний
-  //   return (
-  //     <FormCard>
-  //       <FormTitle>{title}</FormTitle>
-  //       <FormControl $invalid={false}>
-  //         <label>Email</label>
-  //         <input type='email' placeholder='Email' />
-  //       </FormControl>
-  //       <FormControl $invalid={false}>
-  //         <label>Пароль</label>
-  //         <input type='password' placeholder='Пароль' />
-  //       </FormControl>
-  //       <Button type='submit' disabled>
-  //         {submitText}
-  //       </Button>
-  //     </FormCard>
-  //   )
-  // }
-
-  // после гидрации рендерим полноценную форму
   return (
     <FormCard onSubmit={onSubmit}>
       <FormTitle>{title}</FormTitle>

@@ -1,118 +1,22 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  User as FirebaseUser,
 } from 'firebase/auth'
 
-import type { AuthState, AuthUser } from '../../types/store'
-import { setMessage, clearMessage } from './messageSlice'
-import { isTokenExpired, error } from '../../helpers'
-import { auth } from '../../helpers/auth/firebaseClient'
-import { getUserFromToken } from '../../helpers/auth/getUserFromToken'
+import { AUTH_REQUEST_ERRORS } from '../../constants'
+import type { AuthSession, AuthState, AuthUser, Message } from '../../types'
 
-const TOKEN_KEY = 'jwt-token'
-const AUTH_SESSION_KEY = 'auth-session'
-
-type AuthSession = {
-  token: string
-  user: NonNullable<AuthState['user']>
-  isAdmin: boolean
-}
-
-const saveAuthSession = (session: AuthSession) => {
-  localStorage.setItem(TOKEN_KEY, session.token)
-  localStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(session))
-}
-
-const clearStoredAuthSession = () => {
-  localStorage.removeItem(TOKEN_KEY)
-  localStorage.removeItem(AUTH_SESSION_KEY)
-}
-
-const createAuthSession = (token: string | null, isAdmin = false) => {
-  const user = getUserFromToken(token)
-
-  if (!token || !user) {
-    return null
-  }
-
-  return {
-    token,
-    user,
-    isAdmin,
-  } satisfies AuthSession
-}
-
-const createAuthSessionFromFirebaseUser = async (
-  firebaseUser: FirebaseUser,
-) => {
-  const tokenResult = await firebaseUser.getIdTokenResult(true)
-  const token = await firebaseUser.getIdToken()
-
-  // 👇 DEV ONLY LOG
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[AUTH] UID:', firebaseUser.uid)
-    console.log('[AUTH] CLAIMS:', tokenResult.claims)
-  }
-
-  return {
-    token,
-    user: {
-      uid: firebaseUser.uid,
-      email: firebaseUser.email,
-    },
-    isAdmin: tokenResult.claims.admin === true,
-  } satisfies AuthSession
-}
-
-const getStoredAuthSession = () => {
-  const rawSession = localStorage.getItem(AUTH_SESSION_KEY)
-
-  if (rawSession) {
-    try {
-      const parsedSession = JSON.parse(rawSession) as AuthSession
-
-      if (!isTokenExpired(parsedSession.token)) {
-        return parsedSession
-      }
-    } catch {
-      clearStoredAuthSession()
-    }
-  }
-
-  const legacyToken = localStorage.getItem(TOKEN_KEY)
-
-  if (!legacyToken || isTokenExpired(legacyToken)) {
-    clearStoredAuthSession()
-    return null
-  }
-
-  const legacySession = createAuthSession(legacyToken)
-
-  if (!legacySession) {
-    clearStoredAuthSession()
-    return null
-  }
-
-  saveAuthSession(legacySession)
-
-  return legacySession
-}
-
-const getAuthErrorMessage = (errorValue: unknown) => {
-  if (
-    errorValue &&
-    typeof errorValue === 'object' &&
-    'code' in errorValue &&
-    typeof errorValue.code === 'string'
-  ) {
-    return error(errorValue.code)
-  }
-
-  return 'Network error'
-}
+import {
+  auth,
+  saveAuthSession,
+  clearStoredAuthSession,
+  createAuthSessionFromFirebaseUser,
+  getStoredAuthSession,
+  getAuthError,
+} from '../../helpers'
 
 const initialState: AuthState = {
   token: null,
@@ -121,6 +25,7 @@ const initialState: AuthState = {
   isAdmin: false,
   loading: false,
   initialized: false,
+  message: null,
 }
 
 export const initAuth = createAsyncThunk('auth/init', async () => {
@@ -144,7 +49,7 @@ export const registration = createAsyncThunk<
     const firebaseUser = auth.currentUser ?? credentials.user
 
     if (!firebaseUser) {
-      return rejectWithValue('Registration failed')
+      return rejectWithValue(AUTH_REQUEST_ERRORS.registrationFailed)
     }
 
     const session = await createAuthSessionFromFirebaseUser(firebaseUser)
@@ -154,7 +59,7 @@ export const registration = createAsyncThunk<
 
     return session
   } catch (err) {
-    const message = getAuthErrorMessage(err)
+    const message = getAuthError(err)
 
     dispatch(
       setMessage({
@@ -182,7 +87,7 @@ export const login = createAsyncThunk<
     const firebaseUser = auth.currentUser ?? credentials.user
 
     if (!firebaseUser) {
-      return rejectWithValue('Login failed')
+      return rejectWithValue(AUTH_REQUEST_ERRORS.loginFailed)
     }
 
     const session = await createAuthSessionFromFirebaseUser(firebaseUser)
@@ -192,7 +97,7 @@ export const login = createAsyncThunk<
 
     return session
   } catch (err) {
-    const message = getAuthErrorMessage(err)
+    const message = getAuthError(err)
 
     dispatch(
       setMessage({
@@ -221,10 +126,17 @@ export const selectAuthLoading = (state: { auth: AuthState }) =>
 export const selectAuthInitialized = (state: { auth: AuthState }) =>
   state.auth.initialized
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setMessage(state, action: PayloadAction<NonNullable<Message>>) {
+      state.message = action.payload
+    },
+    clearMessage(state) {
+      state.message = null
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(initAuth.fulfilled, (state, action) => {
@@ -272,4 +184,4 @@ const authSlice = createSlice({
   },
 })
 
-export default authSlice.reducer
+export const { setMessage, clearMessage } = authSlice.actions

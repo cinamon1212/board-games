@@ -1,3 +1,4 @@
+import { MessageType } from '@/types'
 import styled, { css, keyframes } from 'styled-components'
 
 const fadeIn = keyframes`
@@ -5,7 +6,7 @@ const fadeIn = keyframes`
   to { opacity: 1; transform: translateY(0); }
 `
 
-export const AlertWrapper = styled.div<{ type: 'danger' | 'success' | 'info' }>`
+export const AlertWrapper = styled.div<{ type: MessageType }>`
   position: fixed;
   top: 20px;
   right: 20px;
@@ -20,17 +21,17 @@ export const AlertWrapper = styled.div<{ type: 'danger' | 'success' | 'info' }>`
   ${({ type }) =>
     type === 'danger' &&
     css`
-      background-color: #f87171; /* красный */
+      background-color: #f87171;
     `}
   ${({ type }) =>
     type === 'success' &&
     css`
-      background-color: #34d399; /* зелёный */
+      background-color: #34d399;
     `}
   ${({ type }) =>
     type === 'info' &&
     css`
-      background-color: #60a5fa; /* синий */
+      background-color: #60a5fa;
     `}
 `
 
