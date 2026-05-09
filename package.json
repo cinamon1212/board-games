@@ -13,6 +13,7 @@
     "lint": "next lint",
     "format": "prettier --write .",
     "type-check": "tsc --noEmit",
+    "set-admin": "bun scripts/setAdmin.ts",
     "prepare": "husky"
   },
   "dependencies": {
