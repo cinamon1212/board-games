@@ -10,6 +10,8 @@ import { getFirebaseAuth, getFirebaseDatabase, normalizeGames } from '@/helpers'
 import { Games, GameInfo, GameTitles } from '@/types'
 import type { RootState } from '@/store'
 
+import { logout } from './authSlice'
+
 /**
  * Тип состояния игр
  */
@@ -60,6 +62,16 @@ export const fetchGames = createAsyncThunk<
   { rejectValue: string }
 >('games/fetchGames', async (_, { rejectWithValue }) => {
   try {
+    // Redux может уже знать JWT из localStorage, а Firebase Auth ещё восстанавливает currentUser — без этого RTDB даёт Permission denied
+    await ensureFirebaseAuthReady()
+
+    const firebaseAuth = getFirebaseAuth()
+    if (!firebaseAuth.currentUser) {
+      return rejectWithValue(
+        'Сессия Firebase не восстановлена. Выйдите и войдите снова.',
+      )
+    }
+
     const database = getFirebaseDatabase()
     const [booleanSnapshot, numericSnapshot] = await Promise.all([
       get(ref(database, 'results/boolean')),
@@ -167,6 +179,12 @@ export const gamesSlice = createSlice({
       .addCase(saveGameResult.rejected, (state, action) => {
         console.error('[gamesSlice] saveGameResult.rejected:', action.payload)
         state.error = action.payload ?? 'Не удалось сохранить результат игры.'
+      })
+      .addCase(logout.fulfilled, (state) => {
+        // После выхода сбрасываем кэш, чтобы при следующем входе снова загрузить актуальные данные
+        state.games = []
+        state.error = null
+        state.loading = false
       })
   },
 })
