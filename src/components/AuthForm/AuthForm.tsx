@@ -3,7 +3,7 @@
 import React from 'react'
 import { useAuthForm } from '@/hooks'
 import { FormCard, FormControl, FormTitle, LimitText } from './styles'
-import { ButtonPrimary, Input } from '@/app/styles'
+import { Input, ButtonPrimary } from '@/app/styles'
 import { AuthMode } from '@/types'
 
 interface AuthFormProps {

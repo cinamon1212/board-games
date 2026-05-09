@@ -33,11 +33,11 @@ import {
   RemovePlayerButton,
 } from './styles'
 
-import { ButtonPrimary } from '@/app/globals'
+import { ButtonPrimary } from '@/app/styles'
 
 import { Select } from '../Select'
 import { BooleanInput } from '../BooleanInput'
-import { NumericInput } from '../NumericInput/NumericInput'
+import { NumericInput } from '../NumericInput'
 
 type GameButtonProps = {
   title: GameTitles
