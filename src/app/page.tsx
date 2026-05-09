@@ -43,10 +43,10 @@ const Home = () => {
     return filterGamesByRegExp(sortedGames, debouncedValue)
   }, [sortedGames, debouncedValue])
 
-  // Для карусели ограничиваем 15 играми
+  // Карусель всегда по полному списку (поиск не влияет на неё)
   const carouselGames = useMemo(() => {
-    return games.slice(0, 15)
-  }, [games])
+    return sortedGames.slice(0, 15)
+  }, [sortedGames])
 
   // Показываем лоадер пока данные загружаются
   if (loading) {
