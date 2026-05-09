@@ -12,7 +12,7 @@ import {
 } from '@/components'
 
 import { RadialBackground } from './styles'
-import { selectGames, selectGamesLoading } from '@/store/slices/gamesSlice'
+import { selectGames, selectGamesLoading } from '@/store'
 import { sortGamesByCount, filterGamesByRegExp } from '@/helpers'
 import { useDebounce } from '@/hooks'
 import { Games } from '@/types'

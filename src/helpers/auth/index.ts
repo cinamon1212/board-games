@@ -1,5 +1,6 @@
-export { fetchWithAuth } from './fetchWithAuth'
-export { isTokenExpired } from './isTokenExpired'
-export { auth } from './firebaseClient'
-export { database } from './firebaseClient'
+export { getFirebaseAuth, getFirebaseDatabase } from './firebaseClient'
 export { getUserFromToken } from './getUserFromToken'
+export { getAuthError } from './getAuthError'
+export { isTokenExpired } from './isTokenExpired'
+
+export * from './authSession'

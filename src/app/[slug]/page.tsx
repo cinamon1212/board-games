@@ -18,12 +18,12 @@ import {
 import { usePathname } from 'next/navigation'
 
 import { getGameByPath } from '@/helpers'
-import { selectGames } from '@/store/slices/gamesSlice'
+import { selectGames } from '@/store'
 
 import { PlayerScores } from '@/types'
 import { NumGamePage } from './NumGamePage'
 import { BoolGamePage } from './BoolGamePage'
-import { AuthGuard } from '../../components/AuthGuard/AuthGuard'
+import { AuthGuard } from '../../components'
 
 ChartJS.register(
   CategoryScale,

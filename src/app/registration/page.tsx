@@ -1,12 +1,9 @@
 'use client'
 
 import React from 'react'
-import { AuthForm } from '../../components/AuthForm'
+import { AuthForm } from '../../components'
 import Link from 'next/link'
 import { LinkWrapper } from '../globals'
-
-// Динамический рендеринг для избежания ошибки инициализации
-export const dynamic = 'force-dynamic'
 
 export default function RegistrationPage() {
   return (

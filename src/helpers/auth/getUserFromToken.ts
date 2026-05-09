@@ -1,4 +1,4 @@
-import { User } from '../../types/store'
+import { User } from '../../types'
 
 type FirebaseTokenPayload = {
   user_id?: string
@@ -23,7 +23,7 @@ const decodeBase64Url = (value: string) => {
   }
 }
 
-export const getUserFromToken = (token: string | null) => {
+export const getUserFromToken = (token: string | null): User | null => {
   if (!token) return null
 
   const payload = token.split('.')[1]
@@ -42,9 +42,9 @@ export const getUserFromToken = (token: string | null) => {
     }
 
     return {
-      uid: parsedPayload.user_id,
+      uid: parsedPayload.user_id ?? null,
       email: parsedPayload.email ?? null,
-    } satisfies User
+    }
   } catch {
     return null
   }
