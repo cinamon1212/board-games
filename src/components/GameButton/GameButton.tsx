@@ -1,6 +1,6 @@
 'use client'
 
-import { SubmitEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { PLAYERS_LIST } from '@/data'
@@ -18,7 +18,6 @@ import { useAppDispatch, setMessage, saveGameResult } from '@/store'
 import {
   AddPlayerButton,
   ButtonDescription,
-  CardButton,
   CloseButton,
   Field,
   FieldGroup,
@@ -30,12 +29,15 @@ import {
   FormTitle,
   ModalCard,
   ModalOverlay,
-  NumericInput,
   PlayerRow,
   RemovePlayerButton,
-  Select,
-  SubmitButton,
 } from './styles'
+
+import { ButtonPrimary } from '@/app/styles'
+
+import { Select } from '../Select'
+import { BooleanInput } from '../BooleanInput'
+import { NumericInput } from '../NumericInput'
 
 type GameButtonProps = {
   title: GameTitles
@@ -168,7 +170,7 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
     )
   }
 
-  const handleSubmit = async (event: SubmitEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
     if (!user) return
 
@@ -217,14 +219,14 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
 
   return (
     <>
-      <CardButton
+      <ButtonPrimary
         type='button'
         onClick={() => setIsOpen(true)}
         aria-haspopup='dialog'
         aria-expanded={isOpen}
       >
         Добавить результат
-      </CardButton>
+      </ButtonPrimary>
 
       {isOpen &&
         typeof document !== 'undefined' &&
@@ -253,49 +255,35 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
 
               <FormContent onSubmit={handleSubmit}>
                 <FieldGroup>
-                  {rows.map((row, index) => (
+                  {rows.map((row) => (
                     <PlayerRow key={row.id}>
                       <Field>
                         <FieldLabel htmlFor={`player-${row.id}`}>
-                          Игрок {index + 1}
+                          Игрок
                         </FieldLabel>
 
                         <Select
-                          id={`player-${row.id}`}
                           value={row.player}
-                          onChange={(e) => updatePlayer(row.id, e.target.value)}
-                          disabled={isSubmitting}
-                        >
-                          <option value=''>Выберите пользователя</option>
-                          {availablePlayers(row.player).map(({ id, name }) => (
-                            <option key={id} value={name}>
-                              {name}
-                            </option>
-                          ))}
-                        </Select>
+                          onChange={(value) => updatePlayer(row.id, value)}
+                          isDisabled={isSubmitting}
+                          options={availablePlayers(row.player).map(
+                            ({ name }) => ({
+                              value: name,
+                              label: name,
+                            }),
+                          )}
+                        />
                       </Field>
 
                       {isBoolean ? (
                         <Field>
                           <FieldLabel>Победитель</FieldLabel>
-                          <input
-                            type='radio'
+                          <BooleanInput
                             name={`winner-${title}`}
                             value={row.player}
                             checked={winner === row.player}
-                            onChange={(e) =>
-                              setWinner(e.target.value as Player)
-                            }
+                            onChange={(value) => setWinner(value)}
                             disabled={isSubmitting || !row.player}
-                            style={{
-                              width: '20px',
-                              height: '20px',
-                              accentColor: '#f2994a',
-                              cursor:
-                                isSubmitting || !row.player
-                                  ? 'not-allowed'
-                                  : 'pointer',
-                            }}
                           />
                         </Field>
                       ) : (
@@ -303,6 +291,7 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
                           <FieldLabel htmlFor={`score-${row.id}`}>
                             Результат
                           </FieldLabel>
+
                           <NumericInput
                             id={`score-${row.id}`}
                             type='number'
@@ -316,7 +305,6 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
                           />
                         </Field>
                       )}
-
                       <RemovePlayerButton
                         type='button'
                         onClick={() => removeRow(row.id)}
@@ -343,9 +331,9 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
                 </FieldGroup>
 
                 <FormActions>
-                  <SubmitButton type='submit' disabled={isSubmitting}>
+                  <ButtonPrimary type='submit' disabled={isSubmitting}>
                     {isSubmitting ? 'Сохраняем...' : 'Добавить результат'}
-                  </SubmitButton>
+                  </ButtonPrimary>
                 </FormActions>
               </FormContent>
             </ModalCard>

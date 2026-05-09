@@ -3,7 +3,7 @@
 import React from 'react'
 import { AuthForm } from '../../components'
 import Link from 'next/link'
-import { LinkWrapper } from '../globals'
+import { LinkWrapper } from '@/app/styles'
 
 export default function RegistrationPage() {
   return (

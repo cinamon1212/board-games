@@ -14,7 +14,7 @@ export const AlertWrapper = styled.div<{ type: MessageType }>`
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   color: white;
-  z-index: 1000;
+  z-index: 2;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   animation: ${fadeIn} 0.3s ease-out;
 

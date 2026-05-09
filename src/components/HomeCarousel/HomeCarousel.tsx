@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { Games } from '@/types'
 
 import { ItemSlider, ItemSliderImg, Slider, SliderWrapper } from './style'
@@ -12,7 +14,12 @@ export const HomeCarousel = ({ games }: GamesListProps) => {
       <Slider>
         {games.map((game, i) => (
           <ItemSlider key={i} $position={i + 1} $quantity={games.length}>
-            <ItemSliderImg src={game.imgPath} alt={game.title} />
+            <Link
+              href={game.slug}
+              aria-label={`Открыть страницу игры ${game.title}`}
+            >
+              <ItemSliderImg src={game.imgPath} alt={game.title} />
+            </Link>
           </ItemSlider>
         ))}
       </Slider>

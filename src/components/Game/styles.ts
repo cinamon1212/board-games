@@ -37,6 +37,7 @@ export const GameLink = styled(Link)`
   inset: 0;
   z-index: 2;
   border-radius: inherit;
+  height: 70%;
 `
 
 type GameImgProps = {

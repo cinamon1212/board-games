@@ -1,38 +1,9 @@
 import styled from 'styled-components'
 
-export const CardButton = styled.button`
-  position: relative;
-  z-index: 3;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #f2994a, #eb5757);
-  color: #fff8ef;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    transform 200ms ease,
-    box-shadow 200ms ease,
-    opacity 200ms ease;
-  box-shadow: 0 18px 36px rgba(235, 87, 87, 0.24);
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 22px 40px rgba(235, 87, 87, 0.3);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-`
-
 export const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,15 +16,25 @@ export const ModalCard = styled.div`
   width: min(100%, 720px);
   max-height: min(90vh, 760px);
   overflow: auto;
+
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 28px;
+
   background:
     linear-gradient(180deg, rgba(49, 34, 24, 0.98), rgba(21, 18, 16, 0.98)),
     #151210;
+
   box-shadow:
     0 40px 100px rgba(0, 0, 0, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
 `
 
 export const FormHeader = styled.div`
@@ -109,20 +90,11 @@ export const FieldGroup = styled.div`
   gap: 16px;
 `
 
-export const PlayerRow = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: end;
-
-  @media (max-width: 720px) {
-    grid-template-columns: 1fr;
-  }
-`
-
 export const Field = styled.div`
   display: flex;
   flex-direction: column;
+  align-self: start;
+  text-align: center;
   gap: 8px;
 `
 
@@ -130,39 +102,6 @@ export const FieldLabel = styled.label`
   color: rgba(255, 246, 235, 0.88);
   font-size: 14px;
   font-weight: 600;
-`
-
-const inputStyles = `
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.04);
-  color: #fff6eb;
-  font-size: 15px;
-  transition:
-    border-color 200ms ease,
-    background 200ms ease,
-    opacity 200ms ease;
-
-  &:focus {
-    outline: none;
-    border-color: rgba(242, 153, 74, 0.8);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`
-
-export const Select = styled.select`
-  ${inputStyles}
-`
-
-export const NumericInput = styled.input`
-  ${inputStyles}
 `
 
 export const AddPlayerButton = styled.button`
@@ -190,6 +129,8 @@ export const AddPlayerButton = styled.button`
 `
 
 export const RemovePlayerButton = styled.button`
+  margin-top: 25px;
+  align-self: center;
   border: none;
   border-radius: 18px;
   padding: 14px 18px;
@@ -213,6 +154,49 @@ export const RemovePlayerButton = styled.button`
   }
 `
 
+export const PlayerRow = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 140px 80px;
+  gap: 12px;
+  align-items: center;
+
+  /* скрываем label внутри всех rows */
+  & label {
+    visibility: hidden;
+  }
+
+  /* показываем label только в первой строке */
+  &:first-of-type label {
+    visibility: visible;
+  }
+
+  & > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > div:nth-child(2) input {
+    width: 100%;
+  }
+
+  & > button {
+    justify-self: center;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    & > div:nth-child(2) {
+      justify-content: flex-start;
+    }
+
+    & > button {
+      justify-self: start;
+    }
+  }
+`
+
 export const ButtonDescription = styled.p`
   color: rgba(255, 246, 235, 0.62);
   line-height: 1.5;
@@ -221,32 +205,4 @@ export const ButtonDescription = styled.p`
 export const FormActions = styled.div`
   display: flex;
   justify-content: flex-end;
-`
-
-export const SubmitButton = styled.button`
-  min-width: 220px;
-  border: none;
-  border-radius: 18px;
-  padding: 16px 20px;
-  background: linear-gradient(135deg, #f2994a, #eb5757);
-  color: #fff8ef;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    transform 200ms ease,
-    box-shadow 200ms ease,
-    opacity 200ms ease;
-  box-shadow: 0 22px 44px rgba(235, 87, 87, 0.28);
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 28px 50px rgba(235, 87, 87, 0.32);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
 `
