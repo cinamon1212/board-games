@@ -25,13 +25,6 @@ export type AuthUser = {
   password: string
 }
 
-export type FirebaseAuthResponse = {
-  idToken: string
-  refreshToken: string
-  expiresIn: string
-  localId: string
-}
-
 export type AuthMode = 'login' | 'registration'
 
 /** Данные сессии: токен, пользователь и флаг админа (custom claims) */
