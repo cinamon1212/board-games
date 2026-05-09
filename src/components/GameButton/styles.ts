@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
