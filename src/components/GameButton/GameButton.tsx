@@ -1,9 +1,9 @@
 'use client'
 
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, memo, useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useSelector } from 'react-redux'
 
-import { PLAYERS_LIST } from '@/data'
 import { useAdmin } from '@/hooks'
 
 import {
@@ -11,9 +11,15 @@ import {
   GameTitles,
   NumericResultValue,
   Player,
+  PlayersById,
 } from '@/types'
 
-import { useAppDispatch, setMessage, saveGameResult } from '@/store'
+import {
+  useAppDispatch,
+  setMessage,
+  saveGameResult,
+  selectPlayersById,
+} from '@/store'
 
 import {
   AddPlayerButton,
@@ -60,17 +66,27 @@ const createRow = (isNumeric: boolean): Row => ({
   ...(isNumeric ? { score: '' } : {}),
 })
 
-const buildNumericResults = (rows: Row[]): NumericResultValue => {
+const getPlayerName = (playerId: Player, playersById: PlayersById) =>
+  playersById[playerId]?.name ?? playerId
+
+const buildNumericResults = (
+  rows: Row[],
+  playersById: PlayersById,
+): NumericResultValue => {
   if (!rows.length) throw new Error('Добавьте хотя бы одного игрока.')
 
   return rows.reduce<NumericResultValue>((acc, { player, score }) => {
     if (!player) throw new Error('Выберите игрока для каждой строки.')
     if (!score?.trim())
-      throw new Error(`Укажите результат для игрока "${player}".`)
+      throw new Error(
+        `Укажите результат для игрока "${getPlayerName(player, playersById)}".`,
+      )
 
     const parsed = Number(score)
     if (!Number.isFinite(parsed))
-      throw new Error(`Некорректный результат для игрока "${player}".`)
+      throw new Error(
+        `Некорректный результат для игрока "${getPlayerName(player, playersById)}".`,
+      )
     if (player in acc) throw new Error('Игрок не может быть добавлен дважды.')
 
     acc[player] = parsed
@@ -105,16 +121,111 @@ const getErrorMessage = (error: unknown): string =>
 const getSelectedPlayers = (rows: Row[]): Player[] =>
   rows.map(({ player }) => player).filter(Boolean) as Player[]
 
+type PlayerFormRowProps = {
+  row: Row
+  title: GameTitles
+  isBoolean: boolean | undefined
+  isSubmitting: boolean
+  winner: Player | ''
+  playersById: PlayersById
+  selectedPlayers: Player[]
+  onUpdatePlayer: (id: string, value: string) => void
+  onUpdateScore: (id: string, score: string) => void
+  onRemove: (id: string) => void
+  onSetWinner: (value: Player) => void
+}
+
+/**
+ * Мемоизированная строка формы.
+ *
+ * `options` для `<Select>` стабилен, пока не изменились
+ * `playersById` (стабильная ссылка из Redux) или `selectedPlayers` —
+ * это убирает «прыжки» react-select при перерендере формы.
+ */
+const PlayerFormRow = memo(function PlayerFormRow({
+  row,
+  title,
+  isBoolean,
+  isSubmitting,
+  winner,
+  playersById,
+  selectedPlayers,
+  onUpdatePlayer,
+  onUpdateScore,
+  onRemove,
+  onSetWinner,
+}: PlayerFormRowProps) {
+  const options = useMemo(() => {
+    const taken = new Set(selectedPlayers)
+    return Object.values(playersById)
+      .filter(({ id }) => id === row.player || !taken.has(id))
+      .map(({ id, name }) => ({ value: id, label: name }))
+  }, [playersById, selectedPlayers, row.player])
+
+  return (
+    <PlayerRow>
+      <Field>
+        <FieldLabel htmlFor={`player-${row.id}`}>Игрок</FieldLabel>
+
+        <Select
+          value={row.player}
+          onChange={(value) => onUpdatePlayer(row.id, value)}
+          isDisabled={isSubmitting}
+          options={options}
+        />
+      </Field>
+
+      {isBoolean ? (
+        <Field>
+          <FieldLabel>Победитель</FieldLabel>
+          <BooleanInput
+            name={`winner-${title}`}
+            value={row.player}
+            checked={winner === row.player}
+            onChange={(value) => onSetWinner(value)}
+            disabled={isSubmitting || !row.player}
+          />
+        </Field>
+      ) : (
+        <Field>
+          <FieldLabel htmlFor={`score-${row.id}`}>Результат</FieldLabel>
+
+          <NumericInput
+            id={`score-${row.id}`}
+            type='number'
+            inputMode='numeric'
+            placeholder='0'
+            value={row.score ?? ''}
+            onChange={(e) => onUpdateScore(row.id, e.target.value)}
+            disabled={isSubmitting}
+          />
+        </Field>
+      )}
+
+      <RemovePlayerButton
+        type='button'
+        onClick={() => onRemove(row.id)}
+        disabled={isSubmitting}
+      >
+        Удалить
+      </RemovePlayerButton>
+    </PlayerRow>
+  )
+})
+
 export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
   const dispatch = useAppDispatch()
   const { isAdmin, isLoading, user } = useAdmin()
+  const playersById = useSelector(selectPlayersById)
 
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [rows, setRows] = useState<Row[]>(() => [createRow(!isBoolean)])
   const [winner, setWinner] = useState<Player | ''>('')
 
-  const selectedPlayers = getSelectedPlayers(rows)
+  // Стабильная ссылка между rerender'ами одной и той же конфигурации строк —
+  // иначе useMemo внутри PlayerFormRow пересчитывал бы options на каждый ввод символа.
+  const selectedPlayers = useMemo(() => getSelectedPlayers(rows), [rows])
 
   useEffect(() => {
     if (!isOpen) return
@@ -178,7 +289,7 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
     try {
       const results = isBoolean
         ? buildBooleanResults(rows, winner as Player)
-        : buildNumericResults(rows)
+        : buildNumericResults(rows, playersById)
 
       await dispatch(
         saveGameResult({
@@ -211,11 +322,6 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
   }
 
   if (isLoading || !user || !isAdmin) return null
-
-  const availablePlayers = (current: Player | '') =>
-    PLAYERS_LIST.filter(
-      ({ name }) => name === current || !selectedPlayers.includes(name),
-    )
 
   return (
     <>
@@ -256,63 +362,20 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
               <FormContent onSubmit={handleSubmit}>
                 <FieldGroup>
                   {rows.map((row) => (
-                    <PlayerRow key={row.id}>
-                      <Field>
-                        <FieldLabel htmlFor={`player-${row.id}`}>
-                          Игрок
-                        </FieldLabel>
-
-                        <Select
-                          value={row.player}
-                          onChange={(value) => updatePlayer(row.id, value)}
-                          isDisabled={isSubmitting}
-                          options={availablePlayers(row.player).map(
-                            ({ name }) => ({
-                              value: name,
-                              label: name,
-                            }),
-                          )}
-                        />
-                      </Field>
-
-                      {isBoolean ? (
-                        <Field>
-                          <FieldLabel>Победитель</FieldLabel>
-                          <BooleanInput
-                            name={`winner-${title}`}
-                            value={row.player}
-                            checked={winner === row.player}
-                            onChange={(value) => setWinner(value)}
-                            disabled={isSubmitting || !row.player}
-                          />
-                        </Field>
-                      ) : (
-                        <Field>
-                          <FieldLabel htmlFor={`score-${row.id}`}>
-                            Результат
-                          </FieldLabel>
-
-                          <NumericInput
-                            id={`score-${row.id}`}
-                            type='number'
-                            inputMode='numeric'
-                            placeholder='0'
-                            value={row.score ?? ''}
-                            onChange={(e) =>
-                              updateScore(row.id, e.target.value)
-                            }
-                            disabled={isSubmitting}
-                          />
-                        </Field>
-                      )}
-                      <RemovePlayerButton
-                        type='button'
-                        onClick={() => removeRow(row.id)}
-                        disabled={isSubmitting}
-                      >
-                        Удалить
-                      </RemovePlayerButton>
-                    </PlayerRow>
+                    <PlayerFormRow
+                      key={row.id}
+                      row={row}
+                      title={title}
+                      isBoolean={isBoolean}
+                      isSubmitting={isSubmitting}
+                      winner={winner}
+                      playersById={playersById}
+                      selectedPlayers={selectedPlayers}
+                      onUpdatePlayer={updatePlayer}
+                      onUpdateScore={updateScore}
+                      onRemove={removeRow}
+                      onSetWinner={setWinner}
+                    />
                   ))}
 
                   <AddPlayerButton
@@ -324,7 +387,7 @@ export const GameButton = ({ title, slug, isBoolean }: GameButtonProps) => {
                   </AddPlayerButton>
 
                   <ButtonDescription>
-                    Игроки берутся из списка players.ts, повторения отключены.
+                    Игроки берутся из узла players, повторения отключены.
                     {isBoolean &&
                       ' Выберите одного победителя из добавленных игроков.'}
                   </ButtonDescription>

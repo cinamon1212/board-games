@@ -1,4 +1,4 @@
-import { PersonsMap, Player, SingleGameResult, TableDataArr } from '@/types'
+import { PersonsMap, SingleGameResult, TableDataArr } from '@/types'
 
 /**
  * Преобразует карту игроков в массив данных для таблицы.
@@ -15,9 +15,9 @@ export const transformDataForTable = (
   const tableDataArr: TableDataArr = []
 
   for (const person in personsMap) {
-    const name = person as Player
+    const current = personsMap[person]
 
-    tableDataArr.push({ name, ...personsMap[name] })
+    if (current) tableDataArr.push({ ...current, name: current.name })
   }
 
   return tableDataArr.sort((firstItem, secondItem) => {

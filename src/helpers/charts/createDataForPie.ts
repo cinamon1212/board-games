@@ -1,4 +1,4 @@
-import { PersonsMap, Player } from '@/types'
+import { PersonsMap } from '@/types'
 import { ChartData } from 'chart.js'
 
 /**
@@ -18,10 +18,9 @@ export const createDataForPie = (personsMap: PersonsMap<boolean>) => {
   const backgroundColor: Array<string> = []
 
   for (const person in personsMap) {
-    const name = person as Player
-    const current = personsMap[name]
+    const current = personsMap[person]
 
-    data.labels?.push(name)
+    data.labels?.push(current?.name ?? person)
     winRates.push(Number(current?.winRate.slice(0, -1)))
     if (current?.color) backgroundColor.push(current?.color)
   }

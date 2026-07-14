@@ -1,4 +1,4 @@
-import { PlayerScores } from '@/types'
+import { PlayerScores, PlayersById } from '@/types'
 import { transformGamesForChart } from './transformGamesForChart'
 import { getGameScoreStats } from '../statistics/getGameScoreStats'
 import { transformDataForTable } from './transformDataForTable'
@@ -12,8 +12,12 @@ import { transformDataForTable } from './transformDataForTable'
  */
 export const getTransformedDataFromNumGames = (
   numGames: PlayerScores<number>,
+  playersById: PlayersById,
 ) => {
-  const { gamesForChart, personsMap } = transformGamesForChart(numGames)
+  const { gamesForChart, personsMap } = transformGamesForChart(
+    numGames,
+    playersById,
+  )
 
   const scoreStats = getGameScoreStats(personsMap)
 

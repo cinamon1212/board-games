@@ -1,5 +1,3 @@
-import { Player } from './player'
-
 /**
  * Массив меток для осей графика (обычно номера партий или даты)
  */
@@ -11,7 +9,7 @@ export type ChartLabels = Array<string>
  */
 export type DataSet = {
   /** Имя игрока, отображаемое в легенде */
-  label: Player
+  label: string
   /** Заполнять ли область под линией графика */
   fill: boolean
   /** Цвет линии графика (может быть градиентом) */

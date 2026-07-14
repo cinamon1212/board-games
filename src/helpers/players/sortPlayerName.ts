@@ -1,4 +1,4 @@
-import { Player } from '@/types'
+import { PlayerId } from '@/types'
 
 /**
  * Сортирует имена игроков в команде по алфавиту.
@@ -8,11 +8,7 @@ import { Player } from '@/types'
  * @param name - Имя игрока или команды
  * @returns Отсортированное имя команды или исходное имя одиночного игрока
  */
-export const sortPlayerName = (name: Player): Player => {
-  if (name.includes(' & '))
-    return name
-      .split(' & ')
-      .sort((firstName, secondName) => (firstName[0] < secondName[0] ? -1 : 1))
-      .join(' & ') as Player
-  else return name
-}
+export const sortPlayerName = (playerIds: Array<PlayerId>): Array<PlayerId> =>
+  [...playerIds].sort((firstId, secondId) =>
+    firstId < secondId ? -1 : firstId > secondId ? 1 : 0,
+  )

@@ -1,4 +1,4 @@
-import { PersonsMap, Player, ScoreStats } from '@/types'
+import { PersonsMap, ScoreStats } from '@/types'
 
 /**
  * Вычисляет общую статистику по игре: минимальный, максимальный и средний результат.
@@ -19,8 +19,7 @@ export const getGameScoreStats = (map: PersonsMap<number>): ScoreStats => {
   let totalGames = 0
 
   for (const person in map) {
-    const name = person as Player
-    const currentItem = map[name]
+    const currentItem = map[person]
 
     currentItem?.scores?.forEach((score) => {
       totalGames++

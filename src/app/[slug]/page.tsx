@@ -18,7 +18,7 @@ import {
 import { usePathname } from 'next/navigation'
 
 import { getGameByPath } from '@/helpers'
-import { selectGames } from '@/store'
+import { selectGames, selectPlayersById } from '@/store'
 
 import { PlayerScores } from '@/types'
 import { NumGamePage } from './NumGamePage'
@@ -41,6 +41,7 @@ const GamePage = () => {
 
   // Получаем все игры из Redux - стабильный мемоизированный селектор
   const allGames = useSelector(selectGames)
+  const playersById = useSelector(selectPlayersById)
 
   // Находим игру по пути с использованием useMemo для стабильности
   const game = useMemo(() => {
@@ -68,6 +69,7 @@ const GamePage = () => {
           title={title}
           slug={slug}
           params={params}
+          playersById={playersById}
         />
       </AuthGuard>
     )
@@ -80,6 +82,7 @@ const GamePage = () => {
           slug={slug}
           numGames={numGames}
           params={params}
+          playersById={playersById}
         />
       </AuthGuard>
     )

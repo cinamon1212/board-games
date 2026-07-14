@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useCallback, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { GameParams, PlayerScores, SingleGameResult } from '@/types'
 
@@ -55,7 +55,7 @@ const DropdownFilterComponent = <T extends SingleGameResult>({
     })
   }, [games, selectedFilters])
 
-  useMemo(() => {
+  useEffect(() => {
     onFilterChange(filteredGames)
   }, [filteredGames, onFilterChange])
 
@@ -82,44 +82,41 @@ const DropdownFilterComponent = <T extends SingleGameResult>({
     return null
   }
 
-  const render = false
-
   return (
     <>
-      {render &&
-        params.map(({ key, values }) => {
-          const selectedValue = selectedFilters[key]
-          const isOpen = activeDropdownKeys.includes(key)
+      {params.map(({ key, values }) => {
+        const selectedValue = selectedFilters[key]
+        const isOpen = activeDropdownKeys.includes(key)
 
-          return (
-            <DropdownWrapper key={key}>
-              <DropdownButton
-                onClick={() => onButtonClick(key)}
-                data-active={isOpen}
-                data-has-selection={!!selectedValue}
-              >
-                {selectedValue ? `${key}: ${selectedValue}` : key}
-              </DropdownButton>
-              {isOpen && (
-                <DropdownList>
-                  {values.map((value) => {
-                    const isSelected = selectedValue === value
+        return (
+          <DropdownWrapper key={key}>
+            <DropdownButton
+              onClick={() => onButtonClick(key)}
+              data-active={isOpen}
+              data-has-selection={!!selectedValue}
+            >
+              {selectedValue ? `${key}: ${selectedValue}` : key}
+            </DropdownButton>
+            {isOpen && (
+              <DropdownList>
+                {values.map((value) => {
+                  const isSelected = selectedValue === value
 
-                    return (
-                      <DropdownItem
-                        key={value}
-                        onClick={() => onDropdownItemClick(key, value)}
-                        data-selected={isSelected}
-                      >
-                        {value}
-                      </DropdownItem>
-                    )
-                  })}
-                </DropdownList>
-              )}
-            </DropdownWrapper>
-          )
-        })}
+                  return (
+                    <DropdownItem
+                      key={value}
+                      onClick={() => onDropdownItemClick(key, value)}
+                      data-selected={isSelected}
+                    >
+                      {value}
+                    </DropdownItem>
+                  )
+                })}
+              </DropdownList>
+            )}
+          </DropdownWrapper>
+        )
+      })}
     </>
   )
 }

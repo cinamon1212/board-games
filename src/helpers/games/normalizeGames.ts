@@ -1,4 +1,11 @@
-import { Games, GameInfo, GameTitles, PlayerScores } from '@/types'
+import {
+  Games,
+  GameInfo,
+  GameTitles,
+  PlayerProfile,
+  PlayerScores,
+  PlayersById,
+} from '@/types'
 
 /**
  * Тип для сырой игры из Firebase (новый формат Record<string, Game>)
@@ -12,11 +19,63 @@ export type FirebaseGame = {
   params?: Array<{ key: string; values: string[] }>
 }
 
+export type FirebasePlayer = {
+  name?: string
+  color?: string
+  avatar?: string
+  img?: string
+  userUid?: string | null
+  createdAt?: number
+}
+
 /**
  * Проверяет, является ли значение валидным объектом игры
  */
 const isValidGameObject = (value: unknown): value is FirebaseGame => {
   return typeof value === 'object' && value !== null
+}
+
+const isValidPlayerObject = (value: unknown): value is FirebasePlayer => {
+  return typeof value === 'object' && value !== null
+}
+
+export const normalizePlayers = (playersData: unknown): PlayersById => {
+  const playersById: PlayersById = {}
+
+  if (playersData === null || typeof playersData !== 'object') {
+    return playersById
+  }
+
+  for (const [id, player] of Object.entries(playersData)) {
+    if (!isValidPlayerObject(player)) {
+      console.warn('[normalizePlayers] Skipping invalid player:', id, player)
+      continue
+    }
+
+    if (!player.name || typeof player.name !== 'string') {
+      console.warn('[normalizePlayers] Skipping player without name:', id)
+      continue
+    }
+
+    const profile: PlayerProfile = {
+      id,
+      name: player.name,
+      color: typeof player.color === 'string' ? player.color : '#999',
+      avatar:
+        typeof player.avatar === 'string'
+          ? player.avatar
+          : typeof player.img === 'string'
+            ? player.img
+            : '',
+      userUid: player.userUid ?? null,
+      createdAt:
+        typeof player.createdAt === 'number' ? player.createdAt : undefined,
+    }
+
+    playersById[id] = profile
+  }
+
+  return playersById
 }
 
 /**

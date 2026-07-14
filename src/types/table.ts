@@ -1,6 +1,5 @@
 import { CSSProperties } from 'styled-components'
 import { PersonMapItem } from './statistics'
-import { Player } from './player'
 
 /**
  * Конфигурация колонки таблицы со статистикой
@@ -35,7 +34,7 @@ export type TableSortKey = 'none' | 'asc' | 'desc'
  */
 export type TableData = {
   /** Имя игрока или команды */
-  name: Player
+  name: string
 } & Partial<PersonMapItem<number | boolean>>
 
 /**

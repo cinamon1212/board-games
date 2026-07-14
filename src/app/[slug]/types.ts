@@ -2,6 +2,7 @@ import {
   GameParams,
   GameTitles,
   PlayerScores,
+  PlayersById,
   ScoreStats,
   SingleGameResult,
   TableDataArr,
@@ -12,6 +13,7 @@ export type NumGamePageProps = {
   title: GameTitles
   slug: string
   params?: GameParams
+  playersById: PlayersById
 }
 
 export type BoolGamePageProps = {
@@ -19,6 +21,7 @@ export type BoolGamePageProps = {
   title: GameTitles
   slug: string
   params?: GameParams
+  playersById: PlayersById
 }
 
 export type StatisticContainerProps = {

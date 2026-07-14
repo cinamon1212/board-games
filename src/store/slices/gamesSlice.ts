@@ -6,8 +6,13 @@ import {
 } from '@reduxjs/toolkit'
 import { get, ref, set } from 'firebase/database'
 
-import { getFirebaseAuth, getFirebaseDatabase, normalizeGames } from '@/helpers'
-import { Games, GameInfo, GameTitles } from '@/types'
+import {
+  getFirebaseAuth,
+  getFirebaseDatabase,
+  normalizeGames,
+  normalizePlayers,
+} from '@/helpers'
+import { Games, GameInfo, GameTitles, PlayerList, PlayersById } from '@/types'
 import type { RootState } from '@/store'
 
 import { logout } from './authSlice'
@@ -19,6 +24,12 @@ export type GamesState = {
   loading: boolean
   error: string | null
   games: Games
+  playersById: PlayersById
+}
+
+type FetchGamesPayload = {
+  games: Games
+  playersById: PlayersById
 }
 
 /**
@@ -35,6 +46,7 @@ const initialState: GamesState = {
   loading: false,
   error: null,
   games: [],
+  playersById: {},
 }
 
 /**
@@ -53,16 +65,40 @@ const ensureFirebaseAuthReady = async () => {
 }
 
 /**
- * Thunk для загрузки игр из Firebase
- * Загружает данные из results/boolean и results/numeric
+ * Безопасно читает узел; при Permission denied или другом отказе возвращает null,
+ * чтобы один заблокированный путь не валил всю загрузку.
+ */
+const safeGet = async (
+  database: ReturnType<typeof getFirebaseDatabase>,
+  path: string,
+): Promise<unknown> => {
+  try {
+    const snapshot = await get(ref(database, path))
+    return snapshot.val()
+  } catch (error) {
+    console.warn(`[fetchGames] Не удалось прочитать "${path}":`, error)
+    return null
+  }
+}
+
+/**
+ * Thunk для загрузки игр и игроков из Firebase.
+ *
+ * Новая структура данных:
+ *   results/boolean/{slug}/{title, games, isBoolean, imgPath, params}
+ *   results/numeric/{slug}/{title, games, isBoolean, imgPath, params}
+ *   players/{playerId}/{name, color, avatar, userUid, createdAt}
+ *
+ * games — массив объектов формата Record<playerId, number|boolean>
+ * (или { teams: [{ players: [...ids], score }] } для командных игр).
  */
 export const fetchGames = createAsyncThunk<
-  Games,
+  FetchGamesPayload,
   void,
   { rejectValue: string }
 >('games/fetchGames', async (_, { rejectWithValue }) => {
   try {
-    // Redux может уже знать JWT из localStorage, а Firebase Auth ещё восстанавливает currentUser — без этого RTDB даёт Permission denied
+    // Redux может уже знать JWT из localStorage, а Firebase Auth ещё восстанавливает currentUser — без этого Realtime Database даёт Permission denied
     await ensureFirebaseAuthReady()
 
     const firebaseAuth = getFirebaseAuth()
@@ -73,17 +109,23 @@ export const fetchGames = createAsyncThunk<
     }
 
     const database = getFirebaseDatabase()
-    const [booleanSnapshot, numericSnapshot] = await Promise.all([
-      get(ref(database, 'results/boolean')),
-      get(ref(database, 'results/numeric')),
+
+    const [booleanData, numericData, playersData] = await Promise.all([
+      safeGet(database, 'results/boolean'),
+      safeGet(database, 'results/numeric'),
+      safeGet(database, 'players'),
     ])
 
-    const booleanData = booleanSnapshot.val()
-    const numericData = numericSnapshot.val()
+    if (booleanData === null && numericData === null && playersData === null) {
+      return rejectWithValue(
+        'Не удалось прочитать данные из Firebase. Проверьте правила безопасности Realtime Database.',
+      )
+    }
 
     const normalizedGames = normalizeGames(booleanData, numericData)
+    const playersById = normalizePlayers(playersData)
 
-    return normalizedGames
+    return { games: normalizedGames, playersById }
   } catch (error) {
     console.error('[fetchGames] Error:', error)
     return rejectWithValue('Не удалось загрузить игры из Firebase.')
@@ -168,7 +210,8 @@ export const gamesSlice = createSlice({
       })
       .addCase(fetchGames.fulfilled, (state, action) => {
         state.loading = false
-        state.games = action.payload
+        state.games = action.payload.games
+        state.playersById = action.payload.playersById
         state.error = null
       })
       .addCase(fetchGames.rejected, (state, action) => {
@@ -183,6 +226,7 @@ export const gamesSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         // После выхода сбрасываем кэш, чтобы при следующем входе снова загрузить актуальные данные
         state.games = []
+        state.playersById = {}
         state.error = null
         state.loading = false
       })
@@ -194,6 +238,13 @@ export const { clearGamesError, setGames } = gamesSlice.actions
 
 // Простой селектор для получения всех игр
 export const selectGames = (state: RootState) => state.games.games
+
+export const selectPlayersById = (state: RootState) => state.games.playersById
+
+export const selectPlayersList = createSelector(
+  [selectPlayersById],
+  (playersById): PlayerList => Object.values(playersById),
+)
 
 // Селектор для получения состояния загрузки
 export const selectGamesLoading = (state: RootState) => state.games.loading

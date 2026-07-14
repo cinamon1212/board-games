@@ -1,4 +1,4 @@
-import { PlayerScores } from '@/types'
+import { PlayerScores, PlayersById } from '@/types'
 import { getPersonsMap } from './getPersonsMap'
 import { getPersonsMapGames } from './getPersonsMapGames'
 import { createDataForPie } from '../charts/createDataForPie'
@@ -13,8 +13,9 @@ import { transformDataForTable } from './transformDataForTable'
  */
 export const getTransformedDataFromBoolGames = (
   boolGames: PlayerScores<boolean>,
+  playersById: PlayersById,
 ) => {
-  const map = getPersonsMapGames<boolean>(boolGames)
+  const map = getPersonsMapGames<boolean>(boolGames, playersById)
 
   const { personsMap } = getPersonsMap<boolean>(map)
 

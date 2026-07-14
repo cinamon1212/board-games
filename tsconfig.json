@@ -20,7 +20,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/data/*": ["data/*"],
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
       "@/helpers/*": ["helpers/*"]
