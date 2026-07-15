@@ -55,9 +55,7 @@ const getResultEntries = <T extends SingleGameResult>(
 }
 
 const getName = (playerIds: Array<PlayerId>, playersById: PlayersById) =>
-  playerIds
-    .map((playerId) => playersById[playerId]?.name ?? playerId)
-    .join(' & ')
+  playerIds.map((playerId) => playersById[playerId].name).join(' & ')
 
 /**
  * Преобразует массив результатов партий в карту игроков или команд.
@@ -94,6 +92,7 @@ export const getPersonsMapGames = <T extends SingleGameResult>(
             color,
             avatar: '',
             userUid: null,
+            createdAt: 0,
           }
 
       const isWin =

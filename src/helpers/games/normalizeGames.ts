@@ -19,25 +19,24 @@ export type FirebaseGame = {
   params?: Array<{ key: string; values: string[] }>
 }
 
-export type FirebasePlayer = {
-  name?: string
-  color?: string
-  avatar?: string
-  img?: string
-  userUid?: string | null
-  createdAt?: number
-}
-
 /**
- * Проверяет, является ли значение валидным объектом игры
+ * Сырая запись игрока из Firebase.
+ * По новой схеме все пять полей всегда присутствуют, но мы принимаем
+ * `unknown` на входе и валидируем только форму объекта.
  */
-const isValidGameObject = (value: unknown): value is FirebaseGame => {
-  return typeof value === 'object' && value !== null
+export type FirebasePlayer = {
+  name: string
+  color: string
+  avatar: string
+  userUid: string | null
+  createdAt: number
 }
 
-const isValidPlayerObject = (value: unknown): value is FirebasePlayer => {
-  return typeof value === 'object' && value !== null
-}
+const isFirebaseGame = (value: unknown): value is FirebaseGame =>
+  typeof value === 'object' && value !== null
+
+const isFirebasePlayer = (value: unknown): value is FirebasePlayer =>
+  typeof value === 'object' && value !== null
 
 export const normalizePlayers = (playersData: unknown): PlayersById => {
   const playersById: PlayersById = {}
@@ -47,29 +46,18 @@ export const normalizePlayers = (playersData: unknown): PlayersById => {
   }
 
   for (const [id, player] of Object.entries(playersData)) {
-    if (!isValidPlayerObject(player)) {
+    if (!isFirebasePlayer(player)) {
       console.warn('[normalizePlayers] Skipping invalid player:', id, player)
-      continue
-    }
-
-    if (!player.name || typeof player.name !== 'string') {
-      console.warn('[normalizePlayers] Skipping player without name:', id)
       continue
     }
 
     const profile: PlayerProfile = {
       id,
       name: player.name,
-      color: typeof player.color === 'string' ? player.color : '#999',
-      avatar:
-        typeof player.avatar === 'string'
-          ? player.avatar
-          : typeof player.img === 'string'
-            ? player.img
-            : '',
-      userUid: player.userUid ?? null,
-      createdAt:
-        typeof player.createdAt === 'number' ? player.createdAt : undefined,
+      color: player.color,
+      avatar: player.avatar,
+      userUid: player.userUid,
+      createdAt: player.createdAt,
     }
 
     playersById[id] = profile
@@ -102,7 +90,7 @@ export const normalizeGames = (
   // Обрабатываем булевы игры (Record<string, FirebaseGame>)
   if (booleanData !== null && typeof booleanData === 'object') {
     for (const [slug, game] of Object.entries(booleanData)) {
-      if (!isValidGameObject(game)) {
+      if (!isFirebaseGame(game)) {
         console.warn('[normalizeGames] Skipping invalid game:', slug, game)
         continue
       }
@@ -127,7 +115,7 @@ export const normalizeGames = (
   // Обрабатываем числовые игры (Record<string, FirebaseGame>)
   if (numericData !== null && typeof numericData === 'object') {
     for (const [slug, game] of Object.entries(numericData)) {
-      if (!isValidGameObject(game)) {
+      if (!isFirebaseGame(game)) {
         console.warn('[normalizeGames] Skipping invalid game:', slug, game)
         continue
       }

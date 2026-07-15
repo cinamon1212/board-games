@@ -1,5 +1,5 @@
 import { GameParams } from './game'
-import { PlayerId, PlayerProfile, PlayerProfileWithoutName } from './player'
+import { PlayerId, PlayerProfile } from './player'
 
 /**
  * Результат одной партии для одного игрока
@@ -86,9 +86,7 @@ export type PersonMapGameItem<T extends SingleGameResult> = {
   scores: Array<T>
   /** Количество побед в этой партии (для булевых игр) */
   winCount: number
-} & PlayerProfileWithoutName & {
-    name: string
-  }
+} & PlayerProfile
 
 /**
  * Карта упрощенной статистики всех игроков для конкретной партии
