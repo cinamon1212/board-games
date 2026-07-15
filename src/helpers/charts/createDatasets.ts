@@ -1,4 +1,4 @@
-import { DataSets, PersonsMap, Player } from '@/types'
+import { DataSets, PersonsMap } from '@/types'
 
 /**
  * Создает наборы данных для линейного графика Chart.js.
@@ -11,12 +11,11 @@ export const createDatasets = (map: PersonsMap<number>) => {
   const datasets: DataSets = []
 
   for (const person in map) {
-    const name = person as Player
-    const currentItem = map[name]
+    const currentItem = map[person]
 
     if (currentItem) {
       datasets.push({
-        label: name,
+        label: currentItem.name,
         data: currentItem.scores || [],
         fill: false,
         tension: 0.3,

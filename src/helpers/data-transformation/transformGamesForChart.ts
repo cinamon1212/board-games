@@ -1,4 +1,4 @@
-import { PlayerScores } from '@/types'
+import { PlayerScores, PlayersById } from '@/types'
 import { createLabelsForChart } from '../charts/createLabelsForChart'
 import { getPersonsMapGames } from './getPersonsMapGames'
 import { createDatasets } from '../charts/createDatasets'
@@ -11,8 +11,11 @@ import { getPersonsMap } from './getPersonsMap'
  * @param games - Массив результатов партий числовой игры
  * @returns Объект с данными для графика (gamesForChart) и картой игроков (personsMap)
  */
-export const transformGamesForChart = (games: PlayerScores<number>) => {
-  const map = getPersonsMapGames<number>(games)
+export const transformGamesForChart = (
+  games: PlayerScores<number>,
+  playersById: PlayersById,
+) => {
+  const map = getPersonsMapGames<number>(games, playersById)
 
   const { personsMap, maxScoresCount } = getPersonsMap<number>(map)
 

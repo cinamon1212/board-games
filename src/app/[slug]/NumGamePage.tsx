@@ -22,11 +22,12 @@ export const NumGamePage = ({
   title,
   slug,
   params,
+  playersById,
 }: NumGamePageProps) => {
   const [filteredGames, setFilteredGames] = useState(numGames)
 
   const { gamesForChart, scoreStats, tableDataArr } =
-    getTransformedDataFromNumGames(filteredGames)
+    getTransformedDataFromNumGames(filteredGames, playersById)
 
   const chartRef = useRef<ChartJSOrUndefined<'line'> | null>(null)
   const chartData = useChartData(chartRef, gamesForChart)

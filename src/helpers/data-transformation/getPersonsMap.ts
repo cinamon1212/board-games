@@ -1,4 +1,4 @@
-import { PersonsMap, PersonsMapGames, Player } from '@/types'
+import { PersonsMap, PersonsMapGames } from '@/types'
 import { SingleGameResult } from '@/types'
 import { getArithmeticMean } from '../statistics/getArithmeticMean'
 
@@ -17,7 +17,7 @@ export const getPersonsMap = <T extends SingleGameResult>(
   let maxScoresCount = 0
 
   for (const person in map) {
-    const name = person as Player
+    const name = person
 
     if (map[name]) {
       const { scores, winCount, ...fields } = map[name]

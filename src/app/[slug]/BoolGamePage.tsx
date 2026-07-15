@@ -20,10 +20,14 @@ export const BoolGamePage = ({
   title,
   params,
   slug,
+  playersById,
 }: BoolGamePageProps) => {
   const [filteredGames, setFilteredGames] = useState(boolGames)
 
-  const { data, tableDataArr } = getTransformedDataFromBoolGames(filteredGames)
+  const { data, tableDataArr } = getTransformedDataFromBoolGames(
+    filteredGames,
+    playersById,
+  )
 
   return (
     <PageWrapper>

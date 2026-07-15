@@ -1,4 +1,11 @@
-import { Games, GameInfo, GameTitles, PlayerScores } from '@/types'
+import {
+  Games,
+  GameInfo,
+  GameTitles,
+  PlayerProfile,
+  PlayerScores,
+  PlayersById,
+} from '@/types'
 
 /**
  * Тип для сырой игры из Firebase (новый формат Record<string, Game>)
@@ -13,10 +20,50 @@ export type FirebaseGame = {
 }
 
 /**
- * Проверяет, является ли значение валидным объектом игры
+ * Сырая запись игрока из Firebase.
+ * По новой схеме все пять полей всегда присутствуют, но мы принимаем
+ * `unknown` на входе и валидируем только форму объекта.
  */
-const isValidGameObject = (value: unknown): value is FirebaseGame => {
-  return typeof value === 'object' && value !== null
+export type FirebasePlayer = {
+  name: string
+  color: string
+  avatar: string
+  userUid: string | null
+  createdAt: number
+}
+
+const isFirebaseGame = (value: unknown): value is FirebaseGame =>
+  typeof value === 'object' && value !== null
+
+const isFirebasePlayer = (value: unknown): value is FirebasePlayer =>
+  typeof value === 'object' && value !== null
+
+export const normalizePlayers = (playersData: unknown): PlayersById => {
+  const playersById: PlayersById = {}
+
+  if (playersData === null || typeof playersData !== 'object') {
+    return playersById
+  }
+
+  for (const [id, player] of Object.entries(playersData)) {
+    if (!isFirebasePlayer(player)) {
+      console.warn('[normalizePlayers] Skipping invalid player:', id, player)
+      continue
+    }
+
+    const profile: PlayerProfile = {
+      id,
+      name: player.name,
+      color: player.color,
+      avatar: player.avatar,
+      userUid: player.userUid,
+      createdAt: player.createdAt,
+    }
+
+    playersById[id] = profile
+  }
+
+  return playersById
 }
 
 /**
@@ -43,7 +90,7 @@ export const normalizeGames = (
   // Обрабатываем булевы игры (Record<string, FirebaseGame>)
   if (booleanData !== null && typeof booleanData === 'object') {
     for (const [slug, game] of Object.entries(booleanData)) {
-      if (!isValidGameObject(game)) {
+      if (!isFirebaseGame(game)) {
         console.warn('[normalizeGames] Skipping invalid game:', slug, game)
         continue
       }
@@ -68,7 +115,7 @@ export const normalizeGames = (
   // Обрабатываем числовые игры (Record<string, FirebaseGame>)
   if (numericData !== null && typeof numericData === 'object') {
     for (const [slug, game] of Object.entries(numericData)) {
-      if (!isValidGameObject(game)) {
+      if (!isFirebaseGame(game)) {
         console.warn('[normalizeGames] Skipping invalid game:', slug, game)
         continue
       }

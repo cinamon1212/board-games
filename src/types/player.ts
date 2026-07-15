@@ -1,62 +1,21 @@
-/**
- * Имена одиночных игроков
- * Используется для создания типов игроков и команд
- */
-export type PlayerSingle =
-  | 'Тамик'
-  | 'Илья'
-  | 'Андрей'
-  | 'Соня'
-  | 'Сергей'
-  | 'Лиля'
-  | 'Саша'
-  | 'Славик'
-  | 'Лена'
-  | 'Ольга'
-  | 'Настя'
+export type PlayerId = string
+
+export type Player = PlayerId
 
 /**
- * Тип для команд из двух игроков
- * Формат: "Игрок1 & Игрок2"
- * Пример: "Илья & Соня"
- */
-export type PlayersCouple = `${PlayerSingle} & ${PlayerSingle}`
-
-/**
- * Имя игрока или команды
- * Может быть одиночным игроком или командой из двух игроков
- */
-export type Player = PlayersCouple | PlayerSingle
-
-/**
- * Полный профиль игрока
- * Содержит всю информацию об игроке для отображения и визуализации
+ * Профиль игрока, как он хранится в узле `players` в Firebase.
+ * Все пять полей (`name`, `color`, `avatar`, `userUid`, `createdAt`)
+ * всегда присутствуют в Firebase.
  */
 export type PlayerProfile = {
-  /** Уникальный идентификатор игрока */
-  id: number
-  /** Цвет игрока для визуализации на графиках и в таблицах (HEX формат или градиент) */
+  id: PlayerId
+  name: string
   color: string
-  /** Имя игрока или команды */
-  name: Player
-  /** Путь к изображению игрока (пока не используется в UI) */
-  img: string
+  avatar: string
+  userUid: string | null
+  createdAt: number
 }
 
-/**
- * Профиль игрока без имени
- * Используется в структурах данных, где имя уже является ключом
- */
-export type PlayerProfileWithoutName = Omit<PlayerProfile, 'name'>
-
-/**
- * Список всех игроков в системе
- */
 export type PlayerList = Array<PlayerProfile>
 
-/**
- * Карта игроков по именам
- * Ключи - имена игроков, значения - их профили без имени
- * Используется для быстрого доступа к данным игрока по имени
- */
-export type PlayersByName = Record<Player, PlayerProfileWithoutName>
+export type PlayersById = Record<PlayerId, PlayerProfile>

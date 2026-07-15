@@ -1,2 +1,4 @@
-export type BooleanResultValue = Record<string, boolean>
-export type NumericResultValue = Record<string, number>
+import { PlayerId } from './player'
+
+export type BooleanResultValue = Record<PlayerId, boolean>
+export type NumericResultValue = Record<PlayerId, number>

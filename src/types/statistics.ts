@@ -1,5 +1,5 @@
 import { GameParams } from './game'
-import { Player, PlayerProfileWithoutName } from './player'
+import { PlayerId, PlayerProfile } from './player'
 
 /**
  * Результат одной партии для одного игрока
@@ -15,10 +15,15 @@ export type SingleGameResult = number | boolean
 export type GameResult = SingleGameResult | Array<SingleGameResult>
 
 /**
- * Дженерик для объектов, где ключи - это имена игроков
+ * Дженерик для объектов, где ключи - это ID игроков или команд
  * Все поля опциональны, так как не все игроки могут участвовать в каждой партии
  */
-export type PlayerObj<T> = Partial<Record<Player, T>>
+export type PlayerObj<T> = Partial<Record<string, T>>
+
+export type TeamScore = {
+  players: Array<PlayerId>
+  score: number
+}
 
 /**
  * Объект с опциональным полем params для хранения параметров партии
@@ -30,7 +35,16 @@ export type ParamObj = Partial<Record<'params', GameParams>>
  * Результаты одной партии для всех игроков
  * Содержит результаты каждого игрока и опциональные параметры партии
  */
-export type PlayerScore<T extends GameResult> = PlayerObj<T> & ParamObj
+export type IndividualPlayerScore<T extends GameResult> = PlayerObj<T> &
+  ParamObj
+
+export type TeamPlayerScore = ParamObj & {
+  teams: Array<TeamScore>
+}
+
+export type PlayerScore<T extends GameResult> =
+  | IndividualPlayerScore<T>
+  | TeamPlayerScore
 
 /**
  * Массив результатов всех сыгранных партий игры
@@ -55,11 +69,11 @@ export type PersonMapItem<T extends SingleGameResult> = {
   minScore?: number
   /** Максимальный результат (только для числовых игр) */
   maxScore?: number
-} & PlayerProfileWithoutName
+} & PlayerProfile
 
 /**
  * Карта статистики всех игроков
- * Ключи - имена игроков, значения - их статистика
+ * Ключи - ID игроков или команд, значения - их статистика
  */
 export type PersonsMap<T extends SingleGameResult> = PlayerObj<PersonMapItem<T>>
 
@@ -72,11 +86,11 @@ export type PersonMapGameItem<T extends SingleGameResult> = {
   scores: Array<T>
   /** Количество побед в этой партии (для булевых игр) */
   winCount: number
-} & PlayerProfileWithoutName
+} & PlayerProfile
 
 /**
  * Карта упрощенной статистики всех игроков для конкретной партии
- * Ключи - имена игроков, значения - их результаты в этой партии
+ * Ключи - ID игроков или команд, значения - их результаты в этой партии
  */
 export type PersonsMapGames<T extends SingleGameResult> = PlayerObj<
   PersonMapGameItem<T>
