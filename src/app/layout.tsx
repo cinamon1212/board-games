@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Open_Sans } from 'next/font/google'
 
-import { Toast } from '../components'
 import { Providers } from './providers'
 import { StyledComponentsRegistry } from './styled-components-registry'
 import './globals.css'
@@ -42,10 +41,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${openSans.variable}`}
       >
         <StyledComponentsRegistry>
-          <Providers>
-            <Toast />
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </StyledComponentsRegistry>
       </body>
     </html>
